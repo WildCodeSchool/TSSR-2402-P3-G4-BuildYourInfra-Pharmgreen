@@ -18,7 +18,7 @@
 
 8) Conclusion
 
-## **Présentation du Projet et Objectifs
+## **Présentation du Projet et Objectifs**
 
 Le Projet **_Build Your Infra - Pharmgreen_** consiste à analyser, à partir des différents éléments à disposition, l'état actuel de la société et estimer les besoins. A partir de cela, il fallait faire des propositions d'objectifs, les classer, et estimer sur quel sprint ils devront être mis en place.
 
