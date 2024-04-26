@@ -21,6 +21,7 @@ Le Projet **_Build Your Infra - Pharmgreen_** consiste à analyser, à partir de
 Nous venons d'être embauchés par la société Pharmgreen, au sein du département Systèmes d'Information, pour pallier au manque de techniciens Systèmes et Réseaux. Notre rôle consiste à mettre en place une infrastructure réseau.
 
 Dans le contexte du projet, le formateur sera le DSI de la société.
+
 ## **Présentation des membres du groupe et rôles par Sprint**
 
 Le groupe est composé de :
@@ -33,14 +34,14 @@ Le groupe est composé de :
 
 Activités et répartitions des tâches
 
-| NOM | Taches éffectuées |
-| :-- | :---------- |
+| **NOM** | **Taches éffectuées** |
+| :--: | :----------: |
 | Pierre (PO) | Nomenclature, OU, groupes, plan schématique, liste serveurs et matériels, script powershell intégration utilisateurs à partir d'un fichier CSV |
 | Julien (SM) | Nomenclature, OU, groupes, plan schématique, liste serveurs et matériels, plan d'adressage, README.md |
 | Maxime |  Nomenclature, OU, groupes, plan schématique, liste serveurs et matériels, création des VM |
 | Bruno | Nomenclature (80%), OU, groupes, plan schématique, liste serveurs et matériels |
 
-## **Choix techniques, contraintes et solutions **
+## **Choix techniques, contraintes et solutions**
 
 L'entreprise ne fait pas partie d'un domaine et ne dispose pas d'un Active Directory, il faudra donc mettre en place un serveur AD (+ DHCP et DNS). Une sécurité via mot de passe sera mise en place.
 
