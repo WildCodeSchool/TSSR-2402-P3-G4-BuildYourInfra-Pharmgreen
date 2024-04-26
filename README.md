@@ -23,7 +23,7 @@ Nous venons d'être embauchés par la société Pharmgreen, au sein du départem
 Dans le contexte du projet, le formateur sera le DSI de la société.
 ## **Présentation des membres du groupe et rôles par Sprint**
 
-Le groupe du Projet **_Scripting_** est composé de :
+Le groupe est composé de :
 * **Pierre Girard**
 * **Julien Guillot**
 * **Maxime Kamara**
