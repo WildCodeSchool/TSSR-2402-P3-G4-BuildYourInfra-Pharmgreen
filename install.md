@@ -14,31 +14,45 @@
 #### 1. Préparation de l'Environnement
 
 - Vérifiez que les deux machines (serveur et client) sont mises à jour avec les derniers patches de sécurité.
+  
 - Assurez-vous que les deux machines peuvent se connecter entre elles via le réseau.
 
 #### 2. Installation de AD DS (Active Directory Domain Services)
 
 - Connectez-vous sur le serveur SRV-GLOBAL-LYON avec le compte Administrator.
+  
 - Ouvrez le 'Server Manager', puis cliquez sur 'Add roles and features' (Ajouter des rôles et fonctionnalités).
+  
 - Sur le type d’installation, sélectionnez 'Role-based or feature-based installation' (Installation basée sur un rôle ou une fonctionnalité).
+  
 - Choisissez le serveur SRV-GLOBAL-LYON de la liste des serveurs.
+  
 - Sélectionnez 'Active Directory Domain Services' dans la liste des rôles de serveur, puis cliquez sur 'Next' (Suivant).
+  
 - Suivez les instructions pour ajouter les fonctionnalités nécessaires qui sont suggérées automatiquement.
+  
 - Confirmez l’installation des services AD DS en cliquant sur 'Install' (Installer).
+  
 - Une fois l’installation terminée, cliquez sur 'Promote this server to a domain controller' (Promouvoir ce serveur en contrôleur de domaine) pour configurer AD DS.
 
 #### 3. Installation et Configuration de DNS
 
 - Lors de la promotion du serveur en contrôleur de domaine, vous aurez l’option d’installer et configurer le serveur DNS.
+  
 - Choisissez de créer une nouvelle zone de recherche directe pour pharmgreen.org.
+  
 - Suivez les étapes pour configurer la zone DNS, y compris la mise en place de l'enregistrement SOA (Start of Authority) et les enregistrements.ns nécessaires.
 
 #### 4. Installation et Configuration de DHCP
 
 - Retournez au 'Server Manager', puis sélectionnez 'Add roles and features' (Ajouter des rôles et fonctionnalités).
+  
 - Sélectionnez 'DHCP Server' dans la liste des rôles et suivez les étapes pour l'installer.
+  
 - Après l'installation, utilisez 'Complete DHCP configuration' (Compléter la configuration DHCP) pour configurer le serveur DHCP.
+  
 - Définissez l'étendue de DHCP pour distribuer les adresses IP automatiquement dans le réseau, incluant les adresses pour SRV-GLOBAL-LYON et PC-PI-0001.
+  
 
 ### Informations du Client
 
