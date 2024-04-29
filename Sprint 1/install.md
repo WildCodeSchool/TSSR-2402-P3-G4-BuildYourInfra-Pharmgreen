@@ -40,8 +40,10 @@ Prérequis
 - Confirmez l’installation des services AD DS en cliquant sur 'Install' (Installer).
   
 - Une fois l’installation terminée, cliquez sur 'Promote this server to a domain controller' (Promouvoir ce serveur en contrôleur de domaine) pour configurer AD DS.
-- Choisir  'Add a new forest' (ajouté une nouvelle fôret) et Définir `pharmgreen.org`en nom de domaine.  
-- Pour le reste des options laissez cocher ce qui est déjà fait par défaut et choisir un mot passe adéquate quand il est demandé (ici le même que la session Adminisrator du Serveur).  
+- Choisir  'Add a new forest' (ajouté une nouvelle fôret) et Définir `pharmgreen.org`en nom de domaine, puis cliquez sur 'Next' (Suivant) autant de fois que nécessaire.
+- Pour le reste des options laissez cocher ce qui est déjà fait par défaut et choisir un mot passe adéquate quand il est demandé (ici le même que la session Adminisrator du Serveur).
+- Puis cliquez sur 'Install' (Installer).  
+
 ![configure](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/9abf0e41-2f12-4ecb-8ed0-b7f7fd833ec4)
 ![pharmgreen org](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/fbac3bb6-f9b7-44c8-9375-c2923f2aec4c)
 ![MDP AD DS](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/3cc37e63-a785-477f-8e40-0dba7e7657a3)
