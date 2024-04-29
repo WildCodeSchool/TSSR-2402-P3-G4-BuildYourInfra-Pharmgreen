@@ -54,7 +54,7 @@ Prérequis
 - **Compte**: wilder
 - **Mot de passe**: Azerty1*
 - **IPv4**: 172.14.3.5
-- **DNS**: pharmgreen.org
+- **DNS**: pharmgreen.org / 172.14.3.4
 - **Version**: Windows Server 2022
 
 Prérequis
