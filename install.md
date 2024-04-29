@@ -11,13 +11,15 @@
 
 
 ### Étapes d'Installation
-#### 1. Préparation de l'Environnement
 
-- Vérifiez que les deux machines (serveur et client) sont mises à jour avec les derniers patches de sécurité.
-  
-- Assurez-vous que les deux machines peuvent se connecter entre elles via le réseau.
+Prérequis
+- Mises à jour de sécurité : Appliquées sur les deux machines.
+- Connectivité réseau : Vérifiée entre serveur et client.
+- Pare-feu : Désactivé sur les deux machines.
+- Plage d'adresse IP : Identique pour serveur et client.
+- 
 
-#### 2. Installation de AD DS (Active Directory Domain Services)
+#### 1. Installation de AD DS (Active Directory Domain Services)
 
 - Connectez-vous sur le serveur SRV-GLOBAL-LYON avec le compte Administrator.
   
@@ -35,15 +37,8 @@
   
 - Une fois l’installation terminée, cliquez sur 'Promote this server to a domain controller' (Promouvoir ce serveur en contrôleur de domaine) pour configurer AD DS.
 
-#### 3. Installation et Configuration de DNS
 
-- Lors de la promotion du serveur en contrôleur de domaine, vous aurez l’option d’installer et configurer le serveur DNS.
-  
-- Choisissez de créer une nouvelle zone de recherche directe pour pharmgreen.org.
-  
-- Suivez les étapes pour configurer la zone DNS, y compris la mise en place de l'enregistrement SOA (Start of Authority) et les enregistrements.ns nécessaires.
-
-#### 4. Installation et Configuration de DHCP
+#### 3. Installation et Configuration de DHCP
 
 - Retournez au 'Server Manager', puis sélectionnez 'Add roles and features' (Ajouter des rôles et fonctionnalités).
   
