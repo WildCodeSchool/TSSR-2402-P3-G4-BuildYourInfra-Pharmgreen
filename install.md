@@ -17,7 +17,6 @@ Prérequis
 - Connectivité réseau : Vérifiée entre serveur et client.
 - Pare-feu : Désactivé sur les deux machines.
 - Plage d'adresse IP : Identique pour serveur et client.
-- 
 
 #### 1. Installation de AD DS (Active Directory Domain Services)
 
