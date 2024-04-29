@@ -38,7 +38,7 @@ Prérequis
 - Une fois l’installation terminée, cliquez sur 'Promote this server to a domain controller' (Promouvoir ce serveur en contrôleur de domaine) pour configurer AD DS.
 
 
-#### 3. Installation et Configuration de DHCP
+#### 2. Installation et Configuration de DHCP
 
 - Retournez au 'Server Manager', puis sélectionnez 'Add roles and features' (Ajouter des rôles et fonctionnalités).
   
