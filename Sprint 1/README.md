@@ -52,3 +52,5 @@ De plus, toutes les données sont stockées en local et il n'sxiste aucune sauve
 Enfin, l'accès internet se fait en wifi fourni par un FAI et via des répétiteurs wifi répartis dans toutes l'entreprise. Des routeurs et des switchs seront donc installés afin d'obtenir une meilleure connexion au sein de l'entreprise.
 
 ## **Conclusion**
+
+Ce que nous proposons lors de cette première semaine d'études est une ébauche des solutions qui seront apportées tout au long de ce projet.
