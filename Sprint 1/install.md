@@ -45,8 +45,17 @@ Prérequis
 - Puis cliquez sur 'Install' (Installer), une fois l'installation terminé, le serveur va redémarrer.  
 
 ![configure](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/9abf0e41-2f12-4ecb-8ed0-b7f7fd833ec4)
+
+- Entrer le nom du domaine
+  
 ![pharmgreen org](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/fbac3bb6-f9b7-44c8-9375-c2923f2aec4c)
+
+- Ajouter un mot de passe
+  
 ![MDP AD DS](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/3cc37e63-a785-477f-8e40-0dba7e7657a3)
+
+- Continuer l'installation
+
 ![Install](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/018360c2-023c-4fee-ac34-f04844314a19)
 
 
