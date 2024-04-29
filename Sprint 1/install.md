@@ -23,26 +23,38 @@ Prérequis
 - Connectez-vous sur le serveur SRV-GLOBAL-LYON avec le compte Administrator.
   
 - Ouvrez le 'Server Manager', puis cliquez sur 'Add roles and features' (Ajouter des rôles et fonctionnalités).
+![Ouvrez le 'Server Manager](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/45f9aea5-b7ad-42e8-9242-aaaa279ebe27)
+
   
 - Sur le type d’installation, sélectionnez 'Role-based or feature-based installation' (Installation basée sur un rôle ou une fonctionnalité).
+!['Add roles and features](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/b849081d-85dc-4a48-a4ae-c62f5b1b4da5)
+
   
 - Choisissez le serveur SRV-GLOBAL-LYON de la liste des serveurs.
   
 - Sélectionnez 'Active Directory Domain Services' dans la liste des rôles de serveur, puis cliquez sur 'Next' (Suivant).
+![Active Directory Domain Services](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/797f927c-ad52-4c39-a2c5-e95a26e22647)
   
 - Suivez les instructions pour ajouter les fonctionnalités nécessaires qui sont suggérées automatiquement.
   
 - Confirmez l’installation des services AD DS en cliquant sur 'Install' (Installer).
   
 - Une fois l’installation terminée, cliquez sur 'Promote this server to a domain controller' (Promouvoir ce serveur en contrôleur de domaine) pour configurer AD DS.
+![configure](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/9abf0e41-2f12-4ecb-8ed0-b7f7fd833ec4)
+![pharmgreen org](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/fbac3bb6-f9b7-44c8-9375-c2923f2aec4c)
+![MDP AD DS](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/3cc37e63-a785-477f-8e40-0dba7e7657a3)
+![Install](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/018360c2-023c-4fee-ac34-f04844314a19)
+
 
 
 #### 2. Installation et Configuration de DHCP
 
 - Retournez au 'Server Manager', puis sélectionnez 'Add roles and features' (Ajouter des rôles et fonctionnalités).
-  
+  !['Add roles and features](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/e569d963-e87d-4238-83b0-ae6422f463b6)
+
 - Sélectionnez 'DHCP Server' dans la liste des rôles et suivez les étapes pour l'installer.
-  
+  ![DHCP](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/08ca85f2-4632-4647-9f1a-14d861ed519d)
+
 - Après l'installation, utilisez 'Complete DHCP configuration' (Compléter la configuration DHCP) pour configurer le serveur DHCP.
   
 - Définissez l'étendue de DHCP pour distribuer les adresses IP automatiquement dans le réseau, incluant les adresses pour SRV-GLOBAL-LYON et PC-PI-0001.
