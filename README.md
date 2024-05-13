@@ -41,6 +41,17 @@ Activités et répartitions des tâches
 | Maxime |  Nomenclature, OU, groupes, plan schématique, liste serveurs et matériels, création des VM |
 | Bruno | Nomenclature (80%), OU, groupes, plan schématique, liste serveurs et matériels |
 
+### **Sprint 1 : semaine du 13 au 17 mai 2024**
+
+Activités et répartitions des tâches
+
+| **NOM** | **Taches éffectuées** |
+| :--: | :----------: |
+| Pierre (SM) | |
+| Julien  | |
+| Maxime |   |
+| Bruno (PO) | |
+
 ## **Choix techniques, contraintes et solutions**
 
 L'entreprise ne fait pas partie d'un domaine et ne dispose pas d'un Active Directory, il faudra donc mettre en place un serveur AD (+ DHCP et DNS). Une sécurité via mot de passe sera mise en place.
