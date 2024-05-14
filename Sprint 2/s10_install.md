@@ -13,14 +13,14 @@
 
 - Connectez vous sur le serveur AD-DS avec le compte Administrator.
 - Vous allez arriver sur un écran comme celui-ci
-
+![VirtualBox_core_14_05_2024_14_47_52](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/e80dff79-29d1-4bda-97fb-be2233a692fe)
 - Entrez "15" pour passer en lignes de commandes (PowerShell)
 - Exécutez les commandes suivantes : 
 	- `Add-WindowsFeature -Name "RSAT-AD-Tools" -IncludeManagementTools -IncludeAllSubFeature
 	- `Add-WindowsFeature -Name "AD-Domain-Services" -IncludeManagementTools -IncludeAllSubFeature`
 	- `Add-WindowsFeature -Name "DNS" -IncludeManagementTools -IncludeAllSubFeature`
 Vous verrez une barre de progression comme celle-ci pour les 3 commandes :
-
+![VirtualBox_core_14_05_2024_14_49_59](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/9d616d04-7b80-4abe-b3cb-847d6169d6f1)
 - Fermez la fenêtre afin de revenir à l'écran précédent avec toutes les propositions.
 
 #### 2. Définition d'une adresse IP statique
@@ -44,6 +44,7 @@ Et maintenant le DNS :
 - De nouveau "Entrée"
 
 Vous aurez à la fin quelque chose qui ressemble à ceci 
+![Pasted image 20240514150528](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/46a278b4-8224-4a6e-8f98-c2f11cb38ad5)
 
 #### 3. Ajout du Server Core au Domaine
 
@@ -54,3 +55,4 @@ Vous aurez à la fin quelque chose qui ressemble à ceci
 - Ainsi que le mot de passe (Azerty1*)
 
 Vous aurez alors un message de bienvenue dans le domaine sélectionné et quand vous retournez au menu principal :
+![Pasted image 20240514151103](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/2ffd38f0-506c-45e3-8b27-62fdcb541684)
