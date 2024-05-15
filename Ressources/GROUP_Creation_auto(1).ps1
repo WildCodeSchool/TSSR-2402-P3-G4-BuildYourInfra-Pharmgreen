@@ -1,5 +1,3 @@
-﻿
-OU=Finance,OU=Direction_Financiere,OU=User_Pharmgreen,DC=pharmgreen,DC=org
 #######################################
 #                                     #
 #   Création de groupes automatique   #
@@ -16,7 +14,7 @@ $DomainDN = (Get-ADDomain).DistinguishedName
 
 foreach ($Group in $Groups) {
     Try {
-        New-AdGroup -Name $($Group.Designation) -Path "OU=$($Group.SousOU), OU=$($Group.OU), $DomainDN" -GroupScope Global -GroupCategory Security
+        New-AdGroup -Name $($Group.Designation) -Path "OU=$($Group.SousOU), OU=$($Group.OU),OU=User_Pharmgreen,DC=pharmgreen,DC=org $DomainDN" -GroupScope Global -GroupCategory Security
         Write-Host "Création du groupe $($Group.Designation) dans l'OU $($Group.OU)/$($Group.SousOU), $DomainDN réussie" -ForegroundColor Green
     } Catch {
         Write-Host "Le groupe $($Group.Designation) existe déjà" -ForegroundColor Yellow -BackgroundColor Black
