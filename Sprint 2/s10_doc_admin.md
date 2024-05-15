@@ -30,3 +30,32 @@ executer la commaande **realm join --user=administrator pharmgreen.org**
 ## action a effectuer sur le serveur
 
 pour installer le protocole SSH sur le serveur effectuer cette commande **apt install openssh-server**
+
+modifier le fichier /etc/ssh/sshd_config comme cela :
+
+![capture3ssh](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/6df03c53-2575-4d6d-b626-5c9887b05ce4)
+
+
+![CAPTURE5SSH](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/bde0c267-4836-4366-a189-23321c6849c0)
+
+après avoir modifier le fichier penser a executer la commande **systemctl restart sshd**
+
+executer ces commandes pour creer le dossier qui va acceuillir la clef publique de notre client:
+- **mkdir /home/wilder/.ssh**
+- **chmod 700 /home/wilder/.ssh**
+- **touch /home/wilder/.ssh/authorized_keys**
+- **chmod 600 /home/wilder/.ssh/authorized_keys**
+
+# configuration client ssh
+
+- generer une clef publique  en executant cette commande en powershell **ssh-keygen -t rsa 4096**
+
+- copier la clef sur le serveur en executant cette commande **cat ~/.ssh/id_rsa.pub | ssh root@192.168.9.4 "cat >> ~/.ssh/authorized_keys"**
+
+# derniere configuration
+
+de retour sur le serveur remodifier le fichier /etc/ssh/sshd_config
+
+![image-7](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/5c9d0416-6b82-4c8c-a541-40d970c99395)
+
+coté client pour vous connecter executer cette commande **ssh wilder@192.168.9.4 -p 6666**
