@@ -1,4 +1,4 @@
-﻿######################################################################################################
+######################################################################################################
 #                                                                                                    #
 #   Création USER automatiquement avec fichier (avec suppression protection contre la suppression)   #
 #                                                                                                    #
@@ -26,7 +26,7 @@ Foreach ($User in $Users)
     Write-Progress -Activity "Création des utilisateurs dans l'OU" -Status "% effectué" -PercentComplete ($Count/$Users.Length*100)
     $Name              = "$($User.Nom) $($User.Prenom)"
     $DisplayName       = "$($User.Nom) $($User.Prenom)"
-    $SamAccountName    = $($User.Prenom.ToLower()) + $($User.Nom.ToLower())
+    $SamAccountName    = ($User.Prenom + "." + $User.Nom).ToLower()
     $UserPrincipalName = (($User.Prenom.ToLower() + $User.Nom.ToLower()) + "@" + (Get-ADDomain).Forest)
     $GivenName         = $User.Prenom
     $Surname           = $User.Nom
