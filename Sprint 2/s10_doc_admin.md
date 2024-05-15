@@ -17,7 +17,8 @@ executer cette commande : **apt install packagekit samba-common-bin sssd-tools s
 ### modification fichier resolv.conf
 
 modifier le fichier /etc/resolv.conf comme cela :
-![alt text](image-1.png)
+
+![image-1](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/9ee74866-6e02-4e7f-9dd1-571e731d1ff6)
 
 ### ajout de la machine au serveur AD
 
