@@ -1,5 +1,5 @@
-﻿Clear-Host
-
+﻿
+OU=Finance,OU=Direction_Financiere,OU=User_Pharmgreen,DC=pharmgreen,DC=org
 #######################################
 #                                     #
 #   Création de groupes automatique   #
