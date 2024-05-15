@@ -6,7 +6,9 @@
 
 modifier le fichier **/etc/network/interfaces** comme suis :
 
-![alt text](image.png)
+
+![Capture](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a8ac382b-05cb-475e-8292-adbb51969dcb)
+
 
 ### Paquet necessaire pour ajouter le serveur à l'active directory
 
