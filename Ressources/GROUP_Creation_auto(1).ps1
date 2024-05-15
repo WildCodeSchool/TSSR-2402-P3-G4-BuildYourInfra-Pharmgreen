@@ -6,7 +6,7 @@
 
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
 
-$File = "$FilePath\USER_Creation_auto_Liste.txt"
+$File = "$FilePath\Nomenclature.csv"
 
 $Groups = Import-Csv -Path $File -Delimiter ";" -Header "OU","SousOU","Designation"
 
