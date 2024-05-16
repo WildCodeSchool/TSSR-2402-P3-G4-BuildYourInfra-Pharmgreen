@@ -1,3 +1,19 @@
+Informations du Serveur
+
+### Pré-requis
+- **Nom de l’hôte serveur GUI**: SRV-GLOBAL-LYON
+- **Adresse IP de réseau** : 192.168.9.0/24
+- **Adresse de passerelle** : 192.168.9.254
+- **Adresse IP DNS** : 192.168.9.254
+- **Compte**: Administrator
+- **Mot de passe**: Azerty1*
+- **IPv4**: 192.168.9.2
+- **DNS**: pharmgreen.org
+- **Version**: Windows Server 2022
+- Pare-feu : désactivé
+
+Pour installation des rôle Active Directory, DNS et DHCP ce référer à la docummentation s09_install.md
+
 ### Informations du Serveur
 
 - **Nom de l’hôte serveur**: AD-DS
