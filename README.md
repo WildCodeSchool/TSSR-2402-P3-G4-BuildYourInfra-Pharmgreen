@@ -43,10 +43,10 @@ Activités et répartition des tâches
 
 | **NOM** | **Tâches effectuées** |
 | :--: | :----------: |
-| Pierre (SM) | |
-| Julien  | |
-| Maxime |   |
-| Bruno (PO) | |
+| Pierre (SM) | Création et configuration VM Debian SSH et Client Windows, mise en place SSH |
+| Julien  | Création d’un domaine AD (VM Windows Server + Windows Server Core) |
+| Maxime | Gestion AD - AUTO Groupe et Users (Script) |
+| Bruno (PO) | Gestion de l'arborescence AD (création OU) et aide sur Scipt pour création auto |
 
 ## **Choix techniques, contraintes et solutions**
 
