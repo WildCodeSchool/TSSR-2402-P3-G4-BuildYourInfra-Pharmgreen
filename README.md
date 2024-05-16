@@ -61,3 +61,4 @@ Enfin, l'accès à Internet se fait en Wi-Fi fourni par un FAI et via des répé
 ## **Conclusion**
 
 Ce que nous proposons lors de cette première semaine d'études est une ébauche des solutions qui seront apportées tout au long de ce projet.
+Lors de notre seconde semaine, nous avons quasiement réalisé l'entierté des objectifs et taches des deux premières semaines. Il nous manque juste à optimiser nos scripts de créations automatisé de groupe et utilisateurs.
