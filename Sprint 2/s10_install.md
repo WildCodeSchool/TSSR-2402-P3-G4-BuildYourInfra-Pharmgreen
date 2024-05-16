@@ -66,6 +66,14 @@ Vous aurez alors un message de bienvenue dans le domaine sélectionné et quand 
 
 ![Pasted image 20240514151103](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/2ffd38f0-506c-45e3-8b27-62fdcb541684)
 
+Sur le Windows Server (en GUI), ouvrez le Serveur Manager et selectionner "Manage" puis "Add Servers" :
+
+![AD-DS1](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/fd69ae44-3826-45d9-aea5-8b45ea717e74)  
+
+Ensuite, appuyez sur "Find Now" et double cliquez sur "AD-DS" (le nom du Serveur Core), il devrait apparaitre dans le fenêtre de droite et validez en cliquant sur le bouton "OK".  
+
+![AD-DS1](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/992776d8-5ccf-42c9-9c51-18f1a64f4346)
+
 Sur le Windows Server (en GUI), vous aurez une notification en haut comme ceci :
 
 ![1](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/f5720148-2f75-457c-a95e-1bcc64d2c5bf)
