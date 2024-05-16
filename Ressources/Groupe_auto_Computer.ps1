@@ -11,9 +11,10 @@ $File = "$FilePath\Groupe_Computer.csv"
 $Groups = Import-Csv -Path $File -Delimiter "," -Header "OU","SousOU","Designation"
 $ADGroup = Get-ADGroup -Filter * -Properties *
 $DomainDN = (Get-ADDomain).DistinguishedName
-
+$Count = 1
 foreach ($Group in $Groups) 
 {  
+        Write-Progress -Activity "Création des groupes dans les OU" -Status "% effectué" -PercentComplete ($Count/$Groups.Length*100)
         # Gestion de présence de Sous OU
         if ( $Group.SousOU -eq "NA" )
                 # Chemin complet
@@ -37,6 +38,8 @@ foreach ($Group in $Groups)
                        }
         Else
                 {
-                Write-Host "Le groupe $($Group.Designation) dans l'OU $($Group.OU)/$($Group.SousOU), $DomainDN  existe déjà" -ForegroundColor Black -BackgroundColor Yellow
+                Write-Host "Le groupe $($Group.Designation) dans l'OU $($Group.OU)/$($Group.SousOU), $DomainDN  existe déjà" -ForegroundColor Yellow
                 }
+        $Count++
+        sleep -Milliseconds 100
 }
