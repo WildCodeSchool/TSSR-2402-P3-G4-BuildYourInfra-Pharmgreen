@@ -120,7 +120,6 @@ Modifier le fichier /etc/resolv.conf comme cela :
 
 Executer la commaande **realm join --user=administrator pharmgreen.org**
 
-
 # Installation et configuration du serveur ssh
 
 ## Action à effectuer sur le serveur
