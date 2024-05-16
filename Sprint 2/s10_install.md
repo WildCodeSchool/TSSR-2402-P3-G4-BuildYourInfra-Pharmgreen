@@ -94,9 +94,9 @@ Cliquez dessus et entrez les informations suivantes :
 
 - Faites "Next" jusqu'à la fin et cliquez sur "Install".
 
-  # Documentation Administrateur
+  # configuration Serveur debian et SSH 
 
-## Ajout du serveur Debian a l' Active Directory
+## Ajout du serveur Debian à l' Active Directory
 
 ### Configuration reseau
 
@@ -123,7 +123,7 @@ Executer la commaande **realm join --user=administrator pharmgreen.org**
 
 # Installation et configuration du serveur ssh
 
-## Action a effectuer sur le serveur
+## Action à effectuer sur le serveur
 
 Pour installer le protocole SSH sur le serveur effectuer cette commande **apt install openssh-server**
 
@@ -134,7 +134,7 @@ Modifier le fichier /etc/ssh/sshd_config comme cela :
 
 ![CAPTURE5SSH](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/bde0c267-4836-4366-a189-23321c6849c0)
 
-Après avoir modifier le fichier penser a executer la commande **systemctl restart sshd**
+Après avoir modifier le fichier penser à executer la commande **systemctl restart sshd**
 
 Executer ces commandes pour creer le dossier qui va acceuillir la clef publique de notre client:
 - **mkdir /home/wilder/.ssh**
@@ -144,7 +144,7 @@ Executer ces commandes pour creer le dossier qui va acceuillir la clef publique 
 
 # Configuration client ssh
 
-- Generer une clef publique  en executant cette commande en powershell **ssh-keygen -t rsa 4096**
+- Generer une clef publique en executant cette commande en powershell **ssh-keygen -t rsa 4096**
 
 - Copier la clef sur le serveur en executant cette commande **cat ~/.ssh/id_rsa.pub | ssh root@192.168.9.4 "cat >> ~/.ssh/authorized_keys"**
 
