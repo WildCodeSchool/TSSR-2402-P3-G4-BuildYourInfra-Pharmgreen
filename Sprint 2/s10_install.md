@@ -12,7 +12,7 @@ Informations du Serveur
 - **Version**: Windows Server 2022
 - Pare-feu : désactivé
 
-Pour installation des rôle Active Directory, DNS et DHCP ce référer à la documentation **s09_install.md** et adapter les adresse IP selon les **Pré-requis**.  
+Pour l'installation des rôle Active Directory, DNS et DHCP, se référer à la documentation **s09_install.md** et adapter les adresses IP selon les **Pré-requis**.  
 De même pour le poste Client.
 
 ### Informations du Serveur
@@ -64,7 +64,7 @@ Et maintenant le DNS :
 - Sur "1" pour choisir l'interface
 - Puis sur "2" pour configurer le DNS
 - Entrez l'adresse souhaitée (ici ce sera 192.168.9.2 qui est l'adresse du serveur AD principal)
-- Faites "Entrée" si vous ne souhaites pas de DNS secondaire
+- Faites "Entrée" si vous ne souhaitez pas de DNS secondaire
 - De nouveau "Entrée"
 
 Vous aurez à la fin quelque chose qui ressemble à ceci 
@@ -117,7 +117,7 @@ Cliquez dessus et entrez les informations suivantes :
 
 ### Configuration reseau
 
-Modifier le fichier **/etc/network/interfaces** comme suis :
+Modifiez le fichier **/etc/network/interfaces** comme suit :
 
 
 ![Capture](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a8ac382b-05cb-475e-8292-adbb51969dcb)
@@ -125,51 +125,51 @@ Modifier le fichier **/etc/network/interfaces** comme suis :
 
 ### Paquet necessaire pour ajouter le serveur à l'active directory
 
-Executer cette commande : **apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd**
+Executez cette commande : `apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd`
 
 ### Modification fichier resolv.conf
 
-Modifier le fichier /etc/resolv.conf comme cela :
+Modifiez le fichier /etc/resolv.conf comme cela :
 
 ![image-1](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/9ee74866-6e02-4e7f-9dd1-571e731d1ff6)
 
 ### Ajout de la machine au serveur AD
 
-Executer la commaande **realm join --user=administrator pharmgreen.org**
+Executez la commande `realm join --user=administrator pharmgreen.org`
 
 # Installation et configuration du serveur ssh
 
 ## Action à effectuer sur le serveur
 
-Pour installer le protocole SSH sur le serveur effectuer cette commande **apt install openssh-server**
+Pour installer le protocole SSH sur le serveur, effectuez cette commande `apt install openssh-server`
 
-Modifier le fichier /etc/ssh/sshd_config comme cela :
+Modifiez le fichier /etc/ssh/sshd_config comme cela :
 
 ![capture3ssh](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/6df03c53-2575-4d6d-b626-5c9887b05ce4)
 
 
 ![CAPTURE5SSH](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/bde0c267-4836-4366-a189-23321c6849c0)
 
-Après avoir modifier le fichier penser à executer la commande **systemctl restart sshd**
+Après avoir modifier le fichier, pensez à executer la commande `systemctl restart sshd`
 
-Executer ces commandes pour creer le dossier qui va acceuillir la clef publique de notre client:
-- **mkdir /home/wilder/.ssh**
-- **chmod 700 /home/wilder/.ssh**
-- **touch /home/wilder/.ssh/authorized_keys**
-- **chmod 600 /home/wilder/.ssh/authorized_keys**
+Executez ces commandes pour créer le dossier qui va acceuillir la clé publique de notre client:
+- `mkdir /home/wilder/.ssh`
+- `chmod 700 /home/wilder/.ssh`
+- `touch /home/wilder/.ssh/authorized_keys`
+- `chmod 600 /home/wilder/.ssh/authorized_keys`
 
 # Configuration client ssh
 
-- Generer une clef publique en executant cette commande en powershell **ssh-keygen -t rsa 4096**
+- Génerez une clé publique en exécutant cette commande en PowerShell `ssh-keygen -t rsa 4096`
 
-- Copier la clef sur le serveur en executant cette commande **cat ~/.ssh/id_rsa.pub | ssh root@192.168.9.4 "cat >> ~/.ssh/authorized_keys"**
+- Copiez la clé sur le serveur en exécutant cette commande `cat ~/.ssh/id_rsa.pub | ssh root@192.168.9.4 "cat >> ~/.ssh/authorized_keys"`
 
-# Derniere configuration
+# Dernière configuration
 
-De retour sur le serveur remodifier le fichier /etc/ssh/sshd_config
+De retour sur le serveur, remodifiez le fichier /etc/ssh/sshd_config
 
 ![image-7](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/5c9d0416-6b82-4c8c-a541-40d970c99395)
 
-Coté client pour vous connecter executer cette commande **ssh wilder@192.168.9.4 -p 6666**
+Côté client; pour vous connecter, exécutez cette commande `ssh wilder@192.168.9.4 -p 6666`
 
 
