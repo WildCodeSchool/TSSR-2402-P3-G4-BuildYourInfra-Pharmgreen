@@ -12,7 +12,8 @@ Informations du Serveur
 - **Version**: Windows Server 2022
 - Pare-feu : désactivé
 
-Pour installation des rôle Active Directory, DNS et DHCP ce référer à la docummentation s09_install.md
+Pour installation des rôle Active Directory, DNS et DHCP ce référer à la documentation **s09_install.md** et adapter les adresse IP selon les **Pré-requis**.  
+De même pour le poste Client.
 
 ### Informations du Serveur
 
