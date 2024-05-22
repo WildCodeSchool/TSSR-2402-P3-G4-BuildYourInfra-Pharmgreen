@@ -48,6 +48,17 @@ Activités et répartition des tâches
 | Maxime | Gestion AD - AUTO Groupe et Users (Script) |
 | Bruno (PO) | Gestion de l'arborescence AD (création OU) et aide sur Scipt pour création auto |
 
+### **Sprint 3 : semaine du 21 au 24 mai 2024**
+
+Activités et répartition des tâches
+
+| **NOM** | **Tâches effectuées** |
+| :--: | :----------: |
+| Pierre |  |
+| Julien  |  |
+| Maxime (PO) |  |
+| Bruno (SM) |  |
+
 ## **Choix techniques, contraintes et solutions**
 
 L'entreprise ne fait pas partie d'un domaine et ne dispose pas d'un Active Directory, il faudra donc mettre en place un serveur AD (plus DHCP et DNS). Une sécurité via mot de passe sera mise en place.
