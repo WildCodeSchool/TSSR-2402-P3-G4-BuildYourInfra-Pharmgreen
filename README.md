@@ -54,10 +54,10 @@ Activités et répartition des tâches
 
 | **NOM** | **Tâches effectuées** |
 | :--: | :----------: |
-| Pierre |  |
-| Julien  |  |
-| Maxime (PO) |  |
-| Bruno (SM) |  |
+| Pierre | import utilisateurs et groupes dans GLPI |
+| Julien  | Création serveur GLPI, import utilisateurs et groupes dans GLPI, import des machines dans GLPI |
+| Maxime (PO) | Création serveur GLPI |
+| Bruno (SM) | import utilisateurs et groupes dans GLPI |
 
 ## **Choix techniques, contraintes et solutions**
 
