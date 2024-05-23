@@ -54,10 +54,10 @@ Activités et répartition des tâches
 
 | **NOM** | **Tâches effectuées** |
 | :--: | :----------: |
-| Pierre | import utilisateurs et groupes dans GLPI |
-| Julien  | Création serveur GLPI, import utilisateurs et groupes dans GLPI, import des machines dans GLPI |
-| Maxime (PO) | Création serveur GLPI |
-| Bruno (SM) | import utilisateurs et groupes dans GLPI |
+| Pierre | Import utilisateurs et groupes dans GLPI, Création des GPO |
+| Julien  | Création serveur GLPI, import utilisateurs et groupes et machines dans GLPI, Création GPO |
+| Maxime (PO) | Création serveur GLPI, script d'automatisation pour l'installation d'ADDS sur un Windows Server Core |
+| Bruno (SM) | Import utilisateurs et groupes dans GLPI, Création des GPO |
 
 ## **Choix techniques, contraintes et solutions**
 
