@@ -6,7 +6,7 @@ $ConfigFile = "$FilePath\configAD-DS.csv"
 $Config = Import-Csv -Path $ConfigFile -Delimiter "," -Header "ServerName","IPAddress","Gateway","Domain"
 
 # Varible qui extrait les paramètres du fichier de configuration
-$serverCore = $Config.ServerName # Indiqué dans le csv nom au serveur CORE
+$serverCore = $Config.ServerName # Indiqué dans le csv nom du serveur CORE
 $adresseIp = $Config.IPAddress # Indiqué dans le csv l'adresse IP
 $gateway = $Config.Gateway # Indiqué dans le csv l'adresse IP de la paserelle
 $domain = $Config.Domain # Indiqué dans le csv le nom du domaine exemple.org
