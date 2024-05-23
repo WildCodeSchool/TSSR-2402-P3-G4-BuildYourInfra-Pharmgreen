@@ -99,6 +99,7 @@ Ajouter le contenu suivant :
     define('GLPI_CONFIG_DIR', '/etc/glpi/');
     if (file_exists(GLPI_CONFIG_DIR . '/local_define.php')) {
         require_once GLPI_CONFIG_DIR . '/local_define.php';
+        ?>
 
 
 `sudo nano /etc/glpi/local_define.php`
@@ -108,6 +109,7 @@ Ajouter le contenu suivant :
     <?php
     define('GLPI_VAR_DIR', '/var/lib/glpi/files');
     define('GLPI_LOG_DIR', '/var/log/glpi');
+    ?>
 
 ### Préparer la configuration Apache2
 Créez un fichier de configuration Apache2 pour le VirtualHost dédié à GLPI. Configurez les règles de réécriture nécessaires et activez le site nouvellement créé tout en désactivant le site par défaut.
