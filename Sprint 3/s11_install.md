@@ -112,13 +112,13 @@ Ajouter le contenu suivant :
 ### Préparer la configuration Apache2
 Créez un fichier de configuration Apache2 pour le VirtualHost dédié à GLPI. Configurez les règles de réécriture nécessaires et activez le site nouvellement créé tout en désactivant le site par défaut.
 
-`sudo nano /etc/apache2/sites-available/support.it-connect.tech.conf
+`sudo nano /etc/apache2/sites-available/pharmgreen.org.conf
 `
 
 Ajouter la configuration suivante :
  
     <VirtualHost *:80>
-    ServerName support.it-connect.tech
+    ServerName pharmgreen.org
 
     DocumentRoot /var/www/glpi/public
 
@@ -158,7 +158,7 @@ Rechercher l'option session.cookie_httponly et la configurer ainsi :
 
 #### Modifier le VirtualHost pour utiliser PHP-FPM
 
-    sudo nano /etc/apache2/sites-available/nom.conf
+    sudo nano /etc/apache2/sites-available/pharmgreen.org.conf
 
 Ajouter la configuration suivante dans le fichier VirtualHost :
 
