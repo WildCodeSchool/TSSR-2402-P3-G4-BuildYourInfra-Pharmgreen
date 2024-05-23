@@ -86,7 +86,7 @@ Créez et configurez les répertoires `/etc/glpi`, `/var/lib/glpi`, et `/var/log
     sudo mv /var/www/glpi/files /var/lib/glpi
 
     sudo mkdir /var/log/glpi
-    sudo chown www-data /var/log/glp
+    sudo chown www-data /var/log/glpi
 
 ### Créer les fichiers de configuration
 Créez les fichiers de configuration nécessaires pour que GLPI puisse localiser ses données et ses journaux. Les fichiers de configuration doivent indiquer les nouveaux chemins vers les répertoires configurés précédemment.
