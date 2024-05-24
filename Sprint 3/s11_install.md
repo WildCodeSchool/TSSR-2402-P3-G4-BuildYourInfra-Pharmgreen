@@ -399,7 +399,7 @@ Cliquer sur `Next` jusqu'à arriver à `Install`.
         - Wallpaper Name : \\\192.168.9.2\Ressources\logo.png
         - Wallpaper Style : center
 
-# Script automatisation Sereur Windows Core
+# Script automatisation Serveur Windows Core
 Récupéré placez sur le serveur principal dans le dossier `C:\Ressources` les deux deux fichiers suivants :
 - Script : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/script_AD-DS.ps1
 - Fichier de configuraation : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/configAD-DS.csv
