@@ -372,9 +372,9 @@ Cliquer sur `Next` jusqu'à arriver à `Install`.
         - Wallpaper Style : center
 
 # Script automatisation Serveur Windows Core
-Récupérer placer sur le serveur principal dans le dossier `C:\Ressources` les deux deux fichiers suivants :
+Se placer sur le serveur principal dans le dossier `C:\Ressources` et récupérer les deux deux fichiers aux adresses suivantes :
 - Script : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/script_AD-DS.ps1
-- Fichier de configuraation : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/configAD-DS.csv
+- Fichier de configuration : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/configAD-DS.csv
 
 Ensuite, il faut lancer un serveur Windows Core, le mettre sur le sur le même réseau que le serveur Principal et récupérer le script et le fichier de configuration grâce aux commande suivantes :
 - Création d'un répertoire : `New-Item -ItemType Directory C:\Script`.
@@ -393,10 +393,16 @@ Vous pouvez maintenant ajouter le serveur core sur le serveur principal via l'ou
 
 ![](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b2da02b5-eded-4720-beef-c4b980f9e359)
 
+# Script automatisation GLPI sur Debian
 
+Afin de récupérer le script et le fichier de configuration sur Debian :
 
+- `wget https://raw.githubusercontent/](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/main/Ressources/Script/glpi_install.sh`
+- `wget https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/main/Ressources/config.txt`
 
+Ensuite faire un `bash glpi_install.sh`.
 
+Une fois le script terminé, aller sur un client et taper l'adresse IP de votre serveur, rentrez ensuite les informations que vous aurez précisé dans le `config.txt` et installer GLPI.
 
 
 
