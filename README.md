@@ -84,4 +84,4 @@ Enfin, l'accès à Internet se fait en Wi-Fi fourni par un FAI et via des répé
 
 ## **Conclusion**
 
-Cette troisième semaine, nous avons accompli des avancées significatives avec la création de GPO Sécurité et GPO standard, ainsi que la mise en place d'un serveur GLPI. De plus, nous avons développé des scripts d'automatisation pour le serveur Core et AD-DS, ainsi que pour l'installation de GLPI. Ces réalisations renforcent notre infrastructure et automatisent de manière efficace des processus essentiels, nous rapprochant ainsi des objectifs finaux de notre projet.
+Cette troisième semaine, nous avons accompli des avancées significatives avec la création de GPO Sécurité et GPO standard, ainsi que la mise en place d'un serveur GLPI. De plus, nous avons développé des scripts d'automatisation pour le serveur Core et AD-DS, ainsi que pour l'installation de GLPI.
