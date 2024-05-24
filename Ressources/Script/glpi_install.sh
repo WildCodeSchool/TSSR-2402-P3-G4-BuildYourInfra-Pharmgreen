@@ -22,7 +22,7 @@ apt install php-ldap -y
 
 # Création de la base de données MySQL
 mysql -e "CREATE DATABASE $db_name"
-mysql -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$db_user'@'localhost' IDENTIFIED BY '$db_pass'"
+mysql -e "GRANT ALL PRIVILEGES ON $db_name.* TO $db_user@localhost IDENTIFIED BY $db_pass"
 mysql -e "FLUSH PRIVILEGES"
 
 # Télécharger et extraire GLPI
