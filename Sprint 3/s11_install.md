@@ -9,10 +9,10 @@
 Sur le serveur principal, crééer un dossier **Ressources** sous `C:\` , le configurer en tant que dossier partagé (Ensuite accessible via cette adresse : `\\192.168.9.2\Ressources\` )
 Recupérez les installations des logiciels et fichier suivants :
 - **Firefox** :  Allez sur le lien suivant https://www.mozilla.org/fr/firefox/enterprise/#download et télécharger l'installateur **Firefox ESR installteur MSI**. 
-- **7-Zip** :  Récupéré le logiciel grâce au lien suivant https://www.7-zip.org/a/7z2405-x64.msi .
-- **Fond D'écran** : Récupéré le logo situé ici https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/logo.png .
-- **Navigateur par défaut**: Récupéré le fichier XML à dispo ici : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/firefox.xml .
-Et ensuite placez le tout dans le dossier du serveur précéablement crééer `C:\Ressources\`
+- **7-Zip** :  Téléchargez le logiciel grâce au lien suivant https://www.7-zip.org/a/7z2405-x64.msi .
+- **Fond D'écran** : Récupérez le logo situé ici https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/logo.png .
+- **Navigateur par défaut**: Récupérez le fichier XML mis à dispo ici : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/firefox.xml .
+Et ensuite placez le tout dans le dossier du serveur prééablement créé `C:\Ressources\`
 
 # Tuto Installation GLPI sur Debian 12
 
