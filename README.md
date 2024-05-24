@@ -54,10 +54,23 @@ Activités et répartition des tâches
 
 | **NOM** | **Tâches effectuées** |
 | :--: | :----------: |
-| Pierre | Import utilisateurs et groupes dans GLPI, Création des GPO |
-| Julien  | Création serveur GLPI, import utilisateurs et groupes et machines dans GLPI, Création GPO |
-| Maxime (PO) | Création serveur GLPI, script d'automatisation pour l'installation d'ADDS sur un Windows Server Core |
-| Bruno (SM) | Import utilisateurs et groupes dans GLPI, Création des GPO |
+| Pierre | Création GPO, Test GPO, Documentation |
+| Julien  | Création GPO, Création serveur GLPI, import utilisateurs et groupes et machines dans GLPI, Script pour Serveur GLPI, Documentation |
+| Maxime (PO) | Création GPO, Création serveur GLPI, Script pour Serveur CORE, Script pour Serveur GLPI, Documentation |
+| Bruno (SM) | Création GPO, Test GPO, Script pour Serveur CORE, Documentation |
+
+### **Configuration Réseau**
+
+
+| **NOM POSTE PROXMOX** | **ADRESSE IP** |
+| :--: | :----------: |
+| G4-AD-DS| 192.168.9.3 |
+| G4-GLOBAL | 192.168.9.2 |
+| G4-SSH | 192.168.9.4 |
+| G4-PC-PI0001 | 192.168.9.5 |
+| G4-SRV-GLPI | 192.168.9.6 |
+| G4-PC-PI0002  | 192.168.9.7 |
+| G4-AD-Core-Test | 192.168.9.10 |
 
 ## **Choix techniques, contraintes et solutions**
 
