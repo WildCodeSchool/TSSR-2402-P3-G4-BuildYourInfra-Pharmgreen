@@ -6,7 +6,7 @@
 
 ## Prérequis GPO
 
-Sur le serveur principal, crééer un dossier **Ressources** sous `C:\` , le configurer en tant que dossier partagé (Ensuite accessible via cette adresse : `\\192.168.9.2\Ressources\` )
+Sur le serveur principal, crééer un dossier **Ressources** sous `C:\` , le configurer en tant que dossier partagé (qui sera ensuite accessible via cette adresse : `\\192.168.9.2\Ressources\` )
 Recupérez les installations des logiciels et fichier suivants :
 - **Firefox** :  Allez sur le lien suivant https://www.mozilla.org/fr/firefox/enterprise/#download et télécharger l'installateur **Firefox ESR installteur MSI**. 
 - **7-Zip** :  Téléchargez le logiciel grâce au lien suivant https://www.7-zip.org/a/7z2405-x64.msi .
