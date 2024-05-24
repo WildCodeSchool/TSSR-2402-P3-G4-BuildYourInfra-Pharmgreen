@@ -7,7 +7,7 @@ fichier_config="config.txt"
 source "$fichier_config"
 
 #Utilisation des variables importées
-echo "Nom d'utilisateur: $db_name"
+echo "Nom d'utilisateur: $db_user"
 echo "Mot de passe: $db_pass"
 echo "Nom de BDD: $db_name"
 
