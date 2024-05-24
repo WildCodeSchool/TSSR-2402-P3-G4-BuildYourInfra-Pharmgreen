@@ -7,8 +7,8 @@ Clear-Host
 
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
 ### Initialisation
-$File = "$FilePath\USER_Creation_auto_Liste.txt"
-Users = Import-Csv -Path $File -Delimiter "," -Header "Prenom","Nom","fonction"
+$File = "$FilePath\liste_utilisateur_group.csv"
+$Users = Import-Csv -Path $File -Delimiter "," -Header "Prenom","Nom","fonction"
 ### Main
 foreach ($User in $Users) {
     $SamAccountName = ($User.Prenom + "." + $User.Nom).ToLower()
