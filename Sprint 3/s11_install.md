@@ -6,13 +6,13 @@
 
 ## Prérequis GPO
 
-Sur le serveur principal, crééer un dossier **Ressources** sous `C:\` , le configurer en tant que dossier partagé (qui sera ensuite accessible via cette adresse : `\\192.168.9.2\Ressources\` )
-Recupérez les installations des logiciels et fichier suivants :
-- **Firefox** :  Allez sur le lien suivant https://www.mozilla.org/fr/firefox/enterprise/#download et télécharger l'installateur **Firefox ESR installteur MSI**. 
-- **7-Zip** :  Téléchargez le logiciel grâce au lien suivant https://www.7-zip.org/a/7z2405-x64.msi .
-- **Fond D'écran** : Récupérez le logo situé ici https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/logo.png .
-- **Navigateur par défaut**: Récupérez le fichier XML mis à dispo ici : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/firefox.xml .
-Et ensuite placez le tout dans le dossier du serveur prééablement créé `C:\Ressources\`
+Sur le serveur principal, créer un dossier **Ressources** sous `C:\` , le configurer en tant que dossier partagé (qui sera ensuite accessible via cette adresse : `\\192.168.9.2\Ressources\` )
+Recupérer les installations des logiciels et fichier suivants :
+- **Firefox** :  Aller sur le lien suivant https://www.mozilla.org/fr/firefox/enterprise/#download et télécharger l'installateur **Firefox ESR installteur MSI**. 
+- **7-Zip** :  Télécharger le logiciel grâce au lien suivant https://www.7-zip.org/a/7z2405-x64.msi .
+- **Fond D'écran** : Récupérer le logo situé ici https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/logo.png .
+- **Navigateur par défaut**: Récupérer le fichier XML mis à dispo ici : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/firefox.xml .
+Et ensuite placer le tout dans le dossier du serveur préalablement créé `C:\Ressources\`
 
 # Tuto Installation GLPI sur Debian 12
 
@@ -20,7 +20,7 @@ Et ensuite placez le tout dans le dossier du serveur prééablement créé `C:\R
 
 ### Environnement
 
-GLPI nécessite un serveur Web, PHP et une base de données. Pour notre exemple, nous utiliserons Debian 12 avec Apache2, PHP 8.3 et MariaDB.
+GLPI nécessite un serveur Web, PHP et une base de données. Pour notre exemple, nous utiliserons Debian 12 avec Apache2, PHP 8.2 et MariaDB.
 
 ### Versions requises
 
@@ -50,32 +50,27 @@ Les extensions suivantes doivent être installées pour le bon fonctionnement de
 
 Avant d'installer les paquets nécessaires, assurez-vous que votre système est à jour.
 
-    
     sudo apt-get update && sudo apt-get upgrade -y
 
 ### Installer le socle LAMP
 
-Le socle LAMP (Linux, Apache2, MariaDB, PHP) est essentiel pour faire fonctionner GLPI. Sous Debian 12, installez Apache2, PHP et MariaDB, ainsi que les extensions PHP nécessaires mentionnées ci-dessus.
-
+Le socle LAMP (Linux, Apache2, MariaDB, PHP) est essentiel pour faire fonctionner GLPI. Sous Debian 12, installer Apache2, PHP et MariaDB, ainsi que les extensions PHP nécessaires mentionnées ci-dessous.
     
     sudo apt-get install -y apache2 php mariadb-server php-xml php-common php-json php-mysql php-mbstring php-curl php-gd php-intl php-zip php-bz2 php-imap php-apcu
 
 ### Sécuriser MariaDB
 
-Effectuez les configurations de sécurité de base pour MariaDB, telles que le changement du mot de passe root et la désactivation de l'accès root à distance.
+Effectuer les configurations de sécurité de base pour MariaDB, telles que le changement du mot de passe root et la désactivation de l'accès root à distance.
 
-    
     sudo mysql_secure_installation
 
 ### Créer une base de données pour GLPI
 
-Entrez la commande suivante pour avoir accès à la configuration de mysql:
+Entrer la commande suivante pour avoir accès à la configuration de mysql :
 
-    
     sudo mysql -u root -p
 
-Puis entrez les commandes suivantes pour créer et configurer la base de données :
-
+Puis entrer les commandes suivantes pour créer et configurer la base de données :
     
     CREATE DATABASE db23_glpi;
     GRANT ALL PRIVILEGES ON db23_glpi.* TO 'glpi_adm'@'localhost' IDENTIFIED BY 'MotDePasseRobuste';
@@ -86,28 +81,24 @@ Puis entrez les commandes suivantes pour créer et configurer la base de donnée
 
 ### Télécharger l'archive GLPI
 
-Récupérez la dernière version de GLPI depuis le GitHub officiel
+Récupérer la dernière version de GLPI depuis le GitHub officiel
 
-    
     cd /tmp
-    wget https://github.com/glpi-project/glpi/releases/download/10.0.10/glpi-10.0.10.tgz
+    wget https://github.com/glpi-project/glpi/releases/download/10.0.15/glpi-10.0.15.tgz
 
 Décompressez-la dans le répertoire approprié sur votre serveur.
 
-    
-    sudo tar -xzvf glpi-10.0.10.tgz -C /var/www/
+    sudo tar -xzvf glpi-10.0.15.tgz -C /var/www/
 
 ### Configurer les permissions
 
-Attribuez les permissions adéquates sur les fichiers et répertoires de GLPI pour l'utilisateur correspondant au serveur Web (www-data pour Apache2).
+Attribuer les permissions adéquates sur les fichiers et répertoires de GLPI pour l'utilisateur correspondant au serveur Web (www-data pour Apache2).
 
-    
     sudo chown www-data:www-data /var/www/glpi/ -R
 
 ### Configurer les répertoires sécurisés
 
-Créez et configurez les répertoires /etc/glpi, /var/lib/glpi, et /var/log/glpi pour stocker les fichiers de configuration, les fichiers de GLPI, et les journaux respectivement. Déplacez les dossiers "config" et "files" vers ces répertoires.
-
+Créer et configurer les répertoires /etc/glpi, /var/lib/glpi, et /var/log/glpi pour stocker les fichiers de configuration, les fichiers de GLPI, et les journaux respectivement. Ensuite, déplacer les dossiers "config" et "files" vers ces répertoires.
     
     sudo mkdir /etc/glpi
     sudo chown www-data:www-data /etc/glpi/
@@ -122,13 +113,11 @@ Créez et configurez les répertoires /etc/glpi, /var/lib/glpi, et /var/log/glpi
 
 ### Créer les fichiers de configuration
 
-Créez les fichiers de configuration nécessaires pour que GLPI puisse localiser ses données et ses journaux. Les fichiers de configuration doivent indiquer les nouveaux chemins vers les répertoires configurés précédemment.
+Créer les fichiers de configuration nécessaires pour que GLPI puisse localiser ses données et ses journaux. Les fichiers de configuration doivent indiquer les nouveaux chemins vers les répertoires configurés précédemment.
 
-    
     sudo nano /var/www/glpi/inc/downstream.php
 
 Ajouter le contenu suivant :
-
     
     <?php
     define('GLPI_CONFIG_DIR', '/etc/glpi/');
@@ -142,7 +131,6 @@ Ajouter le contenu suivant :
 
 Ajouter le contenu suivant :
 
-    
     <?php
     define('GLPI_VAR_DIR', '/var/lib/glpi/files');
     define('GLPI_LOG_DIR', '/var/log/glpi');
@@ -150,14 +138,12 @@ Ajouter le contenu suivant :
 
 ### Préparer la configuration Apache2
 
-Créez un fichier de configuration Apache2 pour le VirtualHost dédié à GLPI. Configurez les règles de réécriture nécessaires et activez le site nouvellement créé tout en désactivant le site par défaut.
+Créer un fichier de configuration Apache2 pour le VirtualHost dédié à GLPI. Configurez les règles de réécriture nécessaires et activez le site nouvellement créé tout en désactivant le site par défaut.
 
-    
     sudo nano /etc/apache2/sites-available/pharmgreen.org.conf
 
 Ajouter la configuration suivante :
 
-    
     <VirtualHost *:80>
         ServerName pharmgreen.org
 
@@ -177,13 +163,11 @@ Ajouter la configuration suivante :
 
 ### Activer le site GLPI et les modules Apache nécessaires
 
-    
     sudo a2ensite pharmgreen.org.conf
     sudo a2dissite 000-default.conf
     sudo a2enmod rewrite
 
 ### Recharger la configuration Apache2
-
     
     sudo systemctl reload apache2
 
@@ -191,7 +175,6 @@ Ajouter la configuration suivante :
 
 Si vous souhaitez utiliser PHP-FPM, installez et configurez-le pour Apache2. Activez les modules nécessaires et ajustez les paramètres de configuration PHP comme session.cookie_httponly pour renforcer la sécurité.
 
-    
     sudo apt-get install -y php8.2-fpm
     sudo a2enmod proxy_fcgi setenvif
     sudo a2enconf php8.2-fpm
@@ -199,27 +182,23 @@ Si vous souhaitez utiliser PHP-FPM, installez et configurez-le pour Apache2. Act
 
 ### Configurer PHP-FPM pour Apache2
 
-Ouvrez le fichier de configuration PHP-FPM et modifiez l'option session.cookie_httponly :
+Ouvrir le fichier de configuration PHP-FPM et modifiez l'option session.cookie_httponly :
 
-    
     sudo nano /etc/php/8.2/fpm/php.ini
 
 Rechercher l'option session.cookie_httponly et la configurer ainsi :
 
-    
     session.cookie_httponly = on
 
 ### Redémarrer PHP-FPM
 
-    
     sudo systemctl restart php8.2-fpm.service
 
 ## Finaliser l'installation
 
 ### Redémarrer les services
 
-Après avoir configuré Apache2 et PHP-FPM, redémarrez les services pour appliquer les modifications. Assurez-vous que tout est correctement configuré avant de procéder à l'installation finale de GLPI via l'interface Web.
-
+Après avoir configuré Apache2 et PHP-FPM, il faut redémarrer les services pour appliquer les modifications. Assurez-vous que tout est correctement configuré avant de procéder à l'installation finale de GLPI via l'interface Web.
     
     sudo systemctl restart apache2
 
@@ -393,24 +372,24 @@ Cliquer sur `Next` jusqu'à arriver à `Install`.
         - Wallpaper Style : center
 
 # Script automatisation Serveur Windows Core
-Récupéré placez sur le serveur principal dans le dossier `C:\Ressources` les deux deux fichiers suivants :
+Récupérer placer sur le serveur principal dans le dossier `C:\Ressources` les deux deux fichiers suivants :
 - Script : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/script_AD-DS.ps1
 - Fichier de configuraation : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/configAD-DS.csv
 
-Lancez un serveur Windows Core, configuez le sur le même réseau que le serveur Principal, récupérez le script et le fichier de configuration grâce aux commande suivantes :
+Ensuite, il faut lancer un serveur Windows Core, le mettre sur le sur le même réseau que le serveur Principal et récupérer le script et le fichier de configuration grâce aux commande suivantes :
 - Création d'un répertoire : `New-Item -ItemType Directory C:\Script`.
 - Copie du script : `Copy \\192.168.9.2\Ressources\script_AD-DS.ps1 C:\Script`.
 - Copie du fichier de configuration : `Copy \\192.168.9.2\Ressources\ConfigAD-DS.csv C:\Script`.
 
-Vous pouvez modifiez le fichier **ConfigAD-DS.CSV**, grâce à la commande suivante :
-- Se placez dans le bon répertoire ou est enregistré le fichier, puis lancez `notepad.exe ConfigAD-DS.csv`.
+Vous pouvez modifier le fichier **ConfigAD-DS.CSV**, grâce à la commande suivante :
+- Se placer dans le bon répertoire où est enregistré le fichier, puis lancer `notepad.exe ConfigAD-DS.csv`.
 - Attention, ne pas toucher les 5 derniers champs sinon le script ne fonctionnera pas.
-- Les deux premiers champs correspondent au nouveau donné au serveur et le second à sa nouvelle adresse IP.  
+- Les deux premiers champs correspondent au nouveau nom donné au serveur et le second à sa nouvelle adresse IP.  
 
-Exécuté le script et après un rédémarrage automatique, le serveur a bien été renommé et intégré au domaine.
+Exécuter le script et, après un rédémarrage automatique, le serveur a bien été renommé et intégré au domaine.
 ![](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/c0ec11a2-cbf7-47c5-af48-197a4a433e94)
 
-Vous pouvez maintenant ajouté le serveur core sur le serveur principal via l'outil **Serveur Manager** (S10_Install) et vous pouvez voir que le serveur est bien ajouté et à son rôle AD-DS.
+Vous pouvez maintenant ajouter le serveur core sur le serveur principal via l'outil **Serveur Manager** (S10_Install) et vous pouvez voir que le serveur est bien ajouté et à son rôle AD-DS.
 
 ![](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b2da02b5-eded-4720-beef-c4b980f9e359)
 
