@@ -56,7 +56,7 @@ Activités et répartition des tâches
 | :--: | :----------: |
 | Pierre | Création GPO, Test GPO, Documentation |
 | Julien  | Création GPO, Création serveur GLPI, import utilisateurs et groupes et machines dans GLPI, Script pour Serveur GLPI, Documentation |
-| Maxime (PO) | Création GPO, Création serveur GLPI, Script pour Serveur CORE, Script pour Serveur GLPI, Documentation |
+| Maxime (PO) | Création GPO, Création serveur GLPI, Script pour Serveur CORE, Script pour Serveur GLPI, Script pour ajout utilsiateur dans groupe, Documentation |
 | Bruno (SM) | Création GPO, Test GPO, Script pour Serveur CORE, Documentation |
 
 ### **Configuration Réseau**
