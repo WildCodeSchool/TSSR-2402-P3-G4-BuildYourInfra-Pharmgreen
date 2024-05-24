@@ -265,9 +265,6 @@ Renseigner l'adresse de votre serveur GLPI (ici `http://192.168.9.6`), 2 fois `E
 
 Cliquer sur `Next` jusqu'à arriver à `Install`.
 
-
-
-
 # liste GPO
 
 ## GPO default Domain Policy
@@ -401,4 +398,35 @@ Cliquer sur `Next` jusqu'à arriver à `Install`.
     - Desktop Wallpaper : Enabled
         - Wallpaper Name : \\\192.168.9.2\Ressources\logo.png
         - Wallpaper Style : center
+
+# Script automatisation Sereur Windows Core
+Récupéré placez sur le serveur principal dans le dossier `C:\Ressources` les deux deux fichiers suivants :
+- Script : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/script_AD-DS.ps1
+- Fichier de configuraation : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/configAD-DS.csv
+
+Lancez un serveur Windows Core, configuez le sur le même réseau que le serveur Principal, récupérez le script et le fichier de configuration grâce aux commande suivantes :
+- Création d'un répertoire : `New-Item -ItemType Directory C:\Script`.
+- Copie du script : `Copy \\192.168.9.2\Ressources\script_AD-DS.ps1 C:\Script`.
+- Copie du fichier de configuration : `Copy \\192.168.9.2\Ressources\ConfigAD-DS.csv C:\Script`.
+
+Vous pouvez modifiez le fichier **ConfigAD-DS.CSV**, grâce à la commande suivante :
+- Se placez dans le bon répertoire ou est enregistré le fichier, puis lancez `notepad.exe ConfigAD-DS.csv`.
+- Attention, ne pas toucher les 5 derniers champs sinon le script ne fonctionnera pas.
+- Les deux premiers champs correspondent au nouveau donné au serveur et le second à sa nouvelle adresse IP.  
+
+Exécuté le script et après un rédémarrage automatique, le serveur a bien été renommé et intégré au domaine.
+![](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/c0ec11a2-cbf7-47c5-af48-197a4a433e94)
+
+Vous pouvez maintenant ajouté le serveur core sur le serveur principal via l'outil **Serveur Manager** (S10_Install) et vous pouvez voir que le serveur est bien ajouté et à son rôle AD-DS.
+
+![](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b2da02b5-eded-4720-beef-c4b980f9e359)
+
+
+
+
+
+
+
+
+
 
