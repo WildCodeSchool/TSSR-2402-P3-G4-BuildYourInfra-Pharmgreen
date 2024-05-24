@@ -1,0 +1,4 @@
+db_name="phamrgreen"
+db_user="wilder"
+db_pass="Azerty1*"
+network_interface=enp0s8
