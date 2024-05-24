@@ -371,13 +371,6 @@ Cliquer sur `Next` jusqu'à arriver à `Install`.
     - Set a default associations configuration file : Enabled
         - Default Associations Configuration File : \\\192.168.9.2\Ressources\firefox.xml
 
-## GPO_Std_Imprimantes
-- chemin : `Computer Configuration/Policies/AAdministrative Templates/Printers`
-    - Package Point and print - Approved Servers : Enabled
-    - Point and print Restrictions : Enabled
-- chemin : `Computer Configuration/Policies/AAdministrative Templates/System/Driver Installation`
-    - Allow non-administrators to install drivers for these device setup classes : Enabled
-
 ## GPO_Std_Parametres_Firefox
 - chemin : `Computer Configuration/Policies/Administrative Templates/Mozilla/Firefox/Addons`
     - Allow add-on installs from websites : Disabled
