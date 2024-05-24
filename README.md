@@ -84,5 +84,4 @@ Enfin, l'accès à Internet se fait en Wi-Fi fourni par un FAI et via des répé
 
 ## **Conclusion**
 
-Ce que nous proposons lors de cette première semaine d'études est une ébauche des solutions qui seront apportées tout au long de ce projet.
-Lors de notre seconde semaine, nous avons quasiement réalisé l'entierté des objectifs et taches des deux premières semaines. Il nous manque juste à optimiser nos scripts de créations automatisé de groupe et utilisateurs.
+Cette troisième semaine, nous avons accompli des avancées significatives avec la création de GPO Sécurité et GPO standard, ainsi que la mise en place d'un serveur GLPI. De plus, nous avons développé des scripts d'automatisation pour le serveur Core et AD-DS, ainsi que pour l'installation de GLPI. Ces réalisations renforcent notre infrastructure et automatisent de manière efficace des processus essentiels, nous rapprochant ainsi des objectifs finaux de notre projet.
