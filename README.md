@@ -59,18 +59,28 @@ Activités et répartition des tâches
 | Maxime (PO) | Création GPO, Création serveur GLPI, Script pour Serveur CORE, Script pour Serveur GLPI, Script pour ajout utilsiateur dans groupe, Documentation |
 | Bruno (SM) | Création GPO, Test GPO, Script pour Serveur CORE, Documentation |
 
+### **Sprint 4 : semaine du 27 au 31 mai 2024**
+
+Activités et répartition des tâches
+
+| **NOM** | **Tâches effectuées** |
+| :--: | :----------: |
+| Pierre | |
+| Julien  | |
+| Maxime (PO) | |
+| Bruno (SM) | |
+
 ### **Configuration Réseau**
 
 
 | **NOM POSTE PROXMOX** | **ADRESSE IP** |
 | :--: | :----------: |
-| G4-AD-DS| 192.168.9.3 |
-| G4-GLOBAL | 192.168.9.2 |
-| G4-SSH | 192.168.9.4 |
+| G4-AD-DS| 172.16.3.2 |
+| G4-GLOBAL | 172.16.3.3 |
+| G4-SSH | 172.16.3.4 |
 | G4-PC-PI0001 | 192.168.9.5 |
-| G4-SRV-GLPI | 192.168.9.6 |
-| G4-PC-PI0002  | 192.168.9.7 |
-| G4-AD-Core-Test | 192.168.9.10 |
+| G4-SRV-GLPI | 172.16.3.6 |
+| G4-PC-PI0002  | 172.16.2.10|
 
 ## **Choix techniques, contraintes et solutions**
 
