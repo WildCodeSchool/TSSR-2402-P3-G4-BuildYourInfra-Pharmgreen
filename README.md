@@ -67,7 +67,7 @@ Activités et répartition des tâches
 | :--: | :----------: |
 | Pierre | |
 | Julien (PO) | |
-| Maxime | (SM) |
+| Maxime (SM) |  |
 | Bruno | |
 
 ### **Configuration Réseau**
