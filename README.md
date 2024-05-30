@@ -70,8 +70,22 @@ Activités et répartition des tâches
 | Maxime (SM) |  |
 | Bruno | |
 
-### **Configuration Réseau**
+Une nouvelle infrastucture réseau a été mise en place , elle respecte le plan réseau mit en place lors du premier sprint.  
+Elle se compose actuellement de quatre VLAN :
+- VLAN Infra : Adresse réseau 172.6.3.0/24, où sont situé tout les serveurs servant à notre infrastruture d'entreprise.
+- VLAN SI : Adresse réseau 192.168.9.0/24, où sont situé tout les postes client, elle nous permet de simuler les poste clients qui sera ensuite dupliqué dans les futur VLAN des départements lors de la mise en place de l'infrastructure complète de la société.
+- VLAN DMZ : Adresse réseau 172.16.1.0/24, ou seront situé les futur serveur WEB et autre équipements nécéssitant d'être mit dans la DMZ.
+- VLAN Firewall : Adresse réseau 172.16.2.0/24, où est situé le Firewall géré par PfSense et un poste client pour nous donner un accès direct à son interface Web lors de sa configuration.
+- Routeur principal de notre infrastucture RO_INFRA_01 : nous permettant de mettre place nos règles de routage entre les différents VLAN et le Firewall de notre Infrastucture.
 
+Dans le dossier ressources de ce dépot Github, vous trouverez plusieurs document :
+- Plan réseau de l'infrastructure globale qui va évoluer selon notre avancé dans le projet : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/plan_reseau.png
+- Plan réseau de l'infrastructure virtuel qui a été mit en place : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Infra_Simplifie.png
+- Plan adressage de l'infrastruture virtuel ainsi que les tables de routage utilisé (soumis à évolution) : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Plan_adressage.xlsx
+
+Notre nouvelle infrastucture réseau fonctionne parfaitement, les règles de routages ont été mises en place, ainsi que des règles de bonnes pratiques sur le pare-feu et des GPO pour géré la télémétrie.
+
+### **Configuration Réseau**
 
 | **NOM POSTE PROXMOX** | **ADRESSE IP** |
 | :--: | :----------: |
