@@ -141,3 +141,81 @@ Pour que nos différents réseaux communiquent entre eux, il faut établir les r
 - `exit`
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/b0cb8f8a-aada-46f7-bb29-311d1e074e70)
+
+
+## GPO télemétrie
+
+### GPO_C_Telemetrie
+
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Local Policies/Security Options`
+    - accounts : Block Microsoft Accounts
+        - Users can't add or log on with Microsoft accounts
+- chemin : `Computer Configuration/Administrative Templates/Control Panel/Regional and Language Options`
+    - Allow users to enable online speech recognition services : Disabled
+- chemin : `Computer Configuration/Administrative Templates/Control Panel/Regional and Language Options/Handwritting personalization`
+    - Turn off automatic learning : Disabled
+- chemin : `Computer Configuration/Administrative Templates/System/Internet Communication Management/Internet Communication settings`
+    - Turn Off access to the store : Enabled
+    - Turn off handwriting personalization data sharing : Enabled
+    - Turn Off handwriting recognition error reporting : Enabled
+    - Turn off help and Support Center "Did you Know ?" content : Enabled
+    - Turn off Windows Customer Experience Improvement Program : Enabled
+    - Turn off Windows Error Reporting : Enabled
+- chemin : `Computer Configuration/Administrative Templates/System/User Profiles`
+    - Turn off the adversiting ID : Enabled
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/Data Collection and Preview Builds`
+    - Allow Diagnostics Data : Disabled
+    - Do not show feedback notifications : Enabled
+    - Toggle user control over Insider builds : Disabled
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/location and Sensors`
+    - turn off location : Enabled
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/Microsoft Defender Antivirus/MAPS`
+    - Configure Local setting override for reporting to Microsoft MAPS : Disabled
+    - join Microsoft MAPS : Enabled
+        - Join Microsoft MAPS : Disabled
+    - Send file samples when further analysis is required : Enabled
+        - Send file samples when further analysis is required : Never send
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/OneDrive`
+    - Prevent the usage of OneDrive for file storage : Enabled
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/Search`
+    - Allow Cortana : Disabled
+    - Allow Cortana above lock screen : Disabled
+    - Allow indexing of encrypted files : Disabled
+    - Do not allow web search : Enabled
+    - Don't search the web or display web results in Search : Enabled
+    - Set what information is shared in Search : Enabled
+        - Type of Information is shared in search : Anonymous info
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/Store`
+    - Disable all apps from Microsoft Store : Enabled
+    - Only display the private store within the Microsoft Store : Enabled
+    - Turn off the Store apllication : Enabled
+- chemin : `Computer Configuration/Administrative Templates/Windows Component/Windows Error Reporting`
+    - Automatically send memory dumps for OS generated error report : Disabled
+    - Disable Windows Error Reporting : Enabled
+    - Do not send additional data : Enabled
+- chemin : `Computer Configuration/Preferences/Windows settings/Registry`
+    - creer une clef de registre "DontReportInfectionInformation"
+        - action : Replace
+        - Hive : HKEY_LOCAL_MACHINE
+        - Key path : SOFTWARE\Policies\Microsoft\MRT
+        - Value name : DontReportInfectionInformation
+        - Value data : 1
+        - Stop processing items on this extension if an error occurs on this item : No
+        - Remove this item when is no longer applied : Yes
+- chemin : `Computer Configuration/Preferences/Control Panel Settings/Services`
+    - creer un service du nom de "Diag Track"
+        - Service Name : Diag Track
+        - action : Stop service
+        - startup type : No change
+        - wait timeout if service is locked : 30 seconds
+        - Log on service as : No change
+        - First failure : Take no action
+        - Second failure : Take no action
+        - subsequent failures :Take no action
+        - Reset fail count after 0 Days
+        - Stop processing items on this extension if an error occurs on this item : No
+        - Apply once and do not reapply
+
+### GPO_U_Telemetrie
+- chemin : `User Configuration/Policies/Administrative Templates/Windows Component/Cloud Content`
+    - Do not use diagnostic data for tailored experience : Enabled
