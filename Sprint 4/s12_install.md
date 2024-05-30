@@ -1,6 +1,6 @@
 # Changement de l'infrastructure réseau :
 Se référer au sprint 4 du readme pour comprendre les changements effectués.  
-Changer les adresses réseaux de tout les équipements déjà mit en place, pour respecter la nouvelle infrastruture virtuelle utilisée.  
+Nous avons changé les adresses réseaux de tous les équipements déjà mis en place, pour respecter la nouvelle infrastruture virtuelle utilisée.  
 Plan adressage de l'infrastruture virtuel ainsi que les tables de routage utilisé : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Plan_adressage.xlsx
 
 # Configuration du routeur Vyos :
