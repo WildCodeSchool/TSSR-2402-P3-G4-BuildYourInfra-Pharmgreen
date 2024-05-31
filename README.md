@@ -68,7 +68,7 @@ Activités et répartition des tâches
 | Pierre | GPO télémétrie, Mise en place règles sur Pfsense |
 | Julien (PO) | Routage Vyos, Mise en place règles sur Pfsense |
 | Maxime (SM) | Mise en place règles sur Pfsense, Doc Pfsense |
-| Bruno | Routage Vyos, Mise en place règles sur Pfsense |
+| Bruno | Routage Vyos, Mise en place table de routage |
 
 Une nouvelle infrastucture réseau a été mise en place , elle respecte le plan réseau mis en place lors du premier sprint.  
 Elle se compose actuellement de quatre VLAN :
