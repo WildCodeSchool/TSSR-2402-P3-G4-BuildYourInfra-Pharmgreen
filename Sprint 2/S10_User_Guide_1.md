@@ -1,4 +1,4 @@
-# Ajout d'u Server Core au Domaine
+# Ajout d'un Server Core au Domaine
 
 Assurez vous d'avoir un Serveur Core déjà installé et sur la même plage d'adresse IP que Serveur AD Principal :
 
