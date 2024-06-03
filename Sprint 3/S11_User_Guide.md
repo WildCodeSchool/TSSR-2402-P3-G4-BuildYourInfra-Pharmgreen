@@ -1,3 +1,37 @@
+# Sommaire
+
+1. [Guide Utilisateur : Création d'une GPO](#guide-utilisateur--création-dune-gpo)
+    1. [Prérequis](#prérequis)
+    2. [Étapes de Création d'une GPO](#étapes-de-création-dune-gpo)
+        1. [Ouvrir la Console de Gestion des Stratégies de Groupe](#1-ouvrir-la-console-de-gestion-des-stratégies-de-groupe)
+        2. [Créer une Nouvelle GPO](#2-créer-une-nouvelle-gpo)
+        3. [Lier la GPO à une Unité d'Organisation (OU)](#3-lier-la-gpo-à-une-unité-dorganisation-ou)
+        4. [Modifier la GPO](#4-modifier-la-gpo)
+        5. [Configurer les Paramètres de la GPO](#5-configurer-les-paramètres-de-la-gpo)
+        6. [Appliquer et Vérifier la GPO](#6-appliquer-et-vérifier-la-gpo)
+        7. [Dépannage](#7-dépannage)
+2. [Liste GPO](#liste-gpo)
+    1. [GPO default Domain Policy](#gpo-default-domain-policy)
+    2. [GPO_Secu_Acces_Base_Registre](#gpo_secu_acces_base_registre)
+    3. [GPO_secu_Date_Time](#gpo_secu_date_time)
+    4. [GPO secu_Ecran_veille_avec_password](#gpo-secu_ecran_veille_avec_password)
+    5. [GPO_panneaux_configuration](#gpo_panneaux_configuration)
+    6. [GPO_Secu_peripheriques_amovibles](#gpo_secu_peripheriques_amovibles)
+    7. [GPO_secu_Regle_par-feu](#gpo_secu_regle_par-feu)
+    8. [GPO_Secu_Restriction_Software](#gpo_secu_restriction_software)
+    9. [GPO_Secu_Verouillage_de_compte](#gpo_secu_verouillage_de_compte)
+    10. [GPO_Std_Alimentation](#gpo_std_alimentation)
+    11. [GPO_Std_Dpl_7Zip](#gpo_std_dpl_7zip)
+    12. [GPO_Std_Dpl_Firefox](#gpo_std_dpl_firefox)
+    13. [GPO_Std_Firefox_defaut](#gpo_std_firefox_defaut)
+    14. [GPO_Std_Parametres_Firefox](#gpo_std_parametres_firefox)
+    15. [GPO_Std_Restriction_Edge](#gpo_std_restriction_edge)
+    16. [GPO_Std_Wallpaper](#gpo_std_wallpaper)
+3. [Ajout d'un serveur Windows Core à l'Active Directory via un script](#ajout-dun-serveur-windows-core-à-lactive-directory-via-un-script)
+4. [Script automatisation GLPI sur Debian](#script-automatisation-glpi-sur-debian)
+5. [Création d'un ticket dans GLPI](#création-dun-ticket-dans-glpi)
+
+
 # Guide Utilisateur : Création d'une GPO
 
 Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans un environnement Windows Server.
