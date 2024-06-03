@@ -84,12 +84,7 @@ Afin de récupérer le script et le fichier de configuration sur Debian :
 - `wget https://raw.githubusercontent/](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/main/Ressources/Script/glpi_install.sh`
 - `wget https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/main/Ressources/config.txt`
 
-Dans le fichier `config.txt`, entrez le nom de la base de données dans `db_name`, le nom de l'utilisateur dans `db_user`, le mot de passe dans `db_pass`, et le nom de l'interface réseau dans `network_interface` :
-db_name="pharmgreen"             # Nom de la base de données
-db_user="wilder"                 # Utilisateur de la base de données
-db_pass="Azerty1*"               # Mot de passe de l'utilisateur de la base de données
-network_interface="enp0s8"       # Nom de l'interface réseau
-
+Dans le fichier `config.txt`, entrez le nom de la base de données dans `db_name`, le nom de l'utilisateur dans `db_user`, le mot de passe dans `db_pass`, et le nom de l'interface réseau dans `network_interface`
 
 Ensuite faire un `bash glpi_install.sh`.
 
