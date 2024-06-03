@@ -142,6 +142,170 @@ Pour que nos différents réseaux communiquent entre eux, il faut établir les r
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/b0cb8f8a-aada-46f7-bb29-311d1e074e70)
 
+# Guide Utilisateur : Création d'une GPO
+
+Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans un environnement Windows Server.
+
+## Prérequis
+
+- Un domaine Active Directory fonctionnel.
+- Accès à un contrôleur de domaine (DC) avec les outils de gestion des stratégies de groupe installés.
+
+## Étapes de Création d'une GPO
+
+### 1. Ouvrir la Console de Gestion des Stratégies de Groupe
+
+1. Connectez-vous à votre contrôleur de domaine.
+2. Ouvrez la console "Gestion des stratégies de groupe" :
+   - Appuyez sur `Windows + R`, tapez `gpmc.msc` et appuyez sur `Entrée`.
+
+### 2. Créer une Nouvelle GPO
+
+1. Dans la console "Gestion des stratégies de groupe", cliquez droit sur le conteneur "Objets de stratégie de groupe" et sélectionnez "Nouvelle".
+2. Donnez un nom à votre nouvelle GPO (par exemple, "Politique de Sécurité") et cliquez sur "OK".
+
+### 3. Lier la GPO à une Unité d'Organisation (OU)
+
+1. Dans la console "Gestion des stratégies de groupe", trouvez l'OU à laquelle vous souhaitez appliquer la GPO.
+2. Cliquez droit sur l'OU et sélectionnez "Lier un objet de stratégie de groupe existant".
+3. Sélectionnez la GPO que vous avez créée et cliquez sur "OK".
+
+### 4. Modifier la GPO
+
+1. Dans la console "Gestion des stratégies de groupe", cliquez droit sur la GPO que vous avez créée et sélectionnez "Modifier".
+2. La console de l'Éditeur de gestion des stratégies de groupe s'ouvre, vous permettant de configurer les paramètres de votre GPO.
+
+### 5. Configurer les Paramètres de la GPO
+
+1. **Configuration de l'ordinateur** :
+   - Allez dans "Configuration de l'ordinateur" > "Stratégies".
+   - Configurez les paramètres souhaités sous "Paramètres Windows" et "Modèles d'administration".
+
+2. **Configuration de l
+
+markdown
+
+# Guide Utilisateur : Création d'une GPO
+
+Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans un environnement Windows Server.
+
+## Prérequis
+
+- Un domaine Active Directory fonctionnel.
+- Accès à un contrôleur de domaine (DC) avec les outils de gestion des stratégies de groupe installés.
+
+## Étapes de Création d'une GPO
+
+### 1. Ouvrir la Console de Gestion des Stratégies de Groupe
+
+1. Connectez-vous à votre contrôleur de domaine.
+2. Ouvrez la console "Gestion des stratégies de groupe" :
+   - Appuyez sur `Windows + R`, tapez `gpmc.msc` et appuyez sur `Entrée`.
+
+### 2. Créer une Nouvelle GPO
+
+1. Dans la console "Gestion des stratégies de groupe", cliquez droit sur le conteneur "Objets de stratégie de groupe" et sélectionnez "Nouvelle".
+2. Donnez un nom à votre nouvelle GPO (par exemple, "Politique de Sécurité") et cliquez sur "OK".
+
+### 3. Lier la GPO à une Unité d'Organisation (OU)
+
+1. Dans la console "Gestion des stratégies de groupe", trouvez l'OU à laquelle vous souhaitez appliquer la GPO.
+2. Cliquez droit sur l'OU et sélectionnez "Lier un objet de stratégie de groupe existant".
+3. Sélectionnez la GPO que vous avez créée et cliquez sur "OK".
+
+### 4. Modifier la GPO
+
+1. Dans la console "Gestion des stratégies de groupe", cliquez droit sur la GPO que vous avez créée et sélectionnez "Modifier".
+2. La console de l'Éditeur de gestion des stratégies de groupe s'ouvre, vous permettant de configurer les paramètres de votre GPO.
+
+### 5. Configurer les Paramètres de la GPO
+
+1. **Configuration de l'ordinateur** :
+   - Allez dans "Configuration de l'ordinateur" > "Stratégies".
+   - Configurez les paramètres souhaités sous "Paramètres Windows" et "Modèles d'administration".
+
+2. **Configuration de l'utilisateur** :
+   - Allez dans "Configuration de l'utilisateur" > "Stratégies".
+   - Configurez les paramètres souhaités sous "Paramètres Windows" et "Modèles d'administration".
+
+### 6. Appliquer et Vérifier la GPO
+
+1. Fermez l'Éditeur de gestion des stratégies de groupe.
+2. La GPO sera appliquée lors de la prochaine mise à jour des stratégies de groupe sur les ordinateurs et utilisateurs ciblés.
+   - Vous pouvez forcer une mise à jour immédiate en exécutant `gpupdate /force` sur un client cible.
+
+### 7. Dépannage
+
+1. Utilisez la commande `gpresult /r` pour vérifier quelles GPO sont appliquées à un utilisateur ou ordinateur spécifique.
+2. Vérifiez les journaux d'événements pour les erreurs de stratégie de groupe sous "Applications et services logs" > "Microsoft" > "Windows" > "GroupPolicy".
+
+## Conclusion
+
+Vous avez maintenant créé et configuré une GPO dans votre environnement Active Directory. Utilisez ce guide pour personnaliser et appliquer des paramètres de groupe selon vos besoins organisationnels.
+
+Ce fichier user_guide.md vous guidera à travers les étapes nécessaires pour créer et configurer une GPO dans un environnement Windows Server.
+modifie juste les nom des option en anglais mais laisse le tutot en francais
+ChatGPT
+
+Voici le fichier user_guide.md avec les options en anglais mais le tutoriel en français :
+
+markdown
+
+# Guide Utilisateur : Création d'une GPO
+
+Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans un environnement Windows Server.
+
+## Prérequis
+
+- Un domaine Active Directory fonctionnel.
+- Accès à un contrôleur de domaine (DC) avec les outils de gestion des stratégies de groupe installés.
+
+## Étapes de Création d'une GPO
+
+### 1. Ouvrir la Console de Gestion des Stratégies de Groupe
+
+1. Connectez-vous à votre contrôleur de domaine.
+2. Ouvrez la console "Group Policy Management" :
+   - Appuyez sur `Windows + R`, tapez `gpmc.msc` et appuyez sur `Entrée`.
+
+### 2. Créer une Nouvelle GPO
+
+1. Dans la console "Group Policy Management", cliquez droit sur le conteneur "Group Policy Objects" et sélectionnez "New".
+2. Donnez un nom à votre nouvelle GPO (par exemple, "Politique de Sécurité") et cliquez sur "OK".
+
+### 3. Lier la GPO à une Unité d'Organisation (OU)
+
+1. Dans la console "Group Policy Management", trouvez l'OU à laquelle vous souhaitez appliquer la GPO.
+2. Cliquez droit sur l'OU et sélectionnez "Link an Existing GPO".
+3. Sélectionnez la GPO que vous avez créée et cliquez sur "OK".
+
+### 4. Modifier la GPO
+
+1. Dans la console "Group Policy Management", cliquez droit sur la GPO que vous avez créée et sélectionnez "Edit".
+2. La console de l'Éditeur de gestion des stratégies de groupe s'ouvre, vous permettant de configurer les paramètres de votre GPO.
+
+### 5. Configurer les Paramètres de la GPO
+
+1. **Configuration de l'ordinateur** :
+   - Allez dans "Computer Configuration" > "Policies".
+   - Configurez les paramètres souhaités sous "Windows Settings" et "Administrative Templates".
+
+2. **Configuration de l'utilisateur** :
+   - Allez dans "User Configuration" > "Policies".
+   - Configurez les paramètres souhaités sous "Windows Settings" et "Administrative Templates".
+
+### 6. Appliquer et Vérifier la GPO
+
+1. Fermez l'Éditeur de gestion des stratégies de groupe.
+2. La GPO sera appliquée lors de la prochaine mise à jour des stratégies de groupe sur les ordinateurs et utilisateurs ciblés.
+   - Vous pouvez forcer une mise à jour immédiate en exécutant `gpupdate /force` sur un client cible.
+
+### 7. Dépannage
+
+1. Utilisez la commande `gpresult /r` pour vérifier quelles GPO sont appliquées à un utilisateur ou ordinateur spécifique.
+2. Vérifiez les journaux d'événements pour les erreurs de stratégie de groupe sous "Applications and Services Logs" > "Microsoft" > "Windows" > "GroupPolicy".
+
+
 
 ## GPO télemétrie
 
