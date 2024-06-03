@@ -1,3 +1,59 @@
+# Guide Utilisateur : Création d'une GPO
+
+Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans un environnement Windows Server.
+
+## Prérequis
+
+- Un domaine Active Directory fonctionnel.
+- Accès à un contrôleur de domaine (DC) avec les outils de gestion des stratégies de groupe installés.
+
+## Étapes de Création d'une GPO
+
+### 1. Ouvrir la Console de Gestion des Stratégies de Groupe
+
+1. Connectez-vous à votre contrôleur de domaine.
+2. Ouvrez la console "Group Policy Management" :
+   - Appuyez sur `Windows + R`, tapez `gpmc.msc` et appuyez sur `Entrée`.
+
+### 2. Créer une Nouvelle GPO
+
+1. Dans la console "Group Policy Management", cliquez droit sur le conteneur "Group Policy Objects" et sélectionnez "New".
+2. Donnez un nom à votre nouvelle GPO (par exemple, "Politique de Sécurité") et cliquez sur "OK".
+
+### 3. Lier la GPO à une Unité d'Organisation (OU)
+
+1. Dans la console "Group Policy Management", trouvez l'OU à laquelle vous souhaitez appliquer la GPO.
+2. Cliquez droit sur l'OU et sélectionnez "Link an Existing GPO".
+3. Sélectionnez la GPO que vous avez créée et cliquez sur "OK".
+
+### 4. Modifier la GPO
+
+1. Dans la console "Group Policy Management", cliquez droit sur la GPO que vous avez créée et sélectionnez "Edit".
+2. La console de l'Éditeur de gestion des stratégies de groupe s'ouvre, vous permettant de configurer les paramètres de votre GPO.
+
+### 5. Configurer les Paramètres de la GPO
+
+1. **Configuration de l'ordinateur** :
+   - Allez dans "Computer Configuration" > "Policies".
+   - Configurez les paramètres souhaités sous "Windows Settings" et "Administrative Templates".
+
+2. **Configuration de l'utilisateur** :
+   - Allez dans "User Configuration" > "Policies".
+   - Configurez les paramètres souhaités sous "Windows Settings" et "Administrative Templates".
+
+### 6. Appliquer et Vérifier la GPO
+
+1. Fermez l'Éditeur de gestion des stratégies de groupe.
+2. La GPO sera appliquée lors de la prochaine mise à jour des stratégies de groupe sur les ordinateurs et utilisateurs ciblés.
+   - Vous pouvez forcer une mise à jour immédiate en exécutant `gpupdate /force` sur un client cible.
+
+### 7. Dépannage
+
+1. Utilisez la commande `gpresult /r` pour vérifier quelles GPO sont appliquées à un utilisateur ou ordinateur spécifique.
+2. Vérifiez les journaux d'événements pour les erreurs de stratégie de groupe sous "Applications and Services Logs" > "Microsoft" > "Windows" > "GroupPolicy".
+
+
+
 # Ajout d'une serveur Windows Core à l'Active Directory via un script
 
 Se placer sur le serveur principal dans le dossier `C:\Ressources` et récupérer les deux deux fichiers aux adresses suivantes :
