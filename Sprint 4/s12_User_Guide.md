@@ -1,6 +1,6 @@
 ## **Sommaire**
 
-1) Totoriel : Configuration de Firewall
+1) Tutoriel : Configuration de Firewall
 
 2) Exploitation GPO télemétrie
 
