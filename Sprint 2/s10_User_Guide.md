@@ -1,7 +1,7 @@
 
 # Création et ajout automatique de données à l'Active Directory via Script
 
-Dans un premier temps récupérer les fichiers suivant et les placer par exemple dans un dossier sous `C;\Script` sur le Serveur Principal
+Dans un premier temps récupérer les fichiers suivant et les placer par exemple dans un dossier sous `C:\Script` sur le Serveur Principal
 
 Fichier des Ressources Humaines contenant toute les informations des employés de la société :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/s09_Pharmgreen.xlsx
