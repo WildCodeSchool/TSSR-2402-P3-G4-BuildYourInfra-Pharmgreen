@@ -36,7 +36,7 @@ https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob
 Script ajout automatique des utilisateurs dans leur groupe :
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Groupe_Ajout_Utilisateurs_Groupe.ps1
 
-Pour la bonne utilisation des Scripts, placer tout les fichiers au même endroits.
+Pour la bonne utilisation des Scripts, placer tout les fichiers au même endroits.  
 Tout est basé sur la nomenclature disponible ici :
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Nomenclature.xlsx
 
