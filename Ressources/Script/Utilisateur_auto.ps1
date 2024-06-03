@@ -6,18 +6,17 @@
 
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
 
-### Parametre(s) à modifier
+### Fichier a récupérer
+$File = "$FilePath\s09_Pharmgreen.csv"
 
-$File = "$FilePath\user.csv"
-
-### Main program
+### Initialisaiton
 
 If (-not(Get-Module -Name activedirectory))
 {
     Import-Module activedirectory
 }
-
-$Users = Import-Csv -Path $File -Delimiter "," -Header "Prenom","Nom","City","Departement","Service","Date de naissance","Telf","Telp"
+# Imporation des données
+$Users = Import-Csv -Path $File -Delimiter "," -Header "Prenom", "Nom", "Societe", "Site", "Departement", "Service", "fonction", "ManagerPrenom", "ManagerNom", "PC", "DateDeNaissance", ` "Telf", "Telp", "Nomadisme - Télétravail" | Select-Object -Skip 1
 $ADUsers = Get-ADUser -Filter * -Properties *
 $Count = 1
 Foreach ($User in $Users)
@@ -35,7 +34,13 @@ Foreach ($User in $Users)
     $Path              = "ou=$($User.Service),ou=$($User.Departement),ou=User_Pharmgreen,dc=pharmgreen,dc=org"
     $Department        = "$($User.Departement)"
     $Service           = "$($User.Service)"
-    $Company           = "Pharmgreen"
+    $Fonction          = "$($User.fonction)"
+    $Company           = $User.Societe
+    $Manager           = $($User.ManagerNom.ToLower())+ "." + $($User.ManagerPrenom.ToLower())
+    $ManagerPrenom     = $User.ManagerPrenom
+    $ManagerNom        = $User.ManagerNom
+    $Site              = $User.Site
+    $birthday          = $User.DateDeNaissance
 
        # Gestion de présence de Sous OU
         if ( $User.Service -eq "NA" )
@@ -49,15 +54,15 @@ Foreach ($User in $Users)
                 $Path = "ou=$($User.Service),ou=$($User.Departement),ou=User_Pharmgreen,dc=pharmgreen,dc=org"      
         }
 
-
-
+        # Création Utilisateur
     If (($ADUsers | Where {$_.SamAccountName -eq $SamAccountName}) -eq $Null)
     {
         Try 
         {
             New-ADUser -Name $Name -DisplayName $DisplayName -SamAccountName $SamAccountName -UserPrincipalName $UserPrincipalName `
             -GivenName $GivenName -Surname $Surname -HomePhone $OfficePhone -MobilePhone $PortablePhone -EmailAddress $EmailAddress `
-            -Path $Path -AccountPassword (ConvertTo-SecureString -AsPlainText Azerty1* -Force) -Enabled $True `
+            -Office $Site -Description $birthday -Title $Fonction -City $Site -Path $Path `
+            -AccountPassword (ConvertTo-SecureString -AsPlainText Azerty12024* -Force) -Enabled $True `
             -OtherAttributes @{Company = $Company;Department = $Department} -ChangePasswordAtLogon $True
             
             Write-Host "Création du USER" $SamAccountName -ForegroundColor Green
@@ -69,12 +74,13 @@ Foreach ($User in $Users)
         }
     }
     Else
-        {
-            Write-Host "Le USER $SamAccountName existe déjà" -ForegroundColor Yellow 
-        }
-    
+    {
+        Write-Host "Le USER $SamAccountName existe déjà" -ForegroundColor Yellow 
+    }
+     
     $Count++
     sleep -Milliseconds 100
 
 }
-    
+
+
