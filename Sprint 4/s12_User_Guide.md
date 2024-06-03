@@ -1,4 +1,12 @@
-# Tutoriel : Configuration de Firewall
+## **Sommaire**
+
+1) Totoriel : Configuration de Firewall
+
+2) Exploitation GPO télemétrie
+
+3) FAQ : Solutions aux problèmes connus et communs liés à l'utilisation
+
+## **1. Tutoriel : Configuration de Firewalls**
 
 ## Prérequis
 
@@ -138,7 +146,7 @@ Pour que nos différents réseaux communiquent entre eux, il faut établir les r
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/b0cb8f8a-aada-46f7-bb29-311d1e074e70)
 
 
-## GPO télemétrie
+## **2.  Exploitation GPO télemétrie**
 
 Ci-Dessous un example de configuration de Télémétrie qui peuvent être mise en place, vous pouvez vous baser sur les recommandations de l'ANSI :
 https://cyber.gouv.fr/publications/restreindre-la-collecte-de-donnees-sous-windows-10
@@ -217,3 +225,5 @@ https://cyber.gouv.fr/publications/restreindre-la-collecte-de-donnees-sous-windo
 ### GPO_U_Telemetrie pour Uitlisateur
 - chemin : `User Configuration/Policies/Administrative Templates/Windows Component/Cloud Content`
     - Do not use diagnostic data for tailored experience : Enabled
+
+## **3.   FAQ : Solutions aux problèmes connus et communs liés à l'utilisation**
