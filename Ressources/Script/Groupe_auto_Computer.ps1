@@ -1,45 +1,103 @@
 ﻿#######################################
 #                                     #
-#   Création de groupes automatique   #
+#         Création et ajout           #
+#         groupes automatique         #
 #                                     #
 #######################################
 
+### Fichier a récupérer
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
-
 $File = "$FilePath\Groupe_Computer.csv"
 
-$Groups = Import-Csv -Path $File -Delimiter "," -Header "OU","SousOU","Designation"
-$ADGroup = Get-ADGroup -Filter * -Properties *
-$DomainDN = (Get-ADDomain).DistinguishedName
-$Count = 1
-foreach ($Group in $Groups) 
-{  
-        Write-Progress -Activity "Création des groupes dans les OU" -Status "% effectué" -PercentComplete ($Count/$Groups.Length*100)
-        # Gestion de présence de Sous OU
-        if ( $Group.SousOU -eq "NA" )
+### Initialisation
+If (-not(Get-Module -Name activedirectory))
+{
+    Import-Module activedirectory
+}
+
+
+function FctCreationGroupe
+{
+        $Groups = Import-Csv -Path $File -Delimiter "," -Header "OU_Principal","OU_Service","Affectation_Groupe","NomGroupe"| Select-Object -Skip 1
+        $ADGroup = Get-ADGroup -Filter * -Properties *
+        $Count = 1
+        foreach ($Group in $Groups) 
+        {  
+                Write-Progress -Activity "Création des groupes dans les OU" -Status "% effectué" -PercentComplete ($Count/$Groups.Length*100)
+                # Gestion de présence de Sous OU
+                if ( $Group.OU_Service -eq "NA" )
                 # Chemin complet
                 { 
-                        $Path = "OU=$($Group.OU),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"
+                        $Path = "OU=$($Group.OU_Principal),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"
                 }
-        Else
+                Else
                 # Chemin sans sous OU
                 { 
-                        $Path ="OU=$($Group.SousOU),OU=$($Group.OU),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"      
+                        $Path ="OU=$($Group.OU_Service),OU=$($Group.OU_Principal),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"      
                 }
-        # Ajout automatique des groupes
-        If (($ADGroup | Where {$_.Name -eq $Group.Designation}) -eq $Null)
-               {
-                        Try {
-                        New-AdGroup -Name $Group.Designation -Path $Path -GroupScope Global -GroupCategory Security
-                       Write-Host "Création du groupe $($Group.Designation) dans l'OU $($Group.OU)/$($Group.SousOU), $DomainDN réussie" -ForegroundColor Green
-                       }
-                       Catch 
-                       { write-host "Création du groupe $($Group.Designation) dans l'OU $($Group.OU)/$($Group.SousOU), $DomainDN échoué" -ForegroundColor red}
-                       }
-        Else
+                
+                # Ajout automatique des groupes
+                If (($ADGroup | Where {$_.Name -eq $Group.NomGroupe}) -eq $Null)
                 {
-                Write-Host "Le groupe $($Group.Designation) dans l'OU $($Group.OU)/$($Group.SousOU), $DomainDN  existe déjà" -ForegroundColor Yellow
-                }
-        $Count++
-        sleep -Milliseconds 100
+                        Try 
+                        {
+                        New-AdGroup -Name $Group.NomGroupe -Path $Path -GroupScope Global -GroupCategory Security
+                        Write-Host "Création du groupe $($Group.NomGroupe) dans l'OU $Path réussie" -ForegroundColor Green
+                        }
+                        Catch 
+                        { write-host "Création du groupe $($Group.NomGroupe) dans l'OU $Path échoué" -ForegroundColor red
+                        }
+                        }
+                Else
+                        {
+                        Write-Host "Le groupe $($Group.NomGroupe) dans l'OU $Path existe déjà" -ForegroundColor Yellow
+                        }
+                $Count++
+                sleep -Milliseconds 100
+        }
 }
+
+
+function FctAjoutSousGRoupAGroup
+{
+        $Groups = Import-Csv -Path $File -Delimiter "," -Header "OU_Principal","OU_Service","Affectation_Groupe","NomGroupe"| Select-Object -Skip 1
+        $ADGroup = Get-ADGroup -Filter * -Properties *
+        $Count = 1
+        foreach ($Group in $Groups) 
+        {  
+            $NomGroupe=$Group.NomGroupe
+            $NomGroupMember =$Group.Affectation_Groupe
+            Write-Progress -Activity "Ajout des sous-groupes dans les groupes" -Status "% effectué" -PercentComplete ($Count/$Groups.Length*100)
+            # Gestion de présence de Sous OU
+            if ( $NomGroupMember -ne "NA" )
+            # Chemin sans sous OU
+            { 
+                # Ajout automatique des groupes
+                If (($ADGroup | Where {$_.Name -eq $NomGroupe}) -ne $Null)
+                {
+                        Try {
+                        Add-ADGroupMember -Identity $NomGroupMember -Members $NomGroupe
+                        Write-Host "Ajout groupe $NomGroupe dans le $NomGroupMember réussit" -ForegroundColor Green
+                        }
+                        Catch 
+                        { write-host "Ajout groupe $NomGroupe dans le $NomGroupMember échoué " -ForegroundColor red
+                        }
+                }
+                Else
+                {
+                        Write-Host "Le groupe $NomGroupe n'exite pas" -ForegroundColor Yellow
+                }
+        }            
+            $Count++
+            sleep -Milliseconds 100
+    }
+}
+
+Write-Host "Debut création de Groupe" -ForegroundColor Green
+FctCreationGroupe
+Write-Host "Fin création de Groupe" -ForegroundColor Green
+sleep -Seconds 2
+clear-host
+Write-Host "Debut ajout de Groupe dans groupe" -ForegroundColor Green
+FctAjoutSousGRoupAGroup
+Write-Host "Fin ajout de Groupe dans groupe" -ForegroundColor Green

@@ -40,12 +40,11 @@ Foreach ($User in $Users)
         Try 
         {
             Set-ADUser -Identity  $SamAccountName -Manager $ManagerDN
-            
-            Write-Host "Manageur $ManagerNom $ManagerPrenom ajouté à  $Name" -ForegroundColor Green
+            Write-Host "Manageur $ManagerNom $ManagerPrenom ajouté à $Name" -ForegroundColor Green
         }
         Catch  
         {
-            write-host "Manageur $ManagerNom $ManagerPrenom n'a pas put être ajouté à  $Name"  "échoué" -ForegroundColor red
+            write-host "Manageur $ManagerNom $ManagerPrenom n'a pas put être ajouté à  $Name échoué" -ForegroundColor red
 
         }
     }
