@@ -50,7 +50,7 @@ Script création automatique des odirnateurs et placement dans les OU correspond
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Ajout_auto_Computer.ps1
 
 Pour la bonne utilisation des Scripts, placer tout les fichiers au même endroits.  
-Tout est basé sur la nomenclature disponible ici :
+Tout est basé sur la nomenclature disponible ici :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Nomenclature.xlsx
 
 En préambulle, lancez le script **mise_en_forme_CSV.ps1**, sinon les script ne fonctionneront pas et cela vous assure d'avoir des données à jour.  
