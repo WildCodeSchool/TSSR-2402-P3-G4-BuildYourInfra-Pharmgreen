@@ -1,5 +1,15 @@
+# **Sommaire**
 
-# Création et ajout automatique de données à l'Active Directory via Script
+1) Création et ajout automatique de données à l'Active Directory via Script
+
+2) Ajout d'un Server Core au Domaine
+
+3) Ajout du serveur Debian a l' Active Directory
+
+4) Configuration du serveur ssh
+
+
+## **1.  Création et ajout automatique de données à l'Active Directory via Script**
 
 Dans un premier temps récupérer les fichiers suivant et les placer par exemple dans un dossier sous `C:\Script` sur le Serveur Principal
 
@@ -46,7 +56,7 @@ Si l'élément que vous souhaité créer ou ajouter existe déjà vous aurez un 
 En cas de souci, vérifiez que tout les documents soit placé au même endroit, contactez la personne qui vous a fournit les scripts pour voir avec elle ce qu'il ne va pas.
 
 
-# Ajout d'un Server Core au Domaine
+##2. **Ajout d'un Server Core au Domaine**
 
 Assurez vous d'avoir un Serveur Core déjà installé et sur la même plage d'adresse IP que Serveur AD Principal :
 
@@ -92,7 +102,7 @@ Cliquez dessus et entrez les informations suivantes :
 En cas de souci, se réferrez à votre administrateur principal pour vérifiez avec lui la configuration du serveur CORE et serveur principal.
 
 
-## Ajout du serveur Debian a l' Active Directory
+##3. **Ajout du serveur Debian a l' Active Directory**
 
 ### configuration reseau
 
@@ -116,9 +126,9 @@ modifier le fichier /etc/resolv.conf comme cela :
 executer la commaande **realm join --user=administrator pharmgreen.org**
 
 
-configuration du serveur ssh
+##4. **Configuration du serveur ssh**
 
-## action a effectuer sur le serveur
+### action a effectuer sur le serveur
 
 Modifiez le fichier /etc/ssh/sshd_config comme cela :
 
@@ -135,7 +145,7 @@ Executez ces commandes pour créer le dossier qui va acceuillir la clé publique
 - `touch /home/wilder/.ssh/authorized_keys`
 - `chmod 600 /home/wilder/.ssh/authorized_keys`
 
-# Dernière configuration
+### Dernière configuration
 
 De retour sur le serveur, remodifiez le fichier /etc/ssh/sshd_config
 
