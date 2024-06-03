@@ -52,6 +52,133 @@ Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans 
 1. Utilisez la commande `gpresult /r` pour vérifier quelles GPO sont appliquées à un utilisateur ou ordinateur spécifique.
 2. Vérifiez les journaux d'événements pour les erreurs de stratégie de groupe sous "Applications and Services Logs" > "Microsoft" > "Windows" > "GroupPolicy".
 
+# liste GPO
+
+## GPO default Domain Policy
+ - chemin : `computer configuration/policies/Windows Settings/security settings/Account policies/Password policies`
+    - Enforce password history : 2 password remembered
+    - Maximum password age : 90 days
+    - minimum password age : 30 days
+    - minimum password length : 12 characters
+    - Minimum password length audit : Not defined
+    - Password must meet complexity requierements : Enabled
+    - Relax minimum password length limits : Not defined
+    - Store password using reversible encryption : disabled
+- chemin : `computer configuration/policies/Windows Settings/security settings/Account policies/account lockout policies`
+    - Account lockout duration : 10 min
+    - Account lockout threshold : 5 invalid logon attempts
+    - Allow Administrator account lockout : not defined
+    - Reset account lockout counter after : 10 min
+
+
+## GPO_Secu_Acces_Base_Registre
+- chemin : `User configuration/Policies/administrative Templates/System/`
+    - Prevent access to registry editing tools : enabled
+        - Disable regedit from running silently : yes
+
+## GPO_secu_Date_Time
+- chemin : `Computer Configuration/Policies/Administrative Templates/system/windows Time Service/time providers`
+    - Configure Windows NTP Client : enabled
+        - NTPServer : pool.ntp.br,0x1 time1.google.com,0x1
+        - Type : NTP
+        - CrossSiteSyncFlags : 2
+        - ResolvePeerBackoffMinutes : 15
+        - ResolvePeerBackoffMaxTimes : 7
+        - SpecialPollInterval : 3600
+        - EventLogFlags : 0
+
+
+## GPO secu_Ecran_veille_avec_password
+- chemin : `User configuration/Policies/administrative template/control panel/Personlization`
+    - Enable screen saver : Enabled
+    - Force specific screen saver : Enabled
+        - Screen saver executable name : %windir%\system32/rundl32.exe user32.dll,lockWorkStation
+    - Password protect the screen saver : Enabled
+    - Screen saver timeout : Enabled
+        - Number of second to wait to enable the screen saver : 900
+
+## GPO_panneaux_configuration
+- chemin : `User Configuration/Administrative Template/Control Panel/Add or Remove Programs`
+    - Hide Add New Programs page : Enabled
+    - Hide the "Add a Program from CD-ROM or floppy disk" option : Enabled
+    - Remove Add or Remove Program : Enabled
+- chemin : `User Configuration/Administrative Template/Control Panel/Regional and Language Options`
+    - Hide Regional and Language Options administrative options : Enabled
+
+## GPO_Secu_peripheriques_amovibles
+- chemin : `Computer Configuration/Policies/Administrative Templates/system/Removable Storage Access`
+    - All Removable Storage classes : Deny all access : Enabled
+
+## GPO_secu_Regle_par-feu
+- chemin : `Computer Configuration/Policies/Administrative Templates/Windows Components/Windows Security/Firewall and network protection`
+    - Hide the Firewall and network protection area : Enabled
+
+## GPO_Secu_Restriction_Software
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Software Restriction Policies\Enforcement`
+    - cocher la case All Users Except local administrators
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Software Restriction Policies\Designated Fyle type Properties`
+    - ajouter les extension PAF et VBS
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Software Restriction Policies/Security Levels/ Basic User`
+    - appliquer set as default
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Software Restriction Policies/Additional Rules`
+    - creer une nouvelles regles : %HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ProgramFilesDir%
+        - security level : Unrestricted
+
+## GPO_Secu_Verouillage_de_compte
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Account Policies/Account Lockout Policy`
+    - Account lockout duration : 10 minutess
+    - Account lockout threshold : 5 invalid logon attempts
+    - Allow administrator account lockout : Enabled
+    - Reset account lockout counter after : 10 minutes
+
+## GPO_Std_Alimentation
+- chemin : `Computer Configuration/Policies/Administrative Templates/System/Power Management/Sleep Settings`
+    - Specify the system hibernate timeout (on battery) : Enabled
+        - System Hibernate Timeout (seconds) : 3000
+    - Specify the system sleep timeout (on battery) : Enabled
+        - System Sleep Timeout (seconds) : 120
+    - Specify the system sleep timeout (plugged in) : Enabled
+        - System Sleep Timeout (seconds) : 2700
+- chemin : `Computer Configuration/Policies/Administrative Templates/System/Power Management/Video and Display Settings`
+    - Turn Off the Display (on battery) : Enabled
+        - Turn Off the Dispplay (seconds) : 600
+    - Turn off display (plugged in) : Enabled
+        - Turn Off the Display (seconds) : 600
+
+## GPO_Std_Dpl_7Zip
+- chemin : `Computer Configuration/Policies/Software Settings`
+    - faire new package ajouter l'instaleur de 7ZIP qui ce trouve dans \\\192.168.9.2\ressources
+
+## GPO_Std_Dpl_Firefox
+- chemin : `Computer Configuration/Policies/Software Settings`
+    - faire new package ajouter l'instaleur de firefox qui ce trouve dans \\\192.168.9.2\ressources
+
+## GPO_Std_Firefox_defaut
+- chemin : `Computer Configuration/Policies/Administrative Templates/Windows Components/File Explorer`
+    - Set a default associations configuration file : Enabled
+        - Default Associations Configuration File : \\\192.168.9.2\Ressources\firefox.xml
+
+## GPO_Std_Parametres_Firefox
+- chemin : `Computer Configuration/Policies/Administrative Templates/Mozilla/Firefox/Addons`
+    - Allow add-on installs from websites : Disabled
+- chemin : `Computer Configuration/Policies/Administrative Templates/Mozilla/Firefox/Home`
+    - Show Home button on toolbar : Enabled
+    - Start Page : Enabled
+    - URL for Home page : Enabled
+        - URL : http://www.google.fr/
+        - Don't allow the homepage to be changed : Enabled
+
+## GPO_Std_Restriction_Edge
+- chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Software Restrictions Policies/Security levels/Additional Rules`
+    - ajouter une regle de securité : C:\Prograam FIles(x86)\Microsoft\Edge
+        - security level : Disalowed
+
+## GPO_Std_Wallpaper
+- chemin : `User Configuration/Policies/Administrative Templates/Desktop/Desktop`
+    - Desktop Wallpaper : Enabled
+        - Wallpaper Name : \\\192.168.9.2\Ressources\logo.png
+        - Wallpaper Style : center
+
 
 
 # Ajout d'une serveur Windows Core à l'Active Directory via un script
