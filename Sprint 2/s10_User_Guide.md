@@ -16,22 +16,19 @@ Dans un premier temps récupérer les fichiers suivant et les placer par exemple
 Fichier des Ressources Humaines contenant toute les informations des employés de la société :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/s09_Pharmgreen.xlsx
 
-Fichier listant les groupes Utilisateur :  
+Fichier listant les groupes Utilisateur (créé manuellement à partir de la nomenclature et du fichier fournit par les Ressources Humaines) :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/Groupe_User.csv
 
-Fichier listant les groupes Ordinateurs :  
+Fichier listant les groupes Ordinateurs (créé manuellement à partir de la nomenclature et du fichier fournit par les Ressources Humaines) :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/Groupe_Computer.csv
 
-Fichier pour ajout utilisateur au groupe :  
+Fichier pour ajout utilisateur au groupe (créé manuellement à partir de la nomenclature et du fichier fournit par les Ressources Humaines) :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/liste_utilisateur_group.csv
 
-Fichier listant tout les PC avec la bonne nomenclature :  
-https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/liste_computer.csv
-
-Script permettant de mettre en forme le fichier des employés pour exploitation par les Script :  
+Script permettant de mettre en forme le fichier des employés pour exploitation par les Script (Suppression des caractère spéciaux dans les noms, remplacement des noms Département et Service selon la nommenclature définit) :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/mise_en_forme_CSV.ps1
 
-Script de création automatique des deux OU Principale et des deux sous OU :   
+Script de création automatique des deux OU Principale et des sous OU associées :   
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Ou_Auto.ps1
 
 Script de création automatique des utilisateurs et placement dans les OU correspondantes :  
