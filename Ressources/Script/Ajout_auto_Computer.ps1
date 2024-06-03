@@ -1,14 +1,14 @@
 ﻿#######################################
 #                                     #
-# Création de ordintauers automatique #
+#   Création de PC Automatique        #
 #                                     #
 #######################################
 
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
 
-$File = "$FilePath\liste_Computer.csv"
+$File = "$FilePath\s09_Pharmgreen.csv"
 
-$Computers = Import-Csv -Path $File -Delimiter "," -Header "Ordinateur","OU","SousOU"
+$Computers = Import-Csv -Path $File -Delimiter "," -Header "Prenom", "Nom", "Societe", "Site", "Departement", "Service", "fonction", "ManagerPrenom", "ManagerNom", "Ordinateur", "DateDeNaissance", "Telf", "Telp", "Nomadisme - Télétravail" | Select-Object -Skip 1
 $ADComputer = Get-ADComputer -Filter * -Properties *
 $DomainDN = (Get-ADDomain).DistinguishedName
 $Count = 1
@@ -16,31 +16,31 @@ foreach ($Computer in $Computers)
 {
     Write-Progress -Activity "Création des ordinateurs dans les OU" -Status "% effectué" -PercentComplete ($Count/$Computers.Length*100)
     # Gestion de présence de Sous OU
-    if ( $Computer.SousOU -eq "NA" )
+    if ( $Computer.Service -eq "NA" )
     {
         # Chemin complet
-        $Path = "OU=$($Computer.OU),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"
+        $Path = "OU=$($Computer.Departement),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"
     }
     Else
     {
         # Chemin sans sous OU
-        $Path ="OU=$($Computer.SousOU),OU=$($Computer.OU),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"
+        $Path ="OU=$($Computer.Service),OU=$($Computer.Departement),OU=Computer_Pharmgreen,DC=pharmgreen,DC=org"
     }
     # Ajout automatique des ordinateurs
     If (($ADComputer | Where {$_.Name -eq $Computer.Ordinateur}) -eq $Null)
     {
         Try {
             New-ADComputer -Name $Computer.Ordinateur -Path $Path -Description "ID $Ordinateur"
-            Write-Host "Création de l'ordinateur $($Computer.Designation) dans l'OU $($Computer.OU)/$($Computer.SousOU), $DomainDN réussie" -ForegroundColor Green
+            Write-Host "Création de l'ordinateur $($Computer.Ordinateur) dans l'OU $Path réussie" -ForegroundColor Green
         }
         Catch
         {
-            Write-Host "Création de l'ordinateur $($Computer.Ordinateur) dans l'OU $($Computer.OU)/$($Computer.SousOU), $DomainDN échoué" -ForegroundColor Red
+            Write-Host "Création de l'ordinateur $($Computer.Ordinateur) dans l'OU $Path échoué" -ForegroundColor Red
         }
     }
     Else
     {
-        Write-Host "L'ordinateur $($Computer.Ordinateur) dans l'OU $($Computer.OU)/$($Computer.SousOU), $DomainDN existe déjà" -ForegroundColor Yellow
+        Write-Host "L'ordinateur $($Computer.Ordinateur) dans l'OU $Path existe déjà" -ForegroundColor Yellow
     }
     $Count++
     sleep -Milliseconds 100

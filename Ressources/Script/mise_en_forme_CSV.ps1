@@ -1,4 +1,4 @@
-Function SuppressionLignesVides
+Function FctSuppressionLignesVides
 {
 # Récupérattion du contenue du fichier CSV
    $contenuCSV = Get-Content $fichierCSV
@@ -9,7 +9,7 @@ Function SuppressionLignesVides
 }
 
 # Fonction remplacement nom Département, Sevice, fonction
-Function Remplacement
+Function FctRemplacement
 {
    (Get-Content -Path $fichierCSV) `
       -replace 'Communication', 'Communication' -replace 'Direction Financière', 'Direction_Financiere' -replace 'Direction Générale', 'Direction_Generale' -replace 'Direction Marketing', 'Direction_Marketing' `
@@ -24,7 +24,7 @@ Function Remplacement
 }
 
 # Fonction gestion absence de service  
-Function ServiceVide 
+Function FctServiceVide 
 {
     # Récupérattion du contenue du fichier CSV
     $csvContent = Import-Csv -Path $fichierCSV
@@ -40,7 +40,7 @@ Function ServiceVide
 }
 
 # Fonction remplacement caractère spéciaux, supression espaces, ...
-Function SuppressionCaractere {
+Function FctSuppressionCaractere {
     param ([string]$DataCaractere)
     Begin {
         # Début du processus
@@ -60,11 +60,41 @@ Function SuppressionCaractere {
     }
 }
 
-Function MenageCSV
+Function FctMenageCSV
 { 
    (Get-Content -Path $fichierCSV) `
    -replace '"","","","","","","","","","","","","",""', '' | Set-Content -Path $fichierCSV
 }
+
+Function FctRenomagePC
+{ 
+    $NomPC = Import-Csv -Path $fichierCSV
+    $NumberInterne = 0001
+    $NumberExterne = 0001
+    foreach ($row in $NomPC) 
+    {
+        if ($row.Société -eq "Pharmgreen" )
+        {
+            $NumberFormateInterne = $NumberInterne.ToString("D4")
+            $Nom_PC_Interne="PC-PI-"+$NumberFormateInterne
+            # Incrémenter le numéro et formater le nouveau numéro
+            $NumberInterne++
+            $row.PC = $Nom_PC_Interne
+        }
+        if ($row.Société -eq "Kamera" )
+        { 
+            $NumberFormateExterne = $NumberExterne.ToString("D4")
+            $Nom_PC_Externe="PC-PE-"+$NumberFormateExterne
+            # Incrémenter le numéro et formater le nouveau numéro
+            $NumberExterne++
+            $row.PC = $Nom_PC_Externe
+        }
+    }
+    $NomPC | Export-Csv -Path $fichierCSV -NoTypeInformation
+}
+
+
+
 # Chemin d'accès du fichier XLSX d'entrée et du fichier CSV de sortie
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
 $fichierXLSX = "$FilePath\s09_Pharmgreen.xlsx"
@@ -76,26 +106,29 @@ $Fichier = Import-Excel -Path $fichierXLSX
 $Fichier | Export-Csv -Path $fichierCSV 
 
 # Appel Fonction remplacement nom service, départment, fonction pour coller à la nomenclature
-Remplacement 
+FctRemplacement 
 # Appel Fonction gestion absence de service
-ServiceVide
+FctServiceVide
 
 # Appel Fonction suppression caractère seulement sur les colonnes noms et prénom
 # Récupérattion du contenue du fichier CSV
 $NomPrenom = Import-Csv -Path $fichierCSV
-    # Selections des colonnes prenom et nom
-  foreach ($row in $NomPrenom) {
+# Selections des colonnes prenom et nom
+foreach ($row in $NomPrenom) 
+  {
     # Appeler la fonction sur les colonnes "prénom" et "nom"
-    $row.Prenom = SuppressionCaractere $row.Prenom
-    $row.Nom = SuppressionCaractere $row.Nom
-    $row.'Manager - nom' = SuppressionCaractere $row.'Manager - nom'
-    $row.'Manager - prénom' = SuppressionCaractere $row.'Manager - prénom'
+    $row.Prenom = FctSuppressionCaractere $row.Prenom
+    $row.Nom = FctSuppressionCaractere $row.Nom
+    $row.'Manager - nom' = FctSuppressionCaractere $row.'Manager - nom'
+    $row.'Manager - prénom' = FctSuppressionCaractere $row.'Manager - prénom'
 }
 # Ecriture dans le fichier CSV
 $NomPrenom | Export-Csv -Path $fichierCSV -NoTypeInformation
 
+# Appel Fonction Renomage PC
+FctRenomagePC
 # Appel Fonction Ménage fichier CSV
-MenageCSV
+FctMenageCSV
 # Appel Suprression lignes supplémentairs
-SuppressionLignesVides
+FctSuppressionLignesVides
 
