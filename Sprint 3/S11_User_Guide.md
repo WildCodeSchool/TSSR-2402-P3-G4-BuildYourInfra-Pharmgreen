@@ -76,3 +76,28 @@ Exécuter le script et, après un redémarrage automatique, le serveur a bien é
 Vous pouvez maintenant ajouter le serveur core sur le serveur principal via l'outil **Serveur Manager** (S10_UserGuide.md) et vous pouvez voir que le serveur est bien ajouté et à son rôle AD-DS.
 
 ![](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b2da02b5-eded-4720-beef-c4b980f9e359)
+
+# Script automatisation GLPI sur Debian
+
+Afin de récupérer le script et le fichier de configuration sur Debian :
+
+- `wget https://raw.githubusercontent/](https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/main/Ressources/Script/glpi_install.sh`
+- `wget https://raw.githubusercontent.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/main/Ressources/config.txt`
+
+Dans le fichier `config.txt`, entrez le nom de la base de données dans `db_name`, le nom de l'utilisateur dans `db_user`, le mot de passe dans `db_pass`, et le nom de l'interface réseau dans `network_interface` :
+db_name="pharmgreen"             # Nom de la base de données
+db_user="wilder"                 # Utilisateur de la base de données
+db_pass="Azerty1*"               # Mot de passe de l'utilisateur de la base de données
+network_interface="enp0s8"       # Nom de l'interface réseau
+
+
+Ensuite faire un `bash glpi_install.sh`.
+
+
+Une fois le script terminé, aller sur un client et taper l'adresse IP de votre serveur, rentrez ensuite les informations que vous aurez précisé dans le `config.txt` et installer GLPI.
+
+
+
+
+
+
