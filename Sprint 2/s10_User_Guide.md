@@ -42,7 +42,7 @@ https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob
 
 Selon votre besoin, lancé le script associé à votre demande.
 Si l'élément que vous souhaité créer ou ajouter existe déjà vous aurez un message vous le signalant, en cas d'échec un message apparait aussi.  
-En cas de souci, vérifiez que tout les documents soit placé au même endroit, contactez la personne qui vous fournit les scripts pour voir avec elle ce qu'il ne va pas.
+En cas de souci, vérifiez que tout les documents soit placé au même endroit, contactez la personne qui vous a fournit les scripts pour voir avec elle ce qu'il ne va pas.
 
 
 # Ajout d'un Server Core au Domaine
