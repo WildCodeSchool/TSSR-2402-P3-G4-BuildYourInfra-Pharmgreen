@@ -91,7 +91,17 @@ Ensuite faire un `bash glpi_install.sh`.
 
 Une fois le script terminé, aller sur un client et taper l'adresse IP de votre serveur, rentrez ensuite les informations que vous aurez précisé dans le `config.txt` et installer GLPI.
 
+# Création d'un ticket dans GLPI
 
+Après vous être identifié sur GLPI avec vos identifiants, vous arrivez sur cette page : 
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/10f739f3-8a99-4656-87ba-0df5a952aa16)
+
+Cliquez sur "Créer un ticket" et remplissez les informations demandées.
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/d58ec196-5769-4ca4-ae03-b76d69d83694)
+
+Puis cliquez sur "Soumettre la demande."
 
 
 
