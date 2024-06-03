@@ -140,7 +140,7 @@ Pour que nos différents réseaux communiquent entre eux, il faut établir les r
 
 ## GPO télemétrie
 
-Ci-Dessous un example de configuration de Télémétrie qui peuvent être mise en place, vous pouvez baser sur les recommandations de l'ANSI :
+Ci-Dessous un example de configuration de Télémétrie qui peuvent être mise en place, vous pouvez vous baser sur les recommandations de l'ANSI :
 https://cyber.gouv.fr/publications/restreindre-la-collecte-de-donnees-sous-windows-10
 
 ### GPO_C_Telemetrie pour Ordinateur
