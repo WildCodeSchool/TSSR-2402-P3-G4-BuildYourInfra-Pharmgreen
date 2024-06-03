@@ -1,6 +1,6 @@
 ﻿#######################################
 #                                     #
-#   Création de groupes automatique   #
+# Création de ordintauers automatique #
 #                                     #
 #######################################
 
