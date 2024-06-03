@@ -25,6 +25,9 @@ https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob
 Fichier pour ajout utilisateur au groupe :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/liste_utilisateur_group.csv
 
+Fichier listant tout les PC avec la bonne nomenclature :  
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/liste_computer.csv
+
 Script permettant de mettre en forme le fichier des employés pour exploitation par les Script :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/mise_en_forme_CSV.ps1
 
@@ -45,6 +48,9 @@ https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob
 
 Script ajout automatique des utilisateurs dans leur groupe :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Groupe_Ajout_Utilisateurs_Groupe.ps1
+
+Script création automatique des odirnateurs et placement dans les OU correspondantes :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Ajout_auto_Computer.ps1
 
 Pour la bonne utilisation des Scripts, placer tout les fichiers au même endroits.  
 Tout est basé sur la nomenclature disponible ici :
