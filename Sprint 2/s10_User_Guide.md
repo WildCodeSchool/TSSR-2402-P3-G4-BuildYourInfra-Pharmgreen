@@ -1,3 +1,50 @@
+
+# Création automatique OU via Script
+
+Dans un premier temps récupérer les fichiers suivant et les placer par exemple dans un dossier sous `C;\Script` sur le Serveur Principal
+
+Fichier des Ressources Humaines contenant toute les informations des employés de la société :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/s09_Pharmgreen.xlsx
+
+Fichier listant les groupes Utilisateur :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/Groupe_User.csv
+
+Fichier listant les groupes Ordinateurs :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/Groupe_Computer.csv
+
+Fichier pour ajout utilisateur au groupe :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/liste_utilisateur_group.csv
+
+Script permettant de mettre en forme le fichier des employés pour exploitation par les Script.
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/mise_en_forme_CSV.ps1
+
+Script de création automatique des deux OU Principale et des deux sous OU.
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Ou_Auto.ps1
+
+Script de création automatique des utilisateurs et placement dans les OU correspondantes.
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Utilisateur_auto.ps1
+
+Script de modifications automatique des utilisateurs soumis à évolution (actuellement il ajoute juste les managers)
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Modif_Utilisateur_auto.ps1
+
+Script de création automatique des groupes utilisateurs :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Groupe_auto_Users.ps1
+
+Script de création automatique des groupes ordinateurs :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Groupe_auto_Computer.ps1
+
+Script ajout automatique des utilisateurs dans leur groupe :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Groupe_Ajout_Utilisateurs_Groupe.ps1
+
+Pour la bonne utilisation des Scripts, placer tout les fichiers au même endroits.
+Tout est basé sur la nomenclature disponible ici :
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Nomenclature.xlsx
+
+Selon votre besoin, lancé le script associé à votre demande.
+Si l'élément que vous souhaité créer ou ajouter existe déjà vous aurez un message vous le signalant, en cas d'échec un message apparait aussi.  
+En cas de souci, vérifiez que tout les documents soit placé au même endroit, contactez la personne qui vous fournit les scripts pour voir avec elle ce qu'il ne va pas.
+
+
 # Ajout d'un Server Core au Domaine
 
 Assurez vous d'avoir un Serveur Core déjà installé et sur la même plage d'adresse IP que Serveur AD Principal :
