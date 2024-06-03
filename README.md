@@ -85,7 +85,7 @@ Dans le dossier ressources de ce dépot Github, vous trouverez plusieurs documen
 
 Notre nouvelle infrastucture réseau fonctionne parfaitement, les règles de routages ont été mises en place, ainsi que des règles de bonnes pratiques sur le pare-feu et des GPO pour gérer la télémétrie.
 
-### **Sprint  : semaine du 3 au 7 juin 2024**
+### **Sprint 5 : semaine du 3 au 7 juin 2024**
 
 Activités et répartition des tâches
 
