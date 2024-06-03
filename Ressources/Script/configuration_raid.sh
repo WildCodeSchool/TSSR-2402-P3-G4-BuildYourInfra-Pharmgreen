@@ -13,6 +13,7 @@ sfdisk -d /dev/sda | sfdisk --force /dev/sdb || error_exit "Échec du clonage de
 
 # Changement des étiquettes des partitions de /dev/sdb en « RAID Linux »
 echo "Changement des étiquettes des partitions de /dev/sdb en 'Linux RAID'..."
+chmod 777 /dev/sdb
 (
     echo t; echo 1; echo fd;
     echo t; echo 5; echo fd;
@@ -26,16 +27,20 @@ mdadm --create /dev/md1 --level=1 --raid-disks=2 missing /dev/sdb5 || error_exit
 
 # Formatage de /dev/md0 en ext4 et de /dev/md1 en swap
 echo "Formatage de /dev/md0 en ext4 et de /dev/md1 en swap..."
+chmod 777 /dev/md0 /dev/md1
 mkfs.ext4 /dev/md0 || error_exit "Échec du formatage de /dev/md0."
 mkswap /dev/md1 || error_exit "Échec du formatage de /dev/md1."
 
 # Mise à jour de la configuration mdadm
 echo "Mise à jour de la configuration mdadm..."
+chmod 777 /etc/mdadm/mdadm.conf
 mdadm --examine --scan >> /etc/mdadm/mdadm.conf || error_exit "Échec de la mise à jour de la configuration mdadm."
 
 # Édition de /etc/fstab
 echo "Édition de /etc/fstab..."
+chmod 777 /etc/fstab
 cp /etc/fstab /etc/fstab.bak
+chmod 777 /etc/fstab.bak
 echo '/dev/md0    /       ext4    errors=remount-ro   0       1' >> /etc/fstab
 echo '/dev/md1    none    swap    sw                  0       0' >> /etc/fstab
 
@@ -59,10 +64,12 @@ menuentry 'Debian GNU/Linux, avec Linux 3.16.0-4-amd64 en RAID 1' --class debian
 }
 EOF
 
+chmod 777 /etc/grub.d/09_raid1
 chmod +x /etc/grub.d/09_raid1 || error_exit "Échec de rendre /etc/grub.d/09_raid1 exécutable."
 
 # Désactivation de l'utilisation des UUID dans GRUB
 echo "Désactivation de l'utilisation des UUID dans GRUB..."
+chmod 777 /etc/default/grub
 sed -i 's/#GRUB_DISABLE_LINUX_UUID=true/GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub || error_exit "Échec de la désactivation de l'utilisation des UUID dans GRUB."
 
 # Mise à jour de la configuration de GRUB
@@ -73,6 +80,7 @@ update-initramfs -u || error_exit "Échec de la mise à jour d'initramfs."
 # Copie du système de fichiers racine sur le RAID
 echo "Copie du système de fichiers racine sur le RAID..."
 mkdir /mnt/md0 || error_exit "Échec de la création du point de montage /mnt/md0."
+chmod 777 /mnt/md0
 mount /dev/md0 /mnt/md0 || error_exit "Échec du montage de /dev/md0."
 cp -apx / /mnt/md0 || error_exit "Échec de la copie du système de fichiers racine vers /dev/md0."
 
@@ -86,6 +94,7 @@ echo "Après le redémarrage, veuillez vous connecter en tant que root et exécu
 
 # Changement des étiquettes des partitions de /dev/sda en « RAID Linux »
 echo "Changement des étiquettes des partitions de /dev/sda en 'Linux RAID'..."
+chmod 777 /dev/sda
 (
     echo t; echo 1; echo fd;
     echo t; echo 5; echo fd;
@@ -105,10 +114,12 @@ echo "Après la synchronisation, exécutez les étapes suivantes :"
 
 # Suppression de la configuration temporaire de GRUB
 echo "Suppression de la configuration temporaire de GRUB..."
+chmod 777 /etc/grub.d/09_raid1
 rm /etc/grub.d/09_raid1 || error_exit "Échec de la suppression de /etc/grub.d/09_raid1."
 
 # Réactivation de l'utilisation des UUID dans GRUB
 echo "Réactivation de l'utilisation des UUID dans GRUB..."
+chmod 777 /etc/default/grub
 sed -i 's/GRUB_DISABLE_LINUX_UUID=true/#GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub || error_exit "Échec de la réactivation de l'utilisation des UUID dans GRUB."
 
 # Mise à jour de GRUB et d'initramfs
@@ -123,6 +134,7 @@ grub-install --recheck /dev/sdb || error_exit "Échec de l'installation de GRUB 
 
 # Nettoyage
 echo "Nettoyage..."
+chmod 777 /mnt/md0
 rmdir /mnt/md0 || error_exit "Échec de la suppression de /mnt/md0."
 
 # Redémarrage du système
