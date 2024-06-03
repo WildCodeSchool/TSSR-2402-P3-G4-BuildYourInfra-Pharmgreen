@@ -56,7 +56,7 @@ Si l'élément que vous souhaité créer ou ajouter existe déjà vous aurez un 
 En cas de souci, vérifiez que tout les documents soit placé au même endroit, contactez la personne qui vous a fournit les scripts pour voir avec elle ce qu'il ne va pas.
 
 
-##2. **Ajout d'un Server Core au Domaine**
+## **2. Ajout d'un Server Core au Domaine**
 
 Assurez vous d'avoir un Serveur Core déjà installé et sur la même plage d'adresse IP que Serveur AD Principal :
 
@@ -102,7 +102,7 @@ Cliquez dessus et entrez les informations suivantes :
 En cas de souci, se réferrez à votre administrateur principal pour vérifiez avec lui la configuration du serveur CORE et serveur principal.
 
 
-##3. **Ajout du serveur Debian a l' Active Directory**
+## **3. Ajout du serveur Debian a l' Active Directory**
 
 ### configuration reseau
 
@@ -126,7 +126,7 @@ modifier le fichier /etc/resolv.conf comme cela :
 executer la commaande **realm join --user=administrator pharmgreen.org**
 
 
-##4. **Configuration du serveur ssh**
+## **4. Configuration du serveur ssh**
 
 ### action a effectuer sur le serveur
 
