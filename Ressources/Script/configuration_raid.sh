@@ -1,51 +1,49 @@
 #!/bin/bash
 
-# Vérifier que le script est exécuté en tant que super-utilisateur
-if [ "$EUID" -ne 0 ]; then
-  echo "Veuillez exécuter ce script en tant que super-utilisateur (root)."
-  exit 1
-fi
+set -e
 
-# Installer mdadm
-aptitude install mdadm -y
+function error_exit {
+    echo -e "\e[31m$1\e[0m"
+    exit 1
+}
 
-# Cloner la table de partitions de /dev/sda sur /dev/sdb
-sfdisk -d /dev/sda | sfdisk --force /dev/sdb
+# Clonage de la table des partitions de /dev/sda vers /dev/sdb
+echo "Clonage de la table des partitions de /dev/sda vers /dev/sdb..."
+sfdisk -d /dev/sda | sfdisk --force /dev/sdb || error_exit "Échec du clonage de la table des partitions."
 
-# Changer l'étiquette des partitions de /dev/sdb en « RAID Linux »
+# Changement des étiquettes des partitions de /dev/sdb en « RAID Linux »
+echo "Changement des étiquettes des partitions de /dev/sdb en 'Linux RAID'..."
 (
-echo t
-echo 1
-echo fd
-echo t
-echo 5
-echo fd
-echo w
-) | fdisk /dev/sdb
+    echo t; echo 1; echo fd;
+    echo t; echo 5; echo fd;
+    echo w;
+) | fdisk /dev/sdb || error_exit "Échec du changement des étiquettes de partitions sur /dev/sdb."
 
-# Créer les volumes RAID 1 sans les partitions /dev/sda
-mdadm --create /dev/md0 --level=1 --raid-disks=2 missing /dev/sdb1
-mdadm --create /dev/md1 --level=1 --raid-disks=2 missing /dev/sdb5
+# Création des volumes RAID 1
+echo "Création des volumes RAID 1..."
+mdadm --create /dev/md0 --level=1 --raid-disks=2 missing /dev/sdb1 || error_exit "Échec de la création du volume RAID 1 sur /dev/md0."
+mdadm --create /dev/md1 --level=1 --raid-disks=2 missing /dev/sdb5 || error_exit "Échec de la création du volume RAID 1 sur /dev/md1."
 
-# Formater /dev/md0 en ext4 et /dev/md1 en swap
-mkfs.ext4 /dev/md0
-mkswap /dev/md1
+# Formatage de /dev/md0 en ext4 et de /dev/md1 en swap
+echo "Formatage de /dev/md0 en ext4 et de /dev/md1 en swap..."
+mkfs.ext4 /dev/md0 || error_exit "Échec du formatage de /dev/md0."
+mkswap /dev/md1 || error_exit "Échec du formatage de /dev/md1."
 
-# Déclarer les volumes RAID 1 nouvellement créés dans le fichier de configuration
-mdadm --examine --scan >> /etc/mdadm/mdadm.conf
+# Mise à jour de la configuration mdadm
+echo "Mise à jour de la configuration mdadm..."
+mdadm --examine --scan >> /etc/mdadm/mdadm.conf || error_exit "Échec de la mise à jour de la configuration mdadm."
 
-# Préparer le fichier /etc/fstab
+# Édition de /etc/fstab
+echo "Édition de /etc/fstab..."
 cp /etc/fstab /etc/fstab.bak
-echo "/dev/md0    /       ext4    errors=remount-ro   0       1" >> /etc/fstab
-echo "/dev/md1    none    swap    sw                  0       0" >> /etc/fstab
+echo '/dev/md0    /       ext4    errors=remount-ro   0       1' >> /etc/fstab
+echo '/dev/md1    none    swap    sw                  0       0' >> /etc/fstab
 
-# Configurer Grub
+# Configuration temporaire de GRUB pour démarrer sur le RAID
+echo "Configuration temporaire de GRUB pour démarrer sur le RAID..."
 cat <<EOF > /etc/grub.d/09_raid1
 #!/bin/sh
 exec tail -n +3 \$0
-# This file provides an easy way to add custom menu entries.  Simply type the
-# menu entries you want to add after this comment.  Be careful not to change
-# the 'exec tail' line above.
 menuentry 'Debian GNU/Linux, avec Linux 3.16.0-4-amd64 en RAID 1' --class debian --class gnu-linux --class gnu --class os {
     load_video
     insmod gzio
@@ -61,60 +59,72 @@ menuentry 'Debian GNU/Linux, avec Linux 3.16.0-4-amd64 en RAID 1' --class debian
 }
 EOF
 
-chmod +x /etc/grub.d/09_raid1
+chmod +x /etc/grub.d/09_raid1 || error_exit "Échec de rendre /etc/grub.d/09_raid1 exécutable."
 
-# Désactiver temporairement l'usage de l'UUID par Grub
-sed -i 's/#GRUB_DISABLE_LINUX_UUID=true/GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub
+# Désactivation de l'utilisation des UUID dans GRUB
+echo "Désactivation de l'utilisation des UUID dans GRUB..."
+sed -i 's/#GRUB_DISABLE_LINUX_UUID=true/GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub || error_exit "Échec de la désactivation de l'utilisation des UUID dans GRUB."
 
-# Mettre à jour la configuration de Grub
-update-grub
-update-initramfs -u
+# Mise à jour de la configuration de GRUB
+echo "Mise à jour de la configuration de GRUB..."
+update-grub || error_exit "Échec de la mise à jour de la configuration de GRUB."
+update-initramfs -u || error_exit "Échec de la mise à jour d'initramfs."
 
-# Créer temporairement un point de montage pour /dev/md0
-mkdir /mnt/md0
+# Copie du système de fichiers racine sur le RAID
+echo "Copie du système de fichiers racine sur le RAID..."
+mkdir /mnt/md0 || error_exit "Échec de la création du point de montage /mnt/md0."
+mount /dev/md0 /mnt/md0 || error_exit "Échec du montage de /dev/md0."
+cp -apx / /mnt/md0 || error_exit "Échec de la copie du système de fichiers racine vers /dev/md0."
 
-# Monter le volume correspondant
-mount /dev/md0 /mnt/md0
-
-# Copier l'intégralité de / sur /dev/md0
-cp -apx / /mnt/md0
-
-# Redémarrer le système
-echo "Le système va redémarrer. Veuillez exécuter la suite du script après le redémarrage."
+# Redémarrage du système
+echo "Redémarrage du système..."
 reboot
 
-# Instructions à exécuter après le redémarrage
-# --------------------------------------------
-# Connectez-vous en super-utilisateur et exécutez les commandes suivantes :
-# su -
-# fdisk /dev/sda
-# Commande (m pour l'aide) : t
-# Numéro de partition (1,2,5, 5 par défaut) : 1
-# Code Hexa (taper L pour afficher tous les codes) : fd
-# Commande (m pour l'aide) : t
-# Numéro de partition (1,2,5, 5 par défaut) : 5
-# Code Hexa (taper L pour afficher tous les codes) : fd
-# Commande (m pour l'aide) : w
+# Les étapes suivantes doivent être exécutées après le redémarrage
 
-# Ajouter les partitions de /dev/sda aux volumes RAID
-mdadm --add /dev/md0 /dev/sda1
-mdadm --add /dev/md1 /dev/sda5
+echo "Après le redémarrage, veuillez vous connecter en tant que root et exécuter les étapes suivantes :"
 
-# Surveiller la progression de la synchronisation des volumes RAID
+# Changement des étiquettes des partitions de /dev/sda en « RAID Linux »
+echo "Changement des étiquettes des partitions de /dev/sda en 'Linux RAID'..."
+(
+    echo t; echo 1; echo fd;
+    echo t; echo 5; echo fd;
+    echo w;
+) | fdisk /dev/sda || error_exit "Échec du changement des étiquettes de partitions sur /dev/sda."
+
+# Ajout des partitions de /dev/sda au RAID
+echo "Ajout des partitions de /dev/sda au RAID..."
+mdadm --add /dev/md0 /dev/sda1 || error_exit "Échec de l'ajout de /dev/sda1 à /dev/md0."
+mdadm --add /dev/md1 /dev/sda5 || error_exit "Échec de l'ajout de /dev/sda5 à /dev/md1."
+
+# Surveillance de la synchronisation du RAID
+echo "Surveillance de la synchronisation du RAID..."
 watch cat /proc/mdstat
 
-# Finaliser la configuration du nouvel environnement
-rm /etc/grub.d/09_raid1
-sed -i 's/GRUB_DISABLE_LINUX_UUID=true/#GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub
-update-grub
-update-initramfs -u
+echo "Après la synchronisation, exécutez les étapes suivantes :"
 
-# Installer Grub sur les deux systèmes de fichiers
-grub-install --recheck /dev/sda
-grub-install --recheck /dev/sdb
+# Suppression de la configuration temporaire de GRUB
+echo "Suppression de la configuration temporaire de GRUB..."
+rm /etc/grub.d/09_raid1 || error_exit "Échec de la suppression de /etc/grub.d/09_raid1."
 
-# Supprimer le point de montage /mnt/md0
-rmdir /mnt/md0
+# Réactivation de l'utilisation des UUID dans GRUB
+echo "Réactivation de l'utilisation des UUID dans GRUB..."
+sed -i 's/GRUB_DISABLE_LINUX_UUID=true/#GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub || error_exit "Échec de la réactivation de l'utilisation des UUID dans GRUB."
 
-# Redémarrer le système
+# Mise à jour de GRUB et d'initramfs
+echo "Mise à jour de GRUB et d'initramfs..."
+update-grub || error_exit "Échec de la mise à jour de GRUB."
+update-initramfs -u || error_exit "Échec de la mise à jour d'initramfs."
+
+# Installation de GRUB sur les deux disques
+echo "Installation de GRUB sur les deux disques..."
+grub-install --recheck /dev/sda || error_exit "Échec de l'installation de GRUB sur /dev/sda."
+grub-install --recheck /dev/sdb || error_exit "Échec de l'installation de GRUB sur /dev/sdb."
+
+# Nettoyage
+echo "Nettoyage..."
+rmdir /mnt/md0 || error_exit "Échec de la suppression de /mnt/md0."
+
+# Redémarrage du système
+echo "Redémarrage du système..."
 reboot
