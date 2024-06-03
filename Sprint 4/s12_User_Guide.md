@@ -145,7 +145,10 @@ Pour que nos différents réseaux communiquent entre eux, il faut établir les r
 
 ## GPO télemétrie
 
-### GPO_C_Telemetrie
+Ci-Dessous un example de configuration de Télémétrie qui peuvent être mise en place, vous pouvez baser sur les recommandations de l'ANSI :
+https://cyber.gouv.fr/publications/restreindre-la-collecte-de-donnees-sous-windows-10
+
+### GPO_C_Telemetrie pour Ordinateur
 
 - chemin : `Computer Configuration/Policies/Windows Settings/Security Settings/Local Policies/Security Options`
     - accounts : Block Microsoft Accounts
@@ -216,6 +219,6 @@ Pour que nos différents réseaux communiquent entre eux, il faut établir les r
         - Stop processing items on this extension if an error occurs on this item : No
         - Apply once and do not reapply
 
-### GPO_U_Telemetrie
+### GPO_U_Telemetrie pour Uitlisateur
 - chemin : `User Configuration/Policies/Administrative Templates/Windows Component/Cloud Content`
     - Do not use diagnostic data for tailored experience : Enabled
