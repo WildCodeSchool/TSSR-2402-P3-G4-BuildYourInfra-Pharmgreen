@@ -52,9 +52,9 @@ Ce guide vous aidera à créer et configurer une GPO (Group Policy Object) dans 
 1. Utilisez la commande `gpresult /r` pour vérifier quelles GPO sont appliquées à un utilisateur ou ordinateur spécifique.
 2. Vérifiez les journaux d'événements pour les erreurs de stratégie de groupe sous "Applications and Services Logs" > "Microsoft" > "Windows" > "GroupPolicy".
 
-**Ci-dessous une liste non exhaustive de GPO que vous pouvez mettre en place**
 
-# liste GPO
+# Liste GPO
+**Ci-dessous une liste non exhaustive de GPO que vous pouvez mettre en place**
 
 ## GPO default Domain Policy
  - chemin : `computer configuration/policies/Windows Settings/security settings/Account policies/Password policies`
