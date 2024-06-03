@@ -9,7 +9,6 @@ $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definitio
 $File = "$FilePath\liste_Computer.csv"
 
 $Computers = Import-Csv -Path $File -Delimiter "," -Header "Ordinateur","OU","SousOU"
-$ADGroup = Get-ADGroup -Filter * -Properties *
 $ADComputer = Get-ADComputer -Filter * -Properties *
 $DomainDN = (Get-ADDomain).DistinguishedName
 $Count = 1
