@@ -53,7 +53,3 @@ Ce guide vous aidera à installer pfSense sur une machine virtuelle VirtualBox.
 1. **Connexion à l'Interface Web** :
    - Ouvrez un navigateur web et allez à l'adresse IP LAN par défaut de pfSense : `http://192.168.1.1`.
    - Utilisez les informations d'identification par défaut : utilisateur `admin`, mot de passe `pfsense`.
-
-## Conclusion
-
-pfSense est maintenant installé sur VirtualBox. Vous pouvez commencer la configuration initiale via l'interface web.
