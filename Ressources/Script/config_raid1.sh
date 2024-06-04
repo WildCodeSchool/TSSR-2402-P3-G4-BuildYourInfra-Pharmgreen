@@ -8,7 +8,7 @@ pause() {
 
 # Fonction pour vérifier le succès des commandes
 check_success() {
-    if [ $? -eq 0 ]; then
+    if [ $? -eq 0 ]; alors
         echo -e "\e[32m$1 : Succès\e[0m"
     else
         echo -e "\e[31m$1 : Échec\e[0m"
@@ -116,10 +116,11 @@ pause
 # Copie du système sur les volumes RAID
 echo "Créez un point de montage temporaire pour /dev/md0 :"
 mkdir /mnt/md0
+chmod 777 /mnt/md0
 check_success "Création du point de montage /mnt/md0"
 mount /dev/md0 /mnt/md0
 check_success "Montage de /dev/md0"
-rsync -aHAXP / /mnt/md0/
+cp -a / /mnt/md0/
 check_success "Copie du système sur /dev/md0"
 pause
 
