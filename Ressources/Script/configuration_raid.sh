@@ -97,7 +97,7 @@ mount --bind /dev /mnt/md1/dev
 mount --bind /proc /mnt/md1/proc
 mount --bind /sys /mnt/md1/sys
 chroot /mnt/md1 /bin/bash -c "update-initramfs -u && update-grub"
-afficher_message "GRUB et Initramfs mis à jour sur le disque N°2 avec succès." "Échec de la mise à jour de GRUB et Initramfs sur le disque N°2."
+afficher_message "GRUB et Initramfs mis à jour sur le disque N°2 avec succès." "Échec de la mise à jour de GRUB et Initramfs sur les disque N°2."
 
 # Mise à jour de GRUB sur le disque N°1
 echo "=== Mise à jour de GRUB sur le disque N°1 ==="
