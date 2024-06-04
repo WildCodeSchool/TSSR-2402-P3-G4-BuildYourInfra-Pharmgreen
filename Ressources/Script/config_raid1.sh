@@ -16,6 +16,11 @@ check_success() {
     fi
 }
 
+# Installation de mdadm et vérification
+apt-get install -y mdadm
+check_success "Installation de MDADM"
+pause
+
 # Définir les disques
 echo "Entrez le disque source (par exemple, /dev/sda) :"
 read source_disk
@@ -33,20 +38,19 @@ echo "Voici les partitions disponibles :"
 lsblk
 pause
 
-# Demande des informations sur les partitions pour RAID 1
+# Modifier l'étiquette des partitions de /dev/sdb en « RAID Linux »
 echo "Entrez le numéro de la première partition pour RAID 1 (par exemple, 1) :"
-read source_part1
+read part1
 
 echo "Entrez le numéro de la seconde partition pour RAID 1 (par exemple, 5) :"
-read source_part2
+read part2
 
-# Modifier l'étiquette des partitions de /dev/sdb en « RAID Linux »
 fdisk $target_disk <<EOF
 t
-$source_part1
+$part1
 fd
 t
-$source_part2
+$part2
 fd
 w
 EOF
@@ -54,9 +58,9 @@ check_success "Modification de l'étiquette des partitions"
 pause
 
 # Création du RAID 1 en mode dégradé
-mdadm --create /dev/md0 --level=1 --raid-disks=2 missing $target_disk"$source_part1"
+mdadm --create /dev/md0 --level=1 --raid-disks=2 missing $target_disk$part1
 check_success "Création du RAID 1 sur /dev/md0"
-mdadm --create /dev/md1 --level=1 --raid-disks=2 missing $target_disk"$source_part2"
+mdadm --create /dev/md1 --level=1 --raid-disks=2 missing $target_disk$part2
 check_success "Création du RAID 1 sur /dev/md1"
 pause
 
@@ -68,16 +72,50 @@ check_success "Formatage de /dev/md1"
 pause
 
 # Déclarer les volumes RAID 1 nouvellement créés dans /etc/mdadm/mdadm.conf
-mdadm --examine --scan >> /etc/mdadm/mdadm.conf
+cp /etc/mdadm/mdadm.conf /etc/mdadm/mdadm.conf.origin
+mdadm --misc --detail --brief /dev/md* 2>/dev/null | tee -a /etc/mdadm/mdadm.conf
 check_success "Mise à jour de /etc/mdadm/mdadm.conf"
 pause
 
-# Modification du FSTAB
-cp /etc/fstab /etc/fstab.bak
-check_success "Sauvegarde de /etc/fstab"
-echo "Modifiez /etc/fstab pour inclure les nouvelles partitions RAID, puis appuyez sur Entrée pour continuer..."
-nano /etc/fstab
-check_success "Modification de /etc/fstab"
+# Noter les UUID des groupes RAID
+echo -e "\e[33mLes UUID des groupes RAID sont les suivants :\e[0m"
+ls -l /dev/disk/by-uuid/ | grep md
+pause
+
+# Ajouter les modules raid1 et md_mod à initramfs
+echo -e "raid1\nmd_mod" >> /etc/initramfs-tools/modules
+check_success "Ajout des modules raid1 et md_mod à initramfs"
+update-initramfs -u -k $(uname -r)
+check_success "Mise à jour d'initramfs"
+pause
+
+# Mise à jour de GRUB pour inclure les modules RAID
+sed -i 's/^#GRUB_PRELOAD_MODULES=""/GRUB_PRELOAD_MODULES="raid mdraid"/' /etc/default/grub
+check_success "Ajout des modules RAID à GRUB"
+
+# Assurez-vous que GRUB_DISABLE_LINUX_UUID est commenté
+sed -i 's/^GRUB_DISABLE_LINUX_UUID=true/#GRUB_DISABLE_LINUX_UUID=true/' /etc/default/grub
+check_success "Vérification de GRUB_DISABLE_LINUX_UUID"
+
+update-grub
+check_success "Mise à jour de GRUB"
+grub-install --recheck "(hd0)"
+check_success "Installation de GRUB sur (hd0)"
+pause
+
+# Assurez-vous que les modules RAID sont chargés au démarrage
+echo -e "md_mod\nraid1" >> /etc/modules
+check_success "Ajout des modules RAID à /etc/modules"
+pause
+
+# Copie du système sur les volumes RAID
+echo "Créez un point de montage temporaire pour /dev/md0 :"
+mkdir /mnt/md0
+check_success "Création du point de montage /mnt/md0"
+mount /dev/md0 /mnt/md0
+check_success "Montage de /dev/md0"
+rsync -aHAXP / /mnt/md0/
+check_success "Copie du système sur /dev/md0"
 pause
 
 echo -e "\e[32mExécution du script de préparation et de création du RAID terminée.\e[0m"
