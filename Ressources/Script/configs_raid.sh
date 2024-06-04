@@ -47,7 +47,7 @@ echo "Entrez le numéro de la partition cible pour RAID 1 (par exemple, 3) :"
 read target_part2
 
 # Installation de MDADM
-apt-get install -y mdadm
+apt-get install mdadm
 check_success "Installation de MDADM"
 cat /proc/mdstat
 pause
@@ -78,9 +78,9 @@ check_success "Reconfiguration de MDADM"
 cp /etc/mdadm/mdadm.conf /etc/mdadm/mdadm.conf-dist
 mdadm --examine --scan | tee -a /etc/mdadm/mdadm.conf
 check_success "Mise à jour de mdadm.conf"
+echo "Ajoutez DEVICE $target_disk$target_part1 $target_disk$target_part2 dans le fichier mdadm.conf"
 nano /etc/mdadm/mdadm.conf
-echo "Ajoutez DEVICE $target_disk$target_part1 $target_disk$target_part2 à mdadm.conf, puis appuyez sur Entrée pour continuer..."
-read
+pause
 
 # Formatage des partitions sur le disque N°2
 mkfs.vfat /dev/md0
@@ -105,5 +105,11 @@ check_success "Rechargement du démon systemd"
 echo "Modifiez /etc/fstab si nécessaire, puis appuyez sur Entrée pour continuer..."
 read
 
-echo -e "\e[32mExécution du script de préparation terminée.\e[0m"
-reboot
+# Copie des données sur le disque N°2
+rsync -auHxv --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* /* /mnt/md1/
+check_success "Copie des données vers /mnt/md1"
+rsync -auHxv /boot/efi /mnt/md0
+check_success "Copie des données de /boot/efi vers /mnt/md0"
+pause
+
+echo -e "\e[32mExécution du script de configuration RAID terminée.\e[0m"
