@@ -92,11 +92,40 @@ function FctAjoutSousGRoupAGroup
     }
 }
 
-Write-Host "Debut création de Groupe" -ForegroundColor Green
+# Création groupe Global 
+$GroupNamePrincipal = "GRP_U_Users"
+$groupPath = "OU=User_Pharmgreen,DC=pharmgreen,DC=org"
+Write-Host "Vérification Groupe Global Utilisateurs existe, si non existant il sera créé " -ForegroundColor Blue
+Write-Host "" 
+$ADGroup = Get-ADGroup -Filter * -Properties *
+if (($ADGroup  | Where {$_.Name -eq $GroupNamePrincipal }) -ne $Null)
+{
+    # Le groupe existe déjà, afficher un message
+    Write-Host "Le groupe $GroupNamePrincipal existe déjà." -ForegroundColor Green
+} else 
+{
+    # Le groupe n'existe pas, le créer
+    New-ADGroup -Name $GroupNamePrincipal -Path $groupPath -GroupScope Global -GroupCategory Security
+    Write-Host "Le groupe $GroupNamePrincipal a été créé avec succès ." -ForegroundColor Green
+}
+Write-Host "" 
+Read-Host "Appuyez sur Entrée pour continuer ... "
+sleep -Seconds 1
+clear-host
+
+Write-Host "Debut création de Groupe" -ForegroundColor Blue
+Write-Host "" 
 FctCreationGroupe
-Write-Host "Fin création de Groupe" -ForegroundColor Green
+Write-Host "Fin création de Groupe" -ForegroundColor Blue
+Write-Host "" 
+Read-Host "Appuyez sur Entrée pour continuer ... "
 sleep -Seconds 2
 clear-host
-Write-Host "Debut ajout de Groupe dans groupe" -ForegroundColor Green
+
+Write-Host "Debut ajout de Groupe dans groupe" -ForegroundColor Blue
+Write-Host "" 
 FctAjoutSousGRoupAGroup
-Write-Host "Fin ajout de Groupe dans groupe" -ForegroundColor Green
+Write-Host "Fin ajout de Groupe dans groupe" -ForegroundColor Blue
+Write-Host "" 
+Read-Host "Appuyez sur Entrée pour continuer ... "
+sleep -Seconds 1

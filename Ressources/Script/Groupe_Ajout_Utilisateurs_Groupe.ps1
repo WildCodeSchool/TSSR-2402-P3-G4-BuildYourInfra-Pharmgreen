@@ -15,6 +15,7 @@ foreach ($User in $Users) {
     
     if ($User.fonction -ne ""){
         Switch ($User.fonction) {
+            "GRP_U_CEO" {Add-ADGroupMember -Identity "GRP_U_CEO" -Members $SamAccountName}
             "GRP_U_Charge_Communication" {Add-ADGroupMember -Identity "GRP_U_Charge_Communication" -Members $SamAccountName}
             "GRP_U_Charge_Presse" {Add-ADGroupMember -Identity "GRP_U_Charge_Presse" -Members $SamAccountName}
             "GRP_U_Charge_Droit_Communication" {Add-ADGroupMember -Identity "GRP_U_Charge_Droit_Communication" -Members $SamAccountName}
