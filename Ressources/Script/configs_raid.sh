@@ -79,6 +79,7 @@ cp /etc/mdadm/mdadm.conf /etc/mdadm/mdadm.conf-dist
 mdadm --examine --scan | tee -a /etc/mdadm/mdadm.conf
 check_success "Mise à jour de mdadm.conf"
 echo "Ajoutez DEVICE $target_disk$target_part1 $target_disk$target_part2 dans le fichier mdadm.conf"
+pause
 nano /etc/mdadm/mdadm.conf
 pause
 
