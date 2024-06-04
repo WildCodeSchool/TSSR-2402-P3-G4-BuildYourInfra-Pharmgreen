@@ -1,85 +1,80 @@
 #!/bin/bash
 
-# Installation de mdadm
-apt-get update
-apt-get install -y mdadm
-
-# Vérification de l'installation de mdadm
-if [ $? -eq 0 ]; then
-    echo "mdadm a été installé avec succès"
-else
-    echo "Erreur lors de l'installation de mdadm"
+# Vérifier si l'utilisateur est un administrateur
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Ce script doit être exécuté par un utilisateur ayant des droits d'administration."
     exit 1
 fi
 
-# Copie du schéma de partitionnement du disque original sur le nouveau disque
-sfdisk -d /dev/sda | sfdisk /dev/sdb
-
-# Vérification de la copie du schéma de partitionnement
-if [ $? -eq 0 ]; then
-    echo "Le schéma de partitionnement a été copié avec succès"
-else
-    echo "Erreur lors de la copie du schéma de partitionnement"
+# Installer mdadm
+echo "Installation de mdadm en cours..."
+apt-get install mdadm -y &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : L'installation de mdadm a échoué."
     exit 1
 fi
+echo "mdadm a été installé avec succès."
 
-# Changement du type des partitions sur le nouveau disque pour "fd" (raid auto-detect)
-fdisk /dev/sdb << EOF
-t
-1
-fd
-t
-2
-fd
-w
-EOF
-
-# Vérification du changement du type des partitions
-if [ $? -eq 0 ]; alors
-    echo "Le type des partitions a été changé avec succès"
-else
-    echo "Erreur lors du changement du type des partitions"
+# Vérifier le statut du RAID
+echo "Vérification du statut du RAID en cours..."
+cat /proc/mdstat &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : Impossible de lire le statut du RAID."
     exit 1
 fi
+echo "Le statut du RAID a été vérifié avec succès."
 
-# Création du volume raid1
-mdadm --create /dev/md0 --level=1 --raid-devices=2 missing /dev/sdb1
-mdadm --create /dev/md1 --level=1 --raid-devices=2 missing /dev/sdb2
+# Préparer le second disque dur
+echo "Préparation du second disque dur en cours..."
 
-# Vérification de la création du volume raid1
-if [ $? -eq 0 ]; alors
-    echo "Le volume raid1 a été créé avec succès"
-else
-    echo "Erreur lors de la création du volume raid1"
+# Cloner la table des partitions
+echo "Clonage de la table des partitions en cours..."
+sfdisk -d /dev/sda | sfdisk /dev/sdb &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : Le clonage de la table des partitions a échoué."
     exit 1
 fi
+echo "La table des partitions a été clonée avec succès."
 
-# Création des points de montage pour les périphériques raid
-mkdir /mnt/md0 /mnt/md1
-
-# Montage des volumes raid
-mount /dev/md0 /mnt/md0
-mount /dev/md1 /mnt/md1
-
-# Vérification du montage des volumes raid
-if [ $? -eq 0 ]; alors
-    echo "Les volumes raid ont été montés avec succès"
-else
-    echo "Erreur lors du montage des volumes raid"
+# Vérifier les partitions
+echo "Vérification des partitions en cours..."
+fdisk -l &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : Impossible de lire les informations sur les partitions."
     exit 1
 fi
+echo "Les partitions ont été vérifiées avec succès."
 
-# Copie du système sur le volume raid
-rsync -aHAXP / /mnt/md0/
-rsync -aHAXP /home/$(user) /mnt/md1/
+# Changer le type des partitions (sdb)
+echo "Changement du type des partitions en cours..."
 
-# Vérification de la copie du système
-if [ $? -eq 0 ]; alors
-    echo "Le système a été copié avec succès"
-else
-    echo "Erreur lors de la copie du système"
+# Partition 1
+echo "Changement du type de la partition 1 en cours..."
+fdisk /dev/sdb <<< "t\n1\nfd\nw\n" &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : Le changement du type de la partition 1 a échoué."
     exit 1
 fi
+echo "Le type de la partition 1 a été changé avec succès."
 
-# Adaptation du système sur le volume raid
-# (à compléter en fonction de vos besoins)
+# Partition 2
+echo "Changement du type de la partition 2 en cours..."
+fdisk /dev/sdb <<< "t\n2\nfd\nw\n" &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : Le changement du type de la partition 2 a échoué."
+    exit 1
+fi
+echo "Le type de la partition 2 a été changé avec succès."
+
+# Partition 3
+echo "Changement du type de la partition 3 en cours..."
+fdisk /dev/sdb <<< "t\n3\nfd\nw\n" &> /dev/null
+if [ "$?" -ne 0 ]; then
+    echo "Erreur : Le changement du type de la partition 3 a échoué."
+    exit 1
+fi
+echo "Le type de la partition 3 a été changé avec succès."
+
+# Vérifier les partitions
+echo "Vérification des partitions en cours..."
+fdisk -l &> /dev/null
