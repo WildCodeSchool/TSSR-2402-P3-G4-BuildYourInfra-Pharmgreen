@@ -99,8 +99,13 @@ check_success "Vérification de GRUB_DISABLE_LINUX_UUID"
 
 update-grub
 check_success "Mise à jour de GRUB"
-grub-install --recheck "(hd0)"
-check_success "Installation de GRUB sur (hd0)"
+
+# Demander le disque pour l'installation de GRUB
+echo "Entrez le disque pour l'installation de GRUB (par exemple, /dev/sda) :"
+read grub_disk
+
+grub-install --recheck $grub_disk
+check_success "Installation de GRUB sur $grub_disk"
 pause
 
 # Assurez-vous que les modules RAID sont chargés au démarrage
