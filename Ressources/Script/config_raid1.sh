@@ -8,7 +8,7 @@ pause() {
 
 # Fonction pour vérifier le succès des commandes
 check_success() {
-    if [ $? -eq 0 ]; alors
+    if [ $? -eq 0 ]; then
         echo -e "\e[32m$1 : Succès\e[0m"
     else
         echo -e "\e[31m$1 : Échec\e[0m"
