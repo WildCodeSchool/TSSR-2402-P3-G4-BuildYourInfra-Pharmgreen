@@ -46,9 +46,9 @@ read source_part2
 echo "Entrez le numéro de la partition cible pour RAID 1 (par exemple, 3) :"
 read target_part2
 
-# Installation de MDADM
-apt-get install mdadm
-check_success "Installation de MDADM"
+# Installation de MDADM et dosfstools
+apt-get install -y mdadm dosfstools
+check_success "Installation de MDADM et dosfstools"
 cat /proc/mdstat
 pause
 
