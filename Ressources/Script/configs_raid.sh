@@ -113,3 +113,8 @@ check_success "Copie des données de /boot/efi vers /mnt/md0"
 pause
 
 echo -e "\e[32mExécution du script de configuration RAID terminée.\e[0m"
+
+# Redémarrer le système
+echo -e "\e[33mLe système va redémarrer dans 10 secondes...\e[0m"
+sleep 10
+reboot
