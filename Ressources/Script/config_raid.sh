@@ -47,7 +47,7 @@ echo "Entrez le numéro de la partition cible pour RAID 1 (par exemple, 3) :"
 read target_part2
 
 # Installation de MDADM
-apt-get install mdadm
+apt-get install -y mdadm
 check_success "Installation de MDADM"
 cat /proc/mdstat
 pause
@@ -105,74 +105,5 @@ check_success "Rechargement du démon systemd"
 echo "Modifiez /etc/fstab si nécessaire, puis appuyez sur Entrée pour continuer..."
 read
 
-# Mise à jour de GRUB
-nano /etc/default/grub
-update-grub
-check_success "Mise à jour de GRUB"
-dpkg-reconfigure grub-pc
-check_success "Reconfiguration de GRUB"
-echo "Modifiez /etc/default/grub si nécessaire, puis appuyez sur Entrée pour continuer..."
-read
-
-# Copie des données sur le disque N°2
-rsync -auHxv --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* /* /mnt/md1/
-check_success "Copie des données vers /mnt/md1"
-rsync -auHxv /boot/efi /mnt/md0
-check_success "Copie des données de /boot/efi vers /mnt/md0"
-pause
-
-# Mise à jour de GRUB et Initramfs sur le disque N°2
-cp /etc/mdadm/mdadm.conf /mnt/md1/etc/mdadm/mdadm.conf
-check_success "Copie de mdadm.conf vers /mnt/md1"
-mount --bind /dev /mnt/md1/dev
-mount --bind /proc /mnt/md1/proc
-mount --bind /sys /mnt/md1/sys
-chroot /mnt/md1
-check_success "Chroot vers /mnt/md1"
-update-initramfs -u
-check_success "Mise à jour d'initramfs"
-update-grub
-check_success "Mise à jour de GRUB dans le chroot"
-exit
-pause
-
-# Mise à jour de GRUB sur le disque N°1
-cp /boot/grub/grub.cfg /boot/grub/grub.cfg.bak
-check_success "Sauvegarde de /boot/grub/grub.cfg"
-cp /mnt/md1/boot/grub/grub.cfg /boot/grub/grub.cfg
-check_success "Copie de grub.cfg vers /boot/grub/grub.cfg"
-pause
-
-# Modification de la partition sur le disque N°1
-fdisk $source_disk <<EOF
-t
-$source_part1
-42
-t
-$source_part2
-42
-w
-EOF
-check_success "Modification du type de partition sur le disque N°1"
-pause
-
-# Ajout du disque N°1 dans la grappe RAID
-mdadm --manage /dev/md1 --add $source_disk$source_part2
-check_success "Ajout de $source_disk$source_part2 à /dev/md1"
-mdadm --manage /dev/md0 --add $source_disk$source_part1
-check_success "Ajout de $source_disk$source_part1 à /dev/md0"
-pause
-
-# Mise à jour de la configuration de MDADM
-nano /etc/mdadm/mdadm.conf
-echo "Ajoutez DEVICE $source_disk$source_part1 $source_disk$source_part2 $target_disk$target_part1 $target_disk$target_part2 à mdadm.conf, puis appuyez sur Entrée pour continuer..."
-read
-
-# Mise à jour de GRUB et Initramfs sur le disque N°1
-update-initramfs -u
-check_success "Mise à jour d'initramfs sur le disque N°1"
-update-grub
-check_success "Mise à jour de GRUB sur le disque N°1"
-pause
-
-echo -e "\e[32mExécution du script terminée.\e[0m"
+echo -e "\e[32mExécution du script de préparation terminée.\e[0m"
+reboot
