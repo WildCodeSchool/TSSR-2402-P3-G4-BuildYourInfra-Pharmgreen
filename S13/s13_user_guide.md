@@ -133,7 +133,7 @@ Si vous retournez dans les propriétés d'un des PC du domaine, dans `LAPS`, on 
 
 Il est possible de mettre en place une restriction horaire, pour limiter les heures de connexion sur les machines du parc informatique de l'Active Directory pour les membres non administrateur du domaine ou local.  
 Il a été demandé d'autorisé la connexion de 7h30 à 20h, du lundi au samedi.  
-Ne pouvant pas définir autre que des heures "rondes" (exemple 7h et pas 7h30) dans l'Active Directory, on a décidé de définir les plages d'autorisaton de 7h à 20h, du Lundi au Samedi.  
+Ne pouvant pas définir des heures "rondes" (exemple 7h et pas 7h30) dans l'Active Directory, on a décidé de définir les plages d'autorisaton de 7h à 20h, du Lundi au Samedi.  
 
 Pour ce faire, il faut récupérer le script situé ici :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Limitation_Horaire.ps1  
