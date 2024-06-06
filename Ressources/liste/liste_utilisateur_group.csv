@@ -172,11 +172,11 @@ Sarah,Durand,GRP_U_Direction_Commercial_DI
 Hugo,Leroy,GRP_U_Commercial_DI
 Alice,Moreau,GRP_U_Commercial_DI
 Maxime,Petit,GRP_U_Commercial_DI
-Emma,Dupont,GRP_U_Commercial_DI
-Olivia,Garcia,GRP_U_Commercial_DI
+Emma,Dupont,GRP_U_Commercial_GC
+Olivia,Garcia,GRP_U_Commercial_GC
 Melanie,Lefebvre,GRP_U_Responsable_Grands_Comptes
-Lucas,Martin,GRP_U_Commercial_DI
-Olga,Ut,GRP_U_Commercial_DI
+Lucas,Martin,GRP_U_Commercial_GC
+Olga,Ut,GRP_U_Commercial_GC
 Luna,Garcia,GRP_U_Acheteur
 Oliver,Johnson,GRP_U_Responsable_achat
 Dmitri,Orlov,GRP_U_Acheteur
