@@ -17,16 +17,13 @@ apt install php-xml php-common php-json php-mysql php-mbstring php-curl php-gd p
 apt install apache2 php mariadb-server -y
 apt install php-ldap -y
 
-# Démarrer le service MariaDB
-systemctl start mariadb
-
 # Sécurisation de l'installation MariaDB
 #mysql_secure_installation
 
 # Création de la base de données MySQL
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS $db_name"
-mysql -u root -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$db_user'@'localhost' IDENTIFIED BY '$db_pass'"
-mysql -u root -e "FLUSH PRIVILEGES"
+mysql -e "CREATE DATABASE IF NOT EXISTS $db_name"
+mysql -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$db_user'@'localhost' IDENTIFIED BY '$db_pass'"
+mysql -e "FLUSH PRIVILEGES"
 
 # Télécharger et extraire GLPI
 cd /tmp
@@ -34,22 +31,21 @@ wget https://github.com/glpi-project/glpi/releases/download/10.0.15/glpi-10.0.15
 tar -xzvf glpi-10.0.15.tgz -C /var/www/
 
 # Attribuer les permissions
-chown www-data /var/www/glpi/ -R
+chown www-data:www-data /var/www/glpi/ -R
 
 # Création des dossiers nécessaires
-mkdir /etc/glpi
-chown www-data /etc/glpi/
+mkdir -p /etc/glpi
+chown www-data:www-data /etc/glpi/
 mv /var/www/glpi/config /etc/glpi
 
-mkdir /var/lib/glpi
-chown www-data /var/lib/glpi/
+mkdir -p /var/lib/glpi
+chown www-data:www-data /var/lib/glpi/
 mv /var/www/glpi/files /var/lib/glpi
 
-mkdir /var/log/glpi
-chown www-data /var/log/glpi
+mkdir -p /var/log/glpi
+chown www-data:www-data /var/log/glpi
 
 # Création des fichiers de configuration PHP
-touch /var/www/glpi/inc/downstream.php
 cat > /var/www/glpi/inc/downstream.php <<EOF
 <?php
 define('GLPI_CONFIG_DIR', '/etc/glpi/');
@@ -58,7 +54,6 @@ if (file_exists(GLPI_CONFIG_DIR . '/local_define.php')) {
 }
 EOF
 
-touch /etc/glpi/local_define.php
 cat > /etc/glpi/local_define.php <<EOF
 <?php
 define('GLPI_VAR_DIR', '/var/lib/glpi/files');
@@ -66,7 +61,6 @@ define('GLPI_LOG_DIR', '/var/log/glpi');
 EOF
 
 # Configuration Apache2 pour GLPI
-touch /etc/apache2/sites-available/support.pharmgreen.org.conf
 cat > /etc/apache2/sites-available/support.pharmgreen.org.conf <<EOF
 <VirtualHost *:80>
     ServerName pharmgreen.org
@@ -106,11 +100,4 @@ sed -i 's/^\(session\.cookie_httponly\s*=\s*\).*/\1on/' /etc/php/8.2/fpm/php.ini
 systemctl restart php8.2-fpm.service
 systemctl restart apache2
 
-# Vérification de la connexion à la base de données
-echo "Test de connexion à la base de données..."
-mysql -u"$db_user" -p"$db_pass" -e "SHOW DATABASES;"
-if [ $? -ne 0 ]; then
-    echo "Erreur : Impossible de se connecter à la base de données."
-else
-    echo "Connexion à la base de données réussie."
-fi
+echo "Installation et configuration de GLPI terminées."
