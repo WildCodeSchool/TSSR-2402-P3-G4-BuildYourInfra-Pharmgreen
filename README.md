@@ -83,7 +83,7 @@ Dans le dossier ressources de ce dépot Github, vous trouverez plusieurs documen
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/plan_reseau.png  
 - Plan réseau de l'infrastructure virtuel qui a été mit en place :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Infra_Simplifie.png  
-Plan adressage de l'infrastruture virtuel ainsi que les tables de routage utilisé (soumis à évolution) :  
+- Plan adressage de l'infrastruture virtuel ainsi que les tables de routage utilisé (soumis à évolution) :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Plan_adressage.xlsx  
 
 Notre nouvelle infrastucture réseau fonctionne parfaitement, les règles de routages ont été mises en place, ainsi que des règles de bonnes pratiques sur le pare-feu et des GPO pour gérer la télémétrie.
