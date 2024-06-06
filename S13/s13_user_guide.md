@@ -7,6 +7,8 @@
 3) GPO LAPS
 
 4) Restriction Horaires
+   
+5) Mise en place du RAID 1 lors de l'installation de Debian
 
 ## **1. Création dossier partager utilisateur.**
 
@@ -143,5 +145,56 @@ En cas d'ajout d'utilisateur dans cette OU, il faudra relancer le script.
 
 Il est prévu dans le futur, de le faire évoluer le script pour donner le choix des jours, plages horaire et des Organization Units ciblés.  
 
+# Mise en place du RAID 1 lors de l'installation de Debian
 
+Ce guide vous expliquera comment configurer un RAID 1 lors de l'installation de Debian. Suivez les étapes ci-dessous et référez-vous aux images fournies pour une aide visuelle.
+
+## Introduction
+
+Ce guide est destiné à vous aider à configurer un RAID 1 lors de l'installation de Debian. RAID 1 permet de dupliquer les données sur deux disques pour assurer une redondance et une sécurité accrue des données.
+
+## Prérequis
+
+- Deux disques durs de taille identique.
+- Une image d'installation de Debian.
+- Un ordinateur compatible avec les paramètres BIOS/UEFI.
+
+## Instructions étape par étape
+
+### Étape 1 : Démarrer l'installation
+
+Démarrez votre ordinateur avec le support d'installation de Debian. Suivez les instructions à l'écran jusqu'à atteindre l'étape du partitionnement des disques.
+
+### Étape 2 : Partitionner les disques
+
+Vous allez voir une fenêtre comme celle-ci :
+
+![Partition_disque](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/f8d2cc23-5b04-4b46-bde3-29ce6495dba4)
+
+
+Sélectionnez **"Partitionnement assisté"** pour commencer.
+
+![partition_auto](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/1e174443-5245-494f-93e5-07862bb86573)
+
+### Étape 3 : Configurer le RAID logiciel
+
+Ensuite, sélectionnez **"Configurer le RAID avec gestion logicielle"** :
+
+![raidappliqué](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/84fd0d88-12b5-427e-bdd5-455e30f3b9da)
+
+Puis, choisissez **"Créer un périphérique multidisque"** :
+
+![créeation raid multidisque](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/cbec7bf3-93a2-41c9-8108-a02abb8acef2)
+
+
+### Étape 4 : Formater les partitions
+
+Pour chaque partition créée, sélectionnez le type de système de fichiers approprié. Par exemple, utilisez **ext4** pour les partitions principales et **swap** pour l'échange :
+
+![formatage du disque](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/d529b80e-5b10-4174-a378-cb1af5bd4b56)
+
+### Étape 5 : Finaliser le partitionnement
+
+Une fois toutes les partitions configurées et formatées, choisissez **"Terminer le partitionnement et appliquer les changements"** 
+Confirmez les modifications en sélectionnant **"Oui"**.
 
