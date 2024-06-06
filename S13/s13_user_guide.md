@@ -37,17 +37,17 @@
 
 ## creation de la GPO
 
-- `User Configuration -> Preferences -> windows Settings -> Drive maps`
-- Créer un nouveau mappage comme cela :
+- `User Configuration -> Preferences -> windows Settings -> Drive maps`  
+- Créer un nouveau mappage comme cela :  
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/139cba92-a24d-4bdb-9d93-e8d16b87c868)
 
-- Et dans l'onglet `common` : 
+- Et dans l'onglet `common` :  
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/994ca9e9-3600-4444-a1e7-5408333f1bda)
 
-- `User Configuration -> Preferences -> windows Settings -> Folders`
-- Créer un nouveau dossier comme cela :
+- `User Configuration -> Preferences -> windows Settings -> Folders`  
+- Créer un nouveau dossier comme cela :  
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a7499789-35dd-456b-b328-1ef4dd9c5948)
 
@@ -55,16 +55,7 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/9aa01851-0ea8-4e98-9d9b-1f3caa800be8)
 
-- `User Configuration -> Preferences -> windows Settings -> Shortcuts`
-- Créer un nouveau raccourci comme cela :
-
-![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c9e6b6a7-08c8-4f94-88f3-334a10561fd4)
-
-- Et dans l'onglet `common` : 
-
-![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c4dbaecc-aca8-4c80-b8b1-f00ef35bc898)
-
-- Appliquer la GPO a l'OU `User_Pharmgreen`
+- Appliquer la GPO a l'OU `User_Pharmgreen`  
 - Connectez-vous avec un compte client et vous devriez voir apparaitre un dossier "Dossier Perso" dans les emplacement réseau de l'ordinateur.
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/59adb6ba-935f-4694-b65a-cb12853a6ae8)
@@ -74,7 +65,8 @@
 ### **Etape 1 : Mise en place du script**
 
 **Manipulation à faire sur le poste serveur gloabal qui contient l'Active Directory.**
-Tout d'abord il faur récupérer le script mis à dispo ici : `https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Verification_computer.ps1`  
+Tout d'abord il faur récupérer le script mis à dispo ici :  
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Verification_computer.ps1    
 Et le placer comme pour les autres Scritpts (voir S10_User_Guide) dans le dossier `c:\Script`.  
 
 ### **Etape 2 : Configuration de la Tâche Planifié**
