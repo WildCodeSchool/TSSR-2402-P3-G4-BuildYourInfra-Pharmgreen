@@ -8,8 +8,6 @@
 
 4) Restriction Horaires
    
-5) Mise en place du RAID 1 lors de l'installation de Debian
-
 ## **1. Création dossier partager utilisateur.**
 
 - Dans le lecteur `E:` créer un dossier utilisateur
