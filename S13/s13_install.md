@@ -21,6 +21,18 @@ Ensuite faire `add disk=0` (0 étant le nouveau disque).
 
 On a bien notre disque 1 en miror avec le disque 0.
 
+# Création RAID 1 sous Windows Server 2022
+
+Pour mettre en place un RAID 1 sous Windows Server Core, il est d'abord nécessaire d'ajouter un second disque de la même taille sous Proxmox.
+
+Il faut d'abord convertir les disques en disques dynamiques, pour cela clic droit sur `Disk 0` et vous aurez ceci : 
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/b691418b-b08c-4486-8a27-014b06120b3b)
+
+Allez jusqu'au bout de la manip.
+
+Ensuite cliquer sur `Add Mirror` sur le disque d'origine et choississez `Disk 1` en miroir, suivez les étapes jusqu'au bout et c'est bon.
+
 # LAPS
 
 ## Installation du module LAPS
