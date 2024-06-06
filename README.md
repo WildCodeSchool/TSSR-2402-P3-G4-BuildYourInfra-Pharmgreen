@@ -123,4 +123,12 @@ Enfin, l'accès à Internet se fait en Wi-Fi fourni par un FAI et via des répé
 
 ## **Conclusion**
 
-Cette troisième semaine, nous avons accompli des avancées significatives avec la création de GPO Sécurité et GPO standard, ainsi que la mise en place d'un serveur GLPI. De plus, nous avons développé des scripts d'automatisation pour le serveur Core et AD-DS, ainsi que pour l'installation de GLPI.
+Cette cinquième semaine, nous avons accompli des avancées significatives.  
+Nous avons installé du RAID 1 sur tout nos poste serveur de l'infrastructure, cela nous a permit de mettre en place des dossiers réseaux pour les utilisateurs :
+- Dossier personnels accessible uniquement par eux-même.
+- Dossier de Département accessible uniquement aux membres du même département.
+- Dossier de Service accessible uniquement aux membres du même service.
+Le tout est sauvegardé un fois par semaine, le dimanche après-midi.
+Un scrit est utilisé lancé une fois par jour, pour vérifié le placement des ordinateurs dans les bonnes OU et une restriciton d'horaire de connexion de 7h à 20h , du Luni au Samedi a été mis en place pour les utilisateurs non-administrateur du domaine et des équipements.
+De plus LAPS a été installé et configurer, permettant d'avoir un mot de passe chiffré, aléatoire et renouvelé tous les 30 jours pour les administrateur locaux des machines.
+
