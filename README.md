@@ -79,9 +79,12 @@ Elle se compose actuellement de quatre VLAN :
 - Routeur principal de notre infrastucture RO_INFRA_01 : nous permet de mettre en place nos règles de routage entre les différents VLAN et le Firewall de notre Infrastucture.
 
 Dans le dossier ressources de ce dépot Github, vous trouverez plusieurs document :
-- Plan réseau de l'infrastructure globale qui va évoluer selon notre avancé dans le projet : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/plan_reseau.png
-- Plan réseau de l'infrastructure virtuel qui a été mit en place : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Infra_Simplifie.png
-- Plan adressage de l'infrastruture virtuel ainsi que les tables de routage utilisé (soumis à évolution) : https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Plan_adressage.xlsx
+- Plan réseau de l'infrastructure globale qui va évoluer selon notre avancé dans le projet :  
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/plan_reseau.png
+- Plan réseau de l'infrastructure virtuel qui a été mit en place :  
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Infra_Simplifie.png
+Plan adressage de l'infrastruture virtuel ainsi que les tables de routage utilisé (soumis à évolution) :  
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Plan_adressage.xlsx
 
 Notre nouvelle infrastucture réseau fonctionne parfaitement, les règles de routages ont été mises en place, ainsi que des règles de bonnes pratiques sur le pare-feu et des GPO pour gérer la télémétrie.
 
@@ -100,12 +103,11 @@ Activités et répartition des tâches
 
 | **NOM POSTE PROXMOX** | **ADRESSE IP** |
 | :--: | :----------: |
-| G4-AD-DS| 172.16.3.2 |
+| G4-AD-DS-CORE-01| 172.16.3.2 |
 | G4-GLOBAL | 172.16.3.3 |
-| G4-SSH | 172.16.3.4 |
 | G4-PC-PI0001 | 192.168.9.5 |
-| G4-SRV-GLPI | 172.16.3.6 |
-| G4-PC-PI0002  | 172.16.2.10|
+| G4-SRV-GLPI-RAID | 172.16.3.10 |
+| G4-PC-PI0002  | 172.16.2.10 / 192.168.9.7 |
 
 ## **Choix techniques, contraintes et solutions**
 
