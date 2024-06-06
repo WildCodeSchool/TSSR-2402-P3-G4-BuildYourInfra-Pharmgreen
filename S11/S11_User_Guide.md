@@ -30,6 +30,7 @@
 3. [Ajout d'un serveur Windows Core à l'Active Directory via un script](#ajout-dun-serveur-windows-core-à-lactive-directory-via-un-script)
 4. [Script automatisation GLPI sur Debian](#script-automatisation-glpi-sur-debian)
 5. [Création d'un ticket dans GLPI](#création-dun-ticket-dans-glpi)
+6. [Ajouter un Annuaire LDAP dans GLPI](#-Ajouter-un-Annuaire-LDAP-dans-GLPI)
 
 
 # Guide Utilisateur : Création d'une GPO
@@ -266,6 +267,64 @@ Cliquez sur "Créer un ticket" et remplissez les informations demandées.
 
 Puis cliquez sur "Soumettre la demande."
 
+# Ajouter un Annuaire LDAP dans GLPI
+
+## Introduction
+Ce guide explique comment intégrer un annuaire LDAP, spécifiquement Active Directory, dans GLPI pour les besoins d'authentification. En suivant ces étapes, vous permettrez aux utilisateurs de s'authentifier en utilisant leurs identifiants Active Directory.
+
+## Prérequis
+- Accès à GLPI avec des droits administratifs.
+- Adresse IP du contrôleur de domaine Active Directory.
+- Informations de connexion d'un compte de service avec les droits nécessaires pour interroger l'annuaire LDAP.
+
+## Ajout d'un Annuaire LDAP
+
+1. **Connexion à GLPI :**
+   Connectez-vous à GLPI avec un compte administrateur.
+
+2. **Accéder aux Paramètres d'Authentification :**
+   Dans le menu "Configuration", cliquez sur "Authentification".
+
+3. **Ajouter un Annuaire LDAP :**
+   - Cliquez sur "Annuaire LDAP".
+   - Cliquez sur le bouton "Ajouter".
+
+4. **Remplir le Formulaire :**
+   Remplissez les champs du formulaire selon les indications suivantes :
+   - **Nom :** Un nom convivial pour cet annuaire LDAP.
+   - **Serveur par défaut :** Indiquez "Oui" s'il doit être utilisé par défaut.
+   - **Actif :** Sélectionnez "Oui".
+   - **Serveur :** Adresse IP du contrôleur de domaine.
+   - **Port :** 389 (par défaut pour LDAP).
+   - **Filtre de connexion :** Requête LDAP pour rechercher les utilisateurs actifs (`(&(objectClass=user)(objectCategory=person)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))`).
+   - **BaseDN :** DN de l'OU où sont situés les utilisateurs (ex. `OU=Personnel,DC=it-connect,DC=local`).
+   - **Utiliser bind :** Sélectionnez "Oui".
+   - **DN du compte :** DN complet du compte de service (ex. `CN=Sync_GLPI,OU=Connecteurs,OU=Tiering,OU=IT,DC=it-connect,DC=local`).
+   - **Mot de passe du compte :** Mot de passe du compte de service.
+   - **Champ de l'identifiant :** `userprincipalname` ou `samaccountname`.
+   - **Champ de synchronisation :** `objectguid`.
+   - 
+![config_glpi_connexion_ad_ds](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/6bdbf27a-97e0-4b62-ad2f-0d926175cda1)
+
+5. **Sauvegarder la Configuration :**
+   Cliquez sur "Ajouter" pour sauvegarder votre configuration.
+
+## Forcer une Synchronisation Active Directory
+
+1. **Accéder aux Utilisateurs :**
+   Dans le menu "Administration", cliquez sur "Utilisateurs".
+   
+
+3. **Liaison Annuaire LDAP :**
+   Cliquez sur le bouton "Liaison annuaire LDAP".
+
+4. **Importer les Utilisateurs :**
+   - Cliquez sur "Importation de nouveaux utilisateurs".
+   - Lancez une recherche, sélectionnez les comptes à importer, puis cliquez sur "Actions" pour lancer l'import.
+
+![Importation utilisateur](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/a4a28bdc-ca42-4335-84b9-9e849e7a9248)
+
+![action_import_utilisateur](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/b06e6a85-9050-47ca-aa8b-37b2e468f129)
 
 
-
+Remarque : Vous pouvez effectuer la même action pour un groupe il suffit de cliquer sur groupe.
