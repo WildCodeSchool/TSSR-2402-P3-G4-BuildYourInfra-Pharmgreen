@@ -1,4 +1,12 @@
-## creation dossier partager utilisateur
+# **Sommaire**
+
+1) Creation dossier partager utilisateur
+
+2) Surveillance et placement des ordinateur dans les bonne Organizaion Units.
+
+
+
+## **1. Creation dossier partager utilisateur.**
 
 - Dans le lecteur E: creer un dossier utilisateur
 - faire un clique droit dessus -> Properties -> sharing -> Advanced Sharing
@@ -60,10 +68,49 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c4dbaecc-aca8-4c80-b8b1-f00ef35bc898)
 
-
 - appliquer la GPO a l'OU User_Pharmgreen
-- connecter vous avec un compte client et vous devriez voir apparaitre le dossier perso de l'utilisateur avec son pseudo de connexion 
+- connecter vous avec un compte client et vous devriez voir apparaitre un dossier "Dossier Perso" dans les emplacement réseau de l'ordinateur.
 
-![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/49065a07-0996-40de-b027-acaa2b20185d)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/59adb6ba-935f-4694-b65a-cb12853a6ae8)
+
+
+
+## **2. Surveillance et placement des ordinateur dans les bonne Organizaion Units.**
+
+### **Etape 1 : Mise en place du script**
+
+**Manipulation à faire sur le poste serveur gloabal qui contient l'Active Directory.**
+Tout d'abord il faur récupérer le script mis à dispo ici :  
+https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Verification_computer.ps1  
+Et le placer comme pour les autres Scritpts (voir S10_User_Guide) dans le dossier `c:\Script`.  
+
+### **Etape 2 : Configuration de la Tâche Planifié**
+
+Lancé le **Planificateur de Taches** en tappant `Task Scheduler` dans la barre de recherche du **menu démarrer** du serveur.  
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/1dcfd6a8-f8b2-454b-861d-4e800476e80e)
+
+- Choisir **Action** puis **Create Task**  
+- Dans l'onglet **General**, donnez lui un nom expliciite dans notre exemple `Verif_Placement_PC_AD` et une description explicite par la même occasion.  
+- Laissez les autres options par défaut pas besoin de les modifer pour le moment. *(Si besoin de changer des paramètres nous vous ferons un rappel dans un futur User Guide)*  
+- Dans l'onglet **Trigger**, on définit le *trigger/déclencheur* en cliquant sur *new* :  
+  - Choisir *Daily* dans la colonne *Settings*.  
+  - Selection une date et heure de début via le selecteur date et heure de la ligne *Start*  
+  - *Recur every* : mettre 1, pour que cela s'éffectue tous les jours.  
+  - Cocher bien *Enabled* tout en bas de la fênetre.
+
+- Le résultat final devrait ressembler à ça :  
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/38941a49-f667-4ecf-b9fb-cf96d1428fff)  
+
+- Dans l'onglet **Action**, on définit l'action à réaliser en cliquant sur *new* :  
+  - On choisit *Start a program*, dans le menu Action.  
+  - *Program/Script* : `pwsh.exe` si Powershell 7 (ou supérieur) est installé, sinon `Powershell.exe`.  
+  - *Add Arguments* : lui indiquer le chemin d'enregistrement du script dans notre exemple `C:\Script\Verification_computer.ps1`.  
+
+-  Le résultat final devrait ressembler à ça :
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/0d5f5983-f2af-45e6-96ed-ae5548b89a5d)  
+
+- Validez vos modifications, voila votre tâche planifié éxecutant un script permettant de vérifier et déplacer ordinateur dans les bonnes Organizaion Units est en place.
+
 
 
