@@ -94,7 +94,7 @@ Activités et répartition des tâches
 | Pierre (PO) | CloneZilla, dossiers partagés |
 | Julien (SM) | Dossiers partagés, LAPS, RAID1 (Windows) |
 | Maxime  | RAID1 (Debian + Windows), dossiers partagés |
-| Bruno | Dossiers partagés, script : automatisation PC dans OU + définition horaires de travail |
+| Bruno | Dossiers partagés, script : automatisation PC dans OU + définition horaires de travail + optimisation des scripts |
 
 ### **Configuration Réseau**
 
