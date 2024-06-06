@@ -108,6 +108,8 @@ Activités et répartition des tâches
 | G4-PC-PI0001 | 192.168.9.5 |
 | G4-SRV-GLPI-RAID | 172.16.3.10 |
 | G4-PC-PI0002  | 172.16.2.10 / 192.168.9.7 |
+| G4-pfsense  | LAN : 172.16.2.253, DMZ : 172.16.2.254, WAN : 10.0.0.3 |
+| G4-RO-INFRA-01  | Routage entre LAN Infra Firewall LAN Client |
 
 ## **Choix techniques, contraintes et solutions**
 
