@@ -20,3 +20,18 @@ Ensuite faire `add disk=0` (0 étant le nouveau disque).
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/07e9d821-7a4d-4998-ace8-85592f6cdf61)
 
 On a bien notre disque 1 en miror avec le disque 0.
+
+# LAPS
+
+## Installation du module LAPS
+
+D'abord il vous faut entrer les commandes suivantes : `Import-Module LAPS` et `Update-LapsADSchema`. Vous verrez par la suite dans les propriétés des PC de l'AD les attributs suivants dans "Attribute Editor" ainsi qu'un nouvel onglet "LAPS" : 
+
+![image](https://github.com/JuGuillot/test/assets/161329881/b488494a-99a6-4a55-94a9-258377d278e7)
+
+## Attribuer les droits d'écriture aux machines
+
+Exécuter la commande suivante pour que les droits s'appliquent sur l'ensemble des PC du domaine : 
+- `Set-LapsADComputerSelfPermission -Identity "OU=Computer_Pharmgreen,DC=pharmgreen.org"`
+
+![image](https://github.com/JuGuillot/test/assets/161329881/ed27114d-ecfc-4acb-bad0-d5e2ba06703d)
