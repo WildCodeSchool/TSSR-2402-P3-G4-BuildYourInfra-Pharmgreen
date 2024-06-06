@@ -97,14 +97,14 @@ systemctl restart apache2
 
 # Installation et configuration de PHP-FPM
 apt-get install php8.2-fpm -y
-sudo a2enmod proxy_fcgi setenvif
-sudo a2enconf php8.2-fpm
-sudo systemctl reload apache2
+a2enmod proxy_fcgi setenvif
+a2enconf php8.2-fpm
+systemctl reload apache2
 sed -i 's/^\(session\.cookie_httponly\s*=\s*\).*/\1on/' /etc/php/8.2/fpm/php.ini
 
 # Redémarrer PHP-FPM et Apache
 systemctl restart php8.2-fpm.service
-sudo systemctl restart apache2
+systemctl restart apache2
 
 # Vérification de la connexion à la base de données
 echo "Test de connexion à la base de données..."
