@@ -35,7 +35,7 @@
 
 - Cliquer sur `add` et ajouter les permissions comme sur l'image au-dessus et mettre `Full control` sur toutes les Permissions
 
-## creation de la GPO
+## Création de la GPO
 
 - `User Configuration -> Preferences -> windows Settings -> Drive maps`  
 - Créer un nouveau mappage comme cela :  
