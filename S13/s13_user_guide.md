@@ -4,11 +4,13 @@
 
 2) Surveillance et placement des ordinateurs dans les bonnes Organizaion Units.
 
-3) GPO LAPS
+3) Sauvegardes
 
-4) Restriction Horaires
+4) GPO LAPS
+
+5) Restriction Horaires
    
-## **1. Création dossier partager utilisateur.**
+# **1. Création dossier partager utilisateur.**
 
 - Dans le lecteur `E:` créer un dossier utilisateur
 - Faire un clic droit dessus -> `Properties -> sharing -> Advanced Sharing`
@@ -60,16 +62,16 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/59adb6ba-935f-4694-b65a-cb12853a6ae8)
 
-## **2. Surveillance et placement des ordinateur dans les bonne Organization Units.**
+# **2. Surveillance et placement des ordinateur dans les bonne Organization Units.**
 
-### **Etape 1 : Mise en place du script**
+## **Etape 1 : Mise en place du script**
 
 **Manipulation à faire sur le poste serveur gloabal qui contient l'Active Directory.**
 Tout d'abord il faur récupérer le script mis à dispo ici :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Verification_computer.ps1    
 Et le placer comme pour les autres Scritpts (voir S10_User_Guide) dans le dossier `c:\Script`.  
 
-### **Etape 2 : Configuration de la Tâche Planifié**
+## **Etape 2 : Configuration de la Tâche Planifiée**
 
 Lancer le **Planificateur de Taches** en tapant `Task Scheduler` dans la barre de recherche du **menu démarrer** du serveur.  
 
@@ -99,7 +101,21 @@ Lancer le **Planificateur de Taches** en tapant `Task Scheduler` dans la barre d
 
 - Validez vos modifications, voilà votre tâche planifiée éxecutant un script permettant de vérifier et déplacer les ordinateurs dans les bonnes Organizaion Units est en place.
 
-# LAPS 
+# **3. Sauvegarde du volume où sont stockés les dossiers partagés**
+
+Nos dossiers partagés sont sur le volume `E:` et sont sauvegardés sur `F:` :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/242b69c3-945a-4c81-abf2-b929f29e0aa8)
+
+Afin de faire une sauvegarde, nous avons installé `Windows Server Backup` via le gestionnaire de serveur en passant par le chemin habituel `Add Roles and Features` et nous avons mis en place une autre tâche planifiée comme expliqué plus haut : 
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/20e6d52a-34aa-47f6-a7c5-14b6b7ad51ab)
+
+Dans `Actions`, on peut voir la commande suivante : `wbadmin start backup -backupTarget:F: -include:E: -quiet` qui exécute donc une sauvegarde du volume `E:` à destination du volume `F:` et ce tous les dimanches à 16h.
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/d0f99574-993a-4548-9133-86b675fbab22)
+
+# **4. LAPS** 
 
 ## Configurer la GPO Windows LAPS
 
@@ -129,17 +145,17 @@ Si vous retournez dans les propriétés d'un des PC du domaine, dans `LAPS`, on 
 
 ![image](https://github.com/JuGuillot/test/assets/161329881/5b16015e-8662-42f1-bcec-3f5e89f6fbdb)
 
-## **4. Restriction Horaire.**
+## **5. Restriction Horaire.**
 
 Il est possible de mettre en place une restriction horaire, pour limiter les heures de connexion sur les machines du parc informatique de l'Active Directory pour les membres non administrateur du domaine ou local.  
-Il a été demandé d'autorisé la connexion de 7h30 à 20h, du lundi au samedi.  
-Ne pouvant pas définir des heures "rondes" (exemple 7h et pas 7h30) dans l'Active Directory, on a décidé de définir les plages d'autorisaton de 7h à 20h, du Lundi au Samedi.  
+Il a été demandé d'autoriser la connexion de 7h30 à 20h, du lundi au samedi.  
+Ne pouvant que définir des heures "rondes" (exemple 7h et pas 7h30) dans l'Active Directory, on a décidé de définir les plages d'autorisaton de 7h à 20h, du Lundi au Samedi.  
 
 Pour ce faire, il faut récupérer le script situé ici :  
 https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Limitation_Horaire.ps1  
 
-Le script autorise la connexion de 7h à 22h, du Lundi au Samedi puur tous les utilisateurs de l' Organizations Unit **User_Pharmgreen**.  
+Le script autorise la connexion de 7h à 20h, du Lundi au Samedi puur tous les utilisateurs de l'Organizations Unit **User_Pharmgreen**.  
 En cas d'ajout d'utilisateur dans cette OU, il faudra relancer le script.  
 
-Il est prévu dans le futur, de le faire évoluer le script pour donner le choix des jours, plages horaire et des Organization Units ciblés.  
+Il est prévu, dans le futur, de le faire évoluer le script pour donner le choix des jours, plages horaires et des Organization Units ciblées.  
 
