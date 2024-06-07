@@ -60,7 +60,7 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/59adb6ba-935f-4694-b65a-cb12853a6ae8)
 
-## **2. Surveillance et placement des ordinateur dans les bonne Organizaion Units.**
+## **2. Surveillance et placement des ordinateur dans les bonne Organization Units.**
 
 ### **Etape 1 : Mise en place du script**
 
