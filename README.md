@@ -127,7 +127,7 @@ Cette cinquième semaine, nous avons accompli des avancées significatives.
 Nous avons installé du RAID 1 sur tout nos poste serveur de l'infrastructure, cela nous a permis de mettre en place des dossiers réseaux pour les utilisateurs :
 - Dossier personnel accessible uniquement par l'utilisateur connecté.
 - Dossiers de Départements accessibles uniquement aux membres du même département.
-- Dossiers de Services accessibles uniquement aux membres du même service.
+- Dossiers de Services accessibles uniquement aux membres du même service.  
 Le tout est sauvegardé un fois par semaine, le dimanche après-midi.
 Un script est utilisé et lancé une fois par jour, pour vérifier le placement des ordinateurs dans les bonnes OU et une restriciton d'horaires de connexion de 7h à 20h , du Lundi au Samedi a été mise en place pour les utilisateurs non-administrateurs du domaine et des équipements.
 De plus, LAPS a été installé et configuré, permettant d'avoir un mot de passe chiffré, aléatoire et renouvelé tous les 30 jours pour les administrateurs locaux des machines.
