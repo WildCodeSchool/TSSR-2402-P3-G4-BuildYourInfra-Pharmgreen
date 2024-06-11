@@ -27,30 +27,36 @@
 
 - appuyer sur entrée
 
-![alt text](image-5.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/294a2e3a-5a2d-435b-ae53-a4aa693653a8)
+
 
 - appuyer sur entrée
 
-![alt text](image-7.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/42971194-691b-41e9-a5c9-84f0338802ef)
+
 
 - appuyer sur entrée
 
-![alt text](image-8.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/5a2452db-0855-4b68-988f-5dadd06d3b04)
+
 
 - appuyer sur entrée
 
 - executer la commande `drblpush -i`
 
-![alt text](image-9.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/dd8baf9b-c6e2-4cea-9d61-cc1b46c5a57d)
+
 
 - rentrer le nom de domaine : **pharmgreen.org**
 - appuyer sur entré
 
-![alt text](image-10.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/04c04d06-5875-4c38-813a-9355639085ba)
+
 
 - appuyer sur entré
 
-![alt text](image-11.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/6a7d79c5-00c3-4760-b66c-eac60bd949ff)
+
 
 - appuyer sur entré
 
