@@ -59,101 +59,124 @@
 
 
 - appuyer sur entré
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a7d07ed4-7d89-4295-87ab-6b7c015a9893)
 
-![alt text](image-12.png)
-
-- appuyer sur entré
-
-![alt text](image-13.png)
 
 - appuyer sur entré
 
-![alt text](image-14.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/d5ca68fd-8f8e-4fff-b5d3-21fad0992e61)
+
+
+- appuyer sur entré
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/5ce9cc0e-7f37-4a98-88b4-2b895a58c3fe)
+
 
 - reponse : N
 
-![alt text](image-15.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/8d299f54-51e9-4f94-ac4b-d63bbdb4f940)
+
 
 - appuyer sur entré
 
-![alt text](image-16.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/e06d9d0c-0543-4228-8900-62359fe7b03c)
+
 
 - mettre 2 qui correspond au dernier octet de l'adresse ip 
 
-![alt text](image-17.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/bee541ae-bacd-4a9d-8475-16593417a5e1)
+
 
 - mettre 20(le serveur va pouvoir acceder de l'adresse x.x.x.2 a x.x.x.21)
 
-![alt text](image-18.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/d259f965-5537-4162-ad70-0ef77621b660)
+
 
 - apuyer sur entré
 - le resultat devrais etre :
 
-![alt text](image-19.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/ee794771-be4e-4fcc-8afb-983c4d4845b6)
+
 
 - appuyer sur entré
 
-![alt text](image-20.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c80eac16-6a7a-4b02-af4b-b5c98580f6d6)
+
 
 - appuyer sur entré
 
-![alt text](image-21.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b258beb9-2e5d-4e68-94f4-07da3b4bb335)
+
 
 - appuyer sur entré
 
-![alt text](image-22.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/2a93095a-6413-4333-b45c-4773730a96b3)
+
 
 - appuyer sur entré (Les clones seront stocker dans /home/partimag)
 
-![alt text](image-23.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/18890d9b-2712-4669-bffe-6cb6eec37be9)
+
 
 - appuyer sur entré
 
-![alt text](image-24.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/acaac5dc-4c68-4549-85f2-85c8f82a744f)
+
 
 - appuyer sur entré
 
-![alt text](image-25.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/56507bc6-2aaa-44b4-8e3a-0ba14af5f495)
+
 
 - appuyer sur entré
 
-![alt text](image-26.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/ffbcd8fe-3272-4907-84a5-bf1790b17596)
+
 
 - appuyer sur entré
 
-![alt text](image-27.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a2c0971d-049f-4cd5-9744-addfbfc3a09c)
+
 
 - appuyer sur entré
 
-![alt text](image-28.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/71117698-4bd3-4239-9936-d7f8a2fc6af0)
+
 
 - appuyer sur entré
 
-![alt text](image-29.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/13c7e062-d7dc-4871-bf01-c3cf79109dcd)
+
 
 - appuyer sur entré
 
-![alt text](image-30.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/94200716-183f-417b-aecd-7a6fd1ace195)
+
 
 - appuyer sur entré
 
-![alt text](image-31.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/7eb9dcb1-ccba-4e6a-980f-728858832355)
+
 
 - appuyer sur entré
 
-![alt text](image-32.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/55b3abd4-bbe1-443f-b1a2-d4aa6873f4b1)
+
 
 - appuyer sur entré
 
-![alt text](image-33.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/63c68361-9c1b-450a-8db8-6de7641ebdda)
+
 
 - appuyer sur entré
 
-![alt text](image-34.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/2719ecc3-9b24-4456-8ed7-32803188f24c)
+
 
 - appuyer sur entré
 
-![alt text](image-35.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/7cc145fa-4d92-4b97-bad3-cd28939b9995)
+
 
 - reponse : N
 
