@@ -180,36 +180,44 @@
 
 - reponse : N
 
-![alt text](image-36.png)
+!![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/0d3e902b-e494-4a8a-b750-93d348f96691)
+
 
 - appuyer sur entré
 
-![alt text](image-37.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c8b2daee-1cdd-4b34-98b7-dee1988fae7c)
+
 
 - appuyer sur entré
 
 - executer la commande `dcs`
 
-![alt text](image-38.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/1b7f0f44-0304-48ac-bfde-0d4941b55a46)
+
 
 - choisir la premiere option
 
-![alt text](image-39.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b644a69b-1adf-44dc-a772-cd43dbb1bdac)
+
 
 - choisir **clonezilla-start**
 
-![alt text](image-40.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/1e07e369-7a32-458c-a4dd-03d18ab0628b)
+
 
 - choisir le mode **Beginner**
 
-![alt text](image-41.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/e182dbff-5f0e-494c-825d-18f6fac57696)
+
 
 - choisir **select-in-client**
 
-![alt text](image-42.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a6a70084-bd32-4f9f-be3c-c4d55b3e5fbd)
+
 
 - choisir la premiere option
 
-![alt text](image-43.png)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b0c0c1f4-1ec0-4d82-a66b-2c8300a3db3b)
+
 
 - choisir **poweroff**
