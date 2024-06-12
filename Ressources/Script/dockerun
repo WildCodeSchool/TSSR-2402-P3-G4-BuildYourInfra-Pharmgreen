@@ -1,0 +1,13 @@
+docker run -d \
+  --name=duplicati \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e CLI_ARGS= `#optionnel` \
+  -p 8200:8200 \
+  -v /path/to/appdata/config:/config \
+  -v /path/to/backups:/backups \
+  -v /path/to/source:/source \
+  -v /mnt/mon_partage:/mnt/mon_partage \
+  --restart unless-stopped \
+  lscr.io/linuxserver/duplicati:latest
