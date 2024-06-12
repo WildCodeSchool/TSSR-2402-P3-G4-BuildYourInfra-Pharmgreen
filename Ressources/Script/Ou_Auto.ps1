@@ -17,6 +17,7 @@ If (-not(Get-Module -Name activedirectory))
 # Définir le nom des deux OU Principal
 $DomainDN = (Get-ADDomain).DistinguishedName
 $OUPrincipaleUser = "User_Pharmgreen"
+$OUUserDisable = "User_Pharmgreen_Disable"
 $OUPrincipaleComputer = "Computer_Pharmgreen"
 $PathOUUser= "OU=$OUPrincipaleUser,$DomainDN"
 $PathOUComputer= "OU=$OUPrincipaleComputer,$DomainDN"
@@ -130,6 +131,7 @@ function CreateousOU
 
 # Appeler la fonction CreateOUPrincipal
 CreateOUPrincipal -OUPrincipal $OUPrincipaleUser
+CreateOUPrincipal -OUPrincipal $OUUserDisable
 CreateOU -PathOU $PathOUUser
 CreateousOU -PathOU $PathOUUser
 
