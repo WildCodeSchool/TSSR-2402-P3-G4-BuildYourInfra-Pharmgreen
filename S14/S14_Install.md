@@ -1,4 +1,8 @@
-## instalation de CLoneZilla
+1) Installation de CloneZilla
+
+2) Installation de win-exporter
+
+## 1. Instalation de CLoneZilla
 
 ### liste des paquets a installer
 
@@ -133,7 +137,6 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/ffbcd8fe-3272-4907-84a5-bf1790b17596)
 
-
 - appuyer sur entré
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a2c0971d-049f-4cd5-9744-addfbfc3a09c)
@@ -158,7 +161,6 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/7eb9dcb1-ccba-4e6a-980f-728858832355)
 
-
 - appuyer sur entré
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/55b3abd4-bbe1-443f-b1a2-d4aa6873f4b1)
@@ -178,16 +180,13 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/7cc145fa-4d92-4b97-bad3-cd28939b9995)
 
-
 - reponse : N
 
 !![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/0d3e902b-e494-4a8a-b750-93d348f96691)
 
-
 - appuyer sur entré
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c8b2daee-1cdd-4b34-98b7-dee1988fae7c)
-
 
 - appuyer sur entré
 
@@ -195,30 +194,48 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/1b7f0f44-0304-48ac-bfde-0d4941b55a46)
 
-
 - choisir la premiere option
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b644a69b-1adf-44dc-a772-cd43dbb1bdac)
-
 
 - choisir **clonezilla-start**
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/1e07e369-7a32-458c-a4dd-03d18ab0628b)
 
-
 - choisir le mode **Beginner**
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/e182dbff-5f0e-494c-825d-18f6fac57696)
-
 
 - choisir **select-in-client**
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a6a70084-bd32-4f9f-be3c-c4d55b3e5fbd)
 
-
 - choisir la premiere option
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b0c0c1f4-1ec0-4d82-a66b-2c8300a3db3b)
 
-
 - choisir **poweroff**
+
+## 2. Installation de win-exporter
+
+Pour la supervision, nous sommes passés par `Grafana` et plus particulièrement par `Prometheus` pour récupérer les donneés des machines.
+
+Afin de récupérer les données des machines Windows, nous avons dabord dû installer `Chocolatey`, pour cela il faut exécuter la commande suivante dans PowerShell :
+
+`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`.
+
+Ensuite il faut installer `win-expoter` de cette manière : `choco install prometheus-wmi-exporter.install`.
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/ff1d2263-a267-4d67-a48e-4e0bbe639204)
+
+C'est tout pour la partie client, il faut maintenant configurer Prometheus directement sur le serveur Prometheus dans le fichier `/etc/prometheus/prometheus.yml` et y mettre les infos suivantes :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/8b7cbac5-3bf1-4156-96b7-9575c22eae47)
+
+Explications : 
+- il faut d'abord créer un job "win-exporter"
+- et ensuite sous `static configs` préciser les adresses des machines windows que l'on veut monitorer et donc ici : `192.168.9.5:9182` et `172.16.3.3:9182`.
+
+Une fois tout cela fait, redémarrer le service. Quand vous allez sur l'interface web, vous verrez ceci :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/382294f7-eba6-4f56-a4b4-dd7bdeca5aa8)
