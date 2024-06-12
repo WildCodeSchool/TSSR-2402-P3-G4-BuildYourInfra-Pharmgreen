@@ -2,6 +2,10 @@
 
 2) Installation de win-exporter
 
+3) Installation de node_exporter
+
+4) Création de conteneur grafana et prometheus
+
 ## 1. Instalation de CLoneZilla
 
 ### liste des paquets a installer
@@ -239,3 +243,32 @@ Explications :
 Une fois tout cela fait, redémarrer le service. Quand vous allez sur l'interface web, vous verrez ceci :
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/382294f7-eba6-4f56-a4b4-dd7bdeca5aa8)
+
+
+
+
+# Guide d'Utilisateur pour Prometheus et Grafana avec Docker
+
+
+## Étapes de Configuration
+
+  ### Télécharger les Images Docker
+
+`docker pull prom/prometheus`
+
+`docker pull grafana/grafana`
+
+#### Lancer le Conteneur Prometheus
+
+`docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus`
+
+Cela lance un conteneur Prometheus qui sera accessible localement à l'adresse http://localhost:9090.
+
+#### Lancer le Conteneur Grafana
+
+`docker run -d --name=grafana -p 3000:3000 grafana/grafana`
+
+Cela lance un conteneur Grafana qui sera accessible localement à l'adresse http://localhost:3000.
+
+
+
