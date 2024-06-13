@@ -17,9 +17,10 @@ function Log
 
     # Vérifie si le fichier existe, sinon le crée
     # Construit la ligne de journal
-  $Date = Get-Date -Format "MM-dd-yyyy"  
+    $Date = Get-Date -Format "MM-dd-yyyy"  
     $Heure = Get-Date -Format "HH:mm:ss.fffffff"  
-
+    $User = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $Thread = [Threading.Thread]::CurrentThread.ManagedThreadId
     switch ($Head) 
         {
             "INFO" {   
@@ -44,7 +45,7 @@ function Log
                     }
         }
 
-   $logLine = "<![LOG[$Entete]LOG]!><time=`"$Heure`" date=`"$Date`" component=`"$Content`" context=`"Script_modif_user`" type=`"$Type`" thread=`"`" file=`"172.16.3.3`">"
+   $logLine = "<![LOG[$Content]LOG]!><time=`"$Heure`" date=`"$Date`" component=`"$Entete`" context=`"$User`" type=`"$Type`" thread=`"$Thread`" file=`"$User`">"
 
     # Ajoute la ligne de journal au fichier
     Add-Content -Path $LogFile -Value $logLine

@@ -245,7 +245,7 @@ Function FctCreationGroupePC
             "Directeur-Adjoint RH" { $row.Groupe_Fonction_Computer= "GRP_C_Direction_Adjoint_RH" }
             "Formateur" { $row.Groupe_Fonction_Computer= "GRP_C_Formateur" }
             "Agent RH" { if  ($row.Service -eq "Gestion_Performances") {  $row.Groupe_Fonction_Computer= "GRP_C_Agent_RH_GP" } else { $row.Groupe_Fonction_Computer= "GRP_C_Agent_RH_REC" } }
-            "Recruteur RH" { $row.Groupe_Fonction_Computer= "GRP_C_Recruteur" }
+            "Recruteur RH" { $row.Groupe_Fonction_Computer= "GRP_C_Recruteur_RH" }
             "Animateur sécurité" { $row.Groupe_Fonction_Computer= "GRP_C_Animateur_securite" }
             "Auditeur" { $row.Groupe_Fonction_Computer= "GRP_C_Auditeur" }
             "Technicien HSE" { $row.Groupe_Fonction_Computer= "GRP_C_Technicien_HSE" }
