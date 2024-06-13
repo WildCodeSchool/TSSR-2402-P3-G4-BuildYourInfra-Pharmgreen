@@ -86,6 +86,10 @@ function ModifyUserInfo
         $Service           = "$($User.Service)"
         $Fonction          = "$($User.fonction)"
         $Company           = $User.Societe
+        $Manager           = $($User.ManagerPrenom.ToLower())+ "." + $($User.ManagerNom.ToLower())
+        $ManagerPrenom     = $User.ManagerPrenom
+        $ManagerNom        = $User.ManagerNom
+
 
         # Gestion de présence de Sous OU
         if ($User.Service -eq "NA")
@@ -97,17 +101,20 @@ function ModifyUserInfo
             $Path = "ou=$($User.Service),ou=$($User.Departement),ou=User_Pharmgreen,dc=pharmgreen,dc=org"
         }
 
-        $existingUser = $ADUsers | Where-Object { $_.SamAccountName -eq $SamAccountName -and $_.Description -eq $birthday }
+        $existingUser = $ADUsers | Where-Object { $_.GivenName -eq $GivenName -and $_.Description -eq $birthday }
 
         if ($existingUser -ne $Null)
         {
             try
             {
+                #Modification des infos utilisateurs
                 Set-ADUser -Identity $SamAccountName `
-                -Name $Name -DisplayName $DisplayName -UserPrincipalName $UserPrincipalName `
-                -GivenName $GivenName -Surname $Surname -HomePhone $OfficePhone -MobilePhone $PortablePhone -EmailAddress $EmailAddress `
-                -Office $Site -Description $birthday -Title $Fonction -City $Site -Path $Path `
-                -OtherAttributes @{Company = $Company; Department = $Department}
+                -HomePhone $OfficePhone -MobilePhone $PortablePhone `
+                -Office $Site -Description $birthday -Title $Fonction -City $Site `
+                -Department $Department -Company $Company
+                #Deplacement des utilisateurs dans les nouvelles OU
+                $NewOU = Get-ADUser -Identity $SamAccountName
+                Move-ADObject -Identity $NewOU.DistinguishedName -TargetPath $Path -Confirm:$false
 
                 Write-Host "Modification de l'utilisateur $SamAccountName effectuée" -ForegroundColor Green
                 Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName effectuée"
