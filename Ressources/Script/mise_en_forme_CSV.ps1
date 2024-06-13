@@ -26,7 +26,7 @@ Function ajout_colonne
 }
 
 
-# Fonction remplacement nom Département, Sevice, fonction
+# Fonction remplacement nom Département, Sevice
 Function FctRemplacement
 {
     # Récupérattion du contenue du fichier CSV
@@ -52,6 +52,7 @@ Function FctRemplacement
             "Ventes et Développement Commercial" { $row.Département = "Ventes_Developpement_Commercial" }
             "-" { $row.Département = "NA" }
         }
+        # Remplacement du nom de service par le nom de l'OU
         switch ($service) 
         {
             "Publicité" { $row.service = "Publicite" }
@@ -101,7 +102,7 @@ Function FctCreationGroupeUser
     $CreaGroupe = Import-Csv -Path $fichierCSV 
     foreach ($row in $CreaGroupe) 
     {
-        # Extraire la valeur des colonnes "Departement" et "Service"
+        # Extraire la valeur de la colonne "Fonction"
         $fonction = $row.fonction
 
         # Création du groupe utilisateur représentant la fonction
@@ -193,10 +194,10 @@ Function FctCreationGroupePC
     $CreaGroupe = Import-Csv -Path $fichierCSV 
     foreach ($row in $CreaGroupe) 
     {
-        # Extraire la valeur des colonnes "Departement" et "Service"
+        # Extraire la valeur de la colonne "Fonction"
         $fonction = $row.fonction
 
-        # Création du groupe utilisateur représentant la fonction
+        # Création du groupe ordinateur représentant la fonction
         switch ($fonction) 
         {
             "Directrice communication" { $row.Groupe_Fonction_Computer= "GRP_C_Direction_Communication" }
@@ -324,23 +325,6 @@ Function FctRenomagePC
         }
     }
     $NomPC | Export-Csv -Path $fichierCSV -NoTypeInformation
-}
-
-
-Function FctMenageCSV
-{ 
-   (Get-Content -Path $fichierCSV) `
-   -replace '"","","","","","","","","","","","","",""', '' | Set-Content -Path $fichierCSV
-}
-
-Function FctSuppressionLignesVides
-{
-# Récupérattion du contenue du fichier CSV
-   $contenuCSV = Get-Content $fichierCSV
-   # Filtrer les lignes vides
-   $contenuFiltré = $contenuCSV | Where-Object { $_ -ne "" }
-   # Écrire le contenu filtré dans le fichier CSV
-   Set-Content $fichierCSV $contenuFiltré
 }
 
 
