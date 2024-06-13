@@ -22,10 +22,17 @@ $ADUsers = Get-ADUser -Filter * -Properties *
 ### Main
 foreach ($User in $Users) 
     {
-    $Groupmenber = $User.Groupe_User
-    $Name = "$($User.Nom) $($User.Prenom)"
-    $SamAccountName = $($User.Prenom.ToLower())+ "." + $($User.Nom.ToLower())
-   
+        $Groupmenber = $User.Groupe_User
+        $Name = "$($User.Nom) $($User.Prenom)"
+        $SamAccountName = $($User.Prenom.ToLower())+ "." + $($User.Nom.ToLower())
+        
+        $info = Get-ADUser -Identity $samaccountname -Properties MemberOf
+        $groups = $info.MemberOf
+        Foreach ($group in $groups) 
+        {
+                Remove-ADGroupMember -Identity $group -Members $SamAccountName -Confirm:$false
+        }
+
    If (($ADUsers | Where-Object {$_.SamAccountName -eq $SamAccountName}) -ne $Null)
                 {
                         Try {
