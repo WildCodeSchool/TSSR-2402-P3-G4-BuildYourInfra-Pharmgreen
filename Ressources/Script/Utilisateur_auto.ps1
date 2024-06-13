@@ -57,7 +57,7 @@ Foreach ($User in $Users)
     }
 
     # Vérifier si l'utilisateur existe déjà
-    $existingUser = $ADUsers | Where-Object { $_.SamAccountName -eq $SamAccountName -and $_.Description -eq $birthday }
+    $existingUser = $ADUsers | Where-Object { $_.GivenName -eq $GivenName -and $_.Description -eq $birthday }
 
     # Création Utilisateur
     If ($existingUser -eq $Null)
