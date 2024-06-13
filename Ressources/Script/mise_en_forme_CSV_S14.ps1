@@ -51,6 +51,7 @@ Function FctRemplacement
             "Systèmes d'Information" { $row.Département = "Systemes_Information" }
             "Ventes et Développement Commercial" { $row.Département = "Ventes_Developpement_Commercial" }            
             "Direction des Ressources Humaines" { $row.Département = "Direction_Ressources_Humaines" }
+            "Services Généraux" { $row.Département = "Services_Generaux" }
             "-" { $row.Département = "NA" }
         }
         # Remplacement du nom de service par le nom de l'OU
@@ -150,7 +151,7 @@ Function FctCreationGroupeUser
             "Directeur RH" { $row.Groupe_Fonction_User= "GRP_U_Direction_RH" }
             "Directeur-Adjoint RH" { $row.Groupe_Fonction_User= "GRP_U_Direction_Adjoint_RH" }
             "Formateur" { $row.Groupe_Fonction_User= "GRP_U_Formateur" }
-            "Agent RH" { if  ($row.Service -eq "Gestion_Performances") {  $row.Groupe_Fonction_User= "GRP_U_Agent_RH_GP" } else { $row.Groupe_Fonction_User= "GRP_U_Agent_RH_REC" } }
+            "Agent RH" { if  ($row.Service -eq "Gestion_Performances") {  $row.Groupe_Fonction_User= "GRP_U_Agent_RH_GP" } }
             "Recruteur RH" { $row.Groupe_Fonction_User= "GRP_U_Recruteur_RH" }
             "Animateur sécurité" { $row.Groupe_Fonction_User= "GRP_U_Animateur_securite" }
             "Auditeur" { $row.Groupe_Fonction_User= "GRP_U_Auditeur" }
@@ -244,7 +245,7 @@ Function FctCreationGroupePC
             "Directeur-Adjoint RH" { $row.Groupe_Fonction_Computer= "GRP_C_Direction_Adjoint_RH" }
             "Formateur" { $row.Groupe_Fonction_Computer= "GRP_C_Formateur" }
             "Agent RH" { if  ($row.Service -eq "Gestion_Performances") {  $row.Groupe_Fonction_Computer= "GRP_C_Agent_RH_GP" } else { $row.Groupe_Fonction_Computer= "GRP_C_Agent_RH_REC" } }
-            "Recruteur RH" { $row.Groupe_Fonction_User= "GRP_C_Recruteur_RH" }
+            "Recruteur RH" { $row.Groupe_Fonction_Computer= "GRP_C_Recruteur" }
             "Animateur sécurité" { $row.Groupe_Fonction_Computer= "GRP_C_Animateur_securite" }
             "Auditeur" { $row.Groupe_Fonction_Computer= "GRP_C_Auditeur" }
             "Technicien HSE" { $row.Groupe_Fonction_Computer= "GRP_C_Technicien_HSE" }

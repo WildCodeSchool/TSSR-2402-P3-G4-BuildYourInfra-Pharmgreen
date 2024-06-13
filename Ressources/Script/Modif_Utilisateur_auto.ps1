@@ -13,13 +13,38 @@
 # Fonction Log
 function Log
 {
-    param([string]$Content)
+    param([string]$Content,[string]$Head)
 
     # Vérifie si le fichier existe, sinon le crée
     # Construit la ligne de journal
-    $Date = Get-Date -Format "dd/MM/yyyy-HH:mm:ss"
-    $User = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-    $logLine = "$Date;$User;$Content"
+  $Date = Get-Date -Format "MM-dd-yyyy"  
+    $Heure = Get-Date -Format "HH:mm:ss.fffffff"  
+
+    switch ($Head) 
+        {
+            "INFO" {   
+                    $Entete = "INFO - Message information"
+                    $Type=0 
+                    }
+            "DEBUG" { 
+                    $Entete = "DEBUG - Message debugage"
+                    $Type=4 
+                    }
+            "TRACE" { 
+                    $Entete = "TRACE - Message tracabilite" 
+                    $Type=0 
+                    }
+            "ERROR" { 
+                    $Entete = "ERROR - Message erreur" 
+                    $Type=2 
+                    }
+            "FATAL" { 
+                    $Entete = "FATAL - Message critique" 
+                    $Type=3 
+                    }
+        }
+
+   $logLine = "<![LOG[$Entete]LOG]!><time=`"$Heure`" date=`"$Date`" component=`"$Content`" context=`"Script_modif_user`" type=`"$Type`" thread=`"`" file=`"172.16.3.3`">"
 
     # Ajoute la ligne de journal au fichier
     Add-Content -Path $LogFile -Value $logLine
@@ -42,7 +67,7 @@ function AddUserManager
     if ($Manager -eq '.')
     {
         Write-Host "L'utilisateur $SamAccountName n'a pas de manager" -ForegroundColor Yellow
-        Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'a pas de manager"
+        Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'a pas de manager" -Head "ERROR"
     }
     else
     {
@@ -50,13 +75,13 @@ function AddUserManager
         {
             Set-ADUser -Identity $SamAccountName -Manager $ManagerDN
             Write-Host "Manager $Manager ajouté à $SamAccountName" -ForegroundColor Green
-            Log -FilePath $LogFile -Content "Manager $Manager ajouté à $SamAccountName"
+            Log -FilePath $LogFile -Content "Manager $Manager ajouté à $SamAccountName" -Head "INFO"
         }
         catch
         {
             write-host "Manager $Manager n'a pas pu être ajouté à $SamAccountName" -ForegroundColor Red
             Write-Host $_.Exception.Message -ForegroundColor Red
-            Log -FilePath $LogFile -Content "Manager $Manager n'a pas pu être ajouté à $SamAccountName"
+            Log -FilePath $LogFile -Content "Manager $Manager n'a pas pu être ajouté à $SamAccountName" -Head "FATAL"
         }
     }
 }
@@ -117,13 +142,13 @@ function ModifyUserInfo
                 Move-ADObject -Identity $NewOU.DistinguishedName -TargetPath $Path -Confirm:$false
 
                 Write-Host "Modification de l'utilisateur $SamAccountName effectuée" -ForegroundColor Green
-                Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName effectuée"
+                Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName effectuée" -Head "INFO"
             }
             catch
             {
                 Write-Host "Modification de l'utilisateur $SamAccountName échouée" -ForegroundColor Red
                 Write-Host $_.Exception.Message -ForegroundColor Red
-                Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName échouée"
+                Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName échouée" -Head "FATAL"
             }
 
             # Appel de la fonction pour ajouter le manager
@@ -132,7 +157,7 @@ function ModifyUserInfo
         else
         {
             Write-Host "L'utilisateur $SamAccountName n'existe pas" -ForegroundColor Yellow
-            Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'existe pas"
+            Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'existe pas" -Head "ERROR"
         }
 
         $Count++
