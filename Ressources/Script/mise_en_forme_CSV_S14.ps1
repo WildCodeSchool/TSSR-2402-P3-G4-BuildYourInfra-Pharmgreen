@@ -49,7 +49,8 @@ Function FctRemplacement
             "Service Généraux" { $row.Département = "Services_Generaux" }
             "Service Juridique" { $row.Département = "Service_Juridique" }
             "Systèmes d'Information" { $row.Département = "Systemes_Information" }
-            "Ventes et Développement Commercial" { $row.Département = "Ventes_Developpement_Commercial" }
+            "Ventes et Développement Commercial" { $row.Département = "Ventes_Developpement_Commercial" }            
+            "Direction des Ressources Humaines" { $row.Département = "Direction_Ressources_Humaines" }
             "-" { $row.Département = "NA" }
         }
         # Remplacement du nom de service par le nom de l'OU
@@ -84,7 +85,6 @@ Function FctRemplacement
             "Grands Comptes" { $row.service = "Grands_Comptes" }
             "Service Achat" { $row.service = "Service_Achat" }
             "Service Client" { $row.service = "Service_Client" }
-            "Direction des Ressources Humaines" { $row.service = "Direction_Ressources_Humaines" }
             "Service Recrutement" { $row.service = "Service_Recrutement" }
             "e-Marketing" { $row.service = "Emarketing" }
             "-" { $row.service = "NA" }
@@ -151,6 +151,7 @@ Function FctCreationGroupeUser
             "Directeur-Adjoint RH" { $row.Groupe_Fonction_User= "GRP_U_Direction_Adjoint_RH" }
             "Formateur" { $row.Groupe_Fonction_User= "GRP_U_Formateur" }
             "Agent RH" { if  ($row.Service -eq "Gestion_Performances") {  $row.Groupe_Fonction_User= "GRP_U_Agent_RH_GP" } else { $row.Groupe_Fonction_User= "GRP_U_Agent_RH_REC" } }
+            "Recruteur RH" { $row.Groupe_Fonction_User= "GRP_U_Recruteur_RH" }
             "Animateur sécurité" { $row.Groupe_Fonction_User= "GRP_U_Animateur_securite" }
             "Auditeur" { $row.Groupe_Fonction_User= "GRP_U_Auditeur" }
             "Technicien HSE" { $row.Groupe_Fonction_User= "GRP_U_Technicien_HSE" }
@@ -243,6 +244,7 @@ Function FctCreationGroupePC
             "Directeur-Adjoint RH" { $row.Groupe_Fonction_Computer= "GRP_C_Direction_Adjoint_RH" }
             "Formateur" { $row.Groupe_Fonction_Computer= "GRP_C_Formateur" }
             "Agent RH" { if  ($row.Service -eq "Gestion_Performances") {  $row.Groupe_Fonction_Computer= "GRP_C_Agent_RH_GP" } else { $row.Groupe_Fonction_Computer= "GRP_C_Agent_RH_REC" } }
+            "Recruteur RH" { $row.Groupe_Fonction_User= "GRP_C_Recruteur_RH" }
             "Animateur sécurité" { $row.Groupe_Fonction_Computer= "GRP_C_Animateur_securite" }
             "Auditeur" { $row.Groupe_Fonction_Computer= "GRP_C_Auditeur" }
             "Technicien HSE" { $row.Groupe_Fonction_Computer= "GRP_C_Technicien_HSE" }
