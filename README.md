@@ -99,6 +99,17 @@ Activités et répartition des tâches
 | Maxime  | RAID1 (Debian + Windows), dossiers partagés |
 | Bruno | Dossiers partagés, script : automatisation PC dans OU + définition horaires de travail + optimisation des scripts |
 
+### **Sprint 6 : semaine du 10 au 14 juin 2024**
+
+Activités et répartition des tâches
+
+| **NOM** | **Tâches effectuées** |
+| :--: | :----------: |
+| Pierre (SM) | Scripts |
+| Julien  | Grafana, Prometheus |
+| Maxime  | Grafana, Prometheus |
+| Bruno (PO) | Prometheus, scripts |
+
 ### **Configuration Réseau**
 
 | **NOM POSTE PROXMOX** | **ADRESSE IP** | **ROLE** |
