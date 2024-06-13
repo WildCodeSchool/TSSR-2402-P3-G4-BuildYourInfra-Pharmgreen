@@ -245,6 +245,126 @@ Une fois tout cela fait, redémarrer le service. Quand vous allez sur l'interfac
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/382294f7-eba6-4f56-a4b4-dd7bdeca5aa8)
 
 
+# Installer Node Exporter et ajouter à Prometheus
+
+## Node Exporter
+
+### A quoi sert Node Exporter ?
+Node Exporter est le programme qui récupère les metrics (infos du système) et les rend disponibles par simple requête curl.
+
+## Installation
+
+### Téléchargement
+Pour commencer, téléchargez la dernière version de Node Exporter ici: [Node-Exporter](https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz)
+
+```bash
+wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+```
+
+### Dépaquetage
+On extrait l'archive :
+
+```bash
+tar -xvf node_exporter-1.0.1.linux-amd64.tar.gz
+```
+
+Puis on la déplace dans un répertoire qui lui permet d'être gérée par le système :
+
+```bash
+mv node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin/
+```
+
+### Installation & Mise en service
+En réalité, on n'installe pas vraiment Node Exporter, on crée juste une tâche système qui va lancer la commande.
+
+Pour cela, on crée un utilisateur `node_exporter` qui va s'occuper du service.
+
+```bash
+useradd -rs /bin/false node_exporter
+```
+
+Ensuite, on crée le fameux service.
+
+```bash
+nano /etc/systemd/system/node_exporter.service
+```
+
+Le fichier doit contenir les informations suivantes :
+
+```ini
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Maintenant, il faut recharger le daemon :
+
+```bash
+systemctl daemon-reload
+```
+
+Puis démarrer `node_exporter` :
+
+```bash
+systemctl start node_exporter
+```
+
+Il faut vérifier si `node_exporter` fonctionne :
+
+```bash
+systemctl status node_exporter
+```
+
+Si tout va bien, alors on peut l'ajouter au service au démarrage :
+
+```bash
+systemctl enable node_exporter
+```
+
+Pour savoir si tout va bien :
+
+```bash
+curl http://localhost:9100/metrics
+```
+
+## Ajouter l'hôte à Prometheus
+
+### Ajout de l'hôte
+Pour ajouter l'hôte, il faut modifier le fichier de configuration de Prometheus :
+
+```bash
+nano /etc/prometheus/prometheus.yml
+```
+
+Ajouter un target avec l'adresse IP voulue en dessous du target existant. Exemple avec `192.168.0.2` :
+
+```yaml
+  - job_name: 'node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100']
+      - targets: ['192.168.0.2:9100']
+```
+
+### Redémarrage de Prometheus
+Pour que tout soit pris en compte, il faut redémarrer le service `prometheus` :
+
+```bash
+systemctl restart prometheus
+```
+
+### Vérification
+Pour voir si tout va bien, faites un petit tour sur votre interface Prometheus ([http://prometheus-ip:9090/targets](http://prometheus-ip:9090/targets)) ou Grafana et vérifiez si votre hôte apparaît bien !
+
 
 
 # Guide d'Utilisateur pour Prometheus et Grafana avec Docker
