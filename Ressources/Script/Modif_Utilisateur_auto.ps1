@@ -10,6 +10,20 @@
 
 ############## DEBUT FONCTION ######################
 
+# Fonction Log
+function Log
+{
+    param([string]$Content)
+
+    # Vérifie si le fichier existe, sinon le crée
+    # Construit la ligne de journal
+    $Date = Get-Date -Format "dd/MM/yyyy-HH:mm:ss"
+    $User = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $logLine = "$Date;$User;$Content"
+
+    # Ajoute la ligne de journal au fichier
+    Add-Content -Path $LogFile -Value $logLine
+}
   
 # Fonction modifcation utilisateur 
 function ModifUserAD 
@@ -40,6 +54,7 @@ function ModifUserAD
             If ($Manager -eq '.')
             {
                 Write-Host "L'utilisateur $SamAccountName n'a pas de manager" -ForegroundColor Yellow 
+                Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'a pas de manager" 
             }
             Else
             {
@@ -47,17 +62,20 @@ function ModifUserAD
                 {
                     Set-ADUser -Identity  $SamAccountName -Manager $ManagerDN 
                     Write-Host "Manager $ManagerNom $ManagerPrenom ajouté à $Name" -ForegroundColor Green
+                    Log -FilePath $LogFile -Content "Manager $ManagerNom $ManagerPrenom ajouté à $Name" 
                 }
                 Catch 
                 {
                     write-host "Manager $ManagerNom $ManagerPrenom n'a pas put être ajouté à  $Name échoué" -ForegroundColor red
                     Write-Host $_.Exception.Message -ForegroundColor Red
+                    Log -FilePath $LogFile -Content "Manager $ManagerNom $ManagerPrenom n'a pas put être ajouté à  $Name échoué" 
                 }
             }
         }
         Else
         {
             Write-Host "L'utilisateur $SamAccountName n'existe pas" -ForegroundColor Yellow 
+            Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'existe pas"
         }
         
         $Count++
@@ -78,10 +96,19 @@ function ModifUserAD
 ### Chemin des dossier et fichier à lire et exploiter
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
 $File = "$FilePath\s09_Pharmgreen.csv"
-$LogFile=  "C:\Log\log.log"
+$LogPath=  "C:\Log\"
+$LogFile=  "$LogPath\Log_ScripModif_User.log"
+# Crée le dossier s'il n'existe pas
+if (-Not (Test-Path -Path $LogPath)) {
+    New-Item -ItemType Directory -Path $LogPath | Out-Null
+}
+# Crée le fichier s'il n'existe pas
+if (-Not (Test-Path -Path $LogFile)) {
+    New-Item -ItemType File -Path $LogFile | Out-Null
+}
 
 # Définition des en-têtes de colonnes du fichier CSV
-$Headers = "Prenom", "Nom", "Societe", "Site", "Departement", "Service", "fonction", "ManagerPrenom", "ManagerNom", "PC", "DateDeNaissance", "Telf", "Telp", "Nomadisme - Télétravail"
+$Headers = "Prenom", "Nom", "Societe", "Site", "Departement", "Service", "fonction", "ManagerPrenom", "ManagerNom", "PC", "DateDeNaissance", "Telf", "Telp", "Nomadisme - Télétravail", "Groupe_User","Groupe_Computer"
 
 # Appel modul Active Directory si pas présent
 If (-not(Get-Module -Name activedirectory))
