@@ -1,6 +1,6 @@
 ####################################################
 ####################################################
-### SCRIPT MODIFICAITON INFORMATION  UTILISATEUR ###                                           
+### SCRIPT MODIFICATION INFORMATION UTILISATEUR ###
 ####################################################
 ####################################################
 
@@ -24,63 +24,112 @@ function Log
     # Ajoute la ligne de journal au fichier
     Add-Content -Path $LogFile -Value $logLine
 }
-  
-# Fonction modifcation utilisateur 
-function ModifUserAD 
-{ 
-      # Imporation des données
+
+# Fonction pour ajouter les managers
+function AddUserManager
+{
+    param (
+        [string]$SamAccountName,
+        [string]$Manager
+    )
+
+    # Récupérer le DN du manager
+    if ($Manager -ne '.')
+    {
+        $ManagerDN = (Get-ADUser -Identity $Manager).DistinguishedName
+    }
+
+    if ($Manager -eq '.')
+    {
+        Write-Host "L'utilisateur $SamAccountName n'a pas de manager" -ForegroundColor Yellow
+        Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'a pas de manager"
+    }
+    else
+    {
+        try
+        {
+            Set-ADUser -Identity $SamAccountName -Manager $ManagerDN
+            Write-Host "Manager $Manager ajouté à $SamAccountName" -ForegroundColor Green
+            Log -FilePath $LogFile -Content "Manager $Manager ajouté à $SamAccountName"
+        }
+        catch
+        {
+            write-host "Manager $Manager n'a pas pu être ajouté à $SamAccountName" -ForegroundColor Red
+            Write-Host $_.Exception.Message -ForegroundColor Red
+            Log -FilePath $LogFile -Content "Manager $Manager n'a pas pu être ajouté à $SamAccountName"
+        }
+    }
+}
+
+# Fonction pour modifier les informations de l'utilisateur
+function ModifyUserInfo
+{
+    # Importation des données
     $Users = Import-Csv -Path $File -Delimiter "," -Header $Headers | Select-Object -Skip 1
     $ADUsers = Get-ADUser -Filter * -Properties *
     $Count = 1
+
     Foreach ($User in $Users)
     {
-        Write-Progress -Activity "Ajout des managers" -Status "% effectué" -PercentComplete ($Count/$Users.Length*100)
+        Write-Progress -Activity "Modification des informations utilisateurs" -Status "% effectué" -PercentComplete ($Count/$Users.Length*100)
         $Name              = "$($User.Nom) $($User.Prenom)"
-        $SamAccountName    = $($User.Prenom.ToLower())+ "." + $($User.Nom.ToLower())
-        $Manager           = $($User.ManagerPrenom.ToLower())+ "." + $($User.ManagerNom.ToLower())
-        $ManagerPrenom     = $User.ManagerPrenom
-        $ManagerNom        = $User.ManagerNom
+        $SamAccountName    = $($User.Prenom.ToLower()) + "." + $($User.Nom.ToLower())
+        $UserPrincipalName = $(($User.Prenom.ToLower() + "." + $User.Nom.ToLower()) + "@" + (Get-ADDomain).Forest)
+        $GivenName         = $User.Prenom
+        $Surname           = $User.Nom
+        $OfficePhone       = $User.Telf
+        $PortablePhone     = $User.Telp
+        $EmailAddress      = $UserPrincipalName
+        $Site              = $User.Site
+        $birthday          = $User.DateDeNaissance
+        $Department        = "$($User.Departement)"
+        $Service           = "$($User.Service)"
+        $Fonction          = "$($User.fonction)"
+        $Company           = $User.Societe
 
-
-            # Ajout des manager
-            # Récupérer le DN du manager
-            If ($Manager -ne '.')
-            {
-             $ManagerDN = (Get-ADUser -Identity $Manager ).DistinguishedName
-            }
-
-        If (($ADUsers | Where-Object {$_.SamAccountName -eq $SamAccountName}) -ne $Null)
+        # Gestion de présence de Sous OU
+        if ($User.Service -eq "NA")
         {
-            If ($Manager -eq '.')
-            {
-                Write-Host "L'utilisateur $SamAccountName n'a pas de manager" -ForegroundColor Yellow 
-                Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'a pas de manager" 
-            }
-            Else
-            {
-                Try 
-                {
-                    Set-ADUser -Identity  $SamAccountName -Manager $ManagerDN 
-                    Write-Host "Manager $ManagerNom $ManagerPrenom ajouté à $Name" -ForegroundColor Green
-                    Log -FilePath $LogFile -Content "Manager $ManagerNom $ManagerPrenom ajouté à $Name" 
-                }
-                Catch 
-                {
-                    write-host "Manager $ManagerNom $ManagerPrenom n'a pas put être ajouté à  $Name échoué" -ForegroundColor red
-                    Write-Host $_.Exception.Message -ForegroundColor Red
-                    Log -FilePath $LogFile -Content "Manager $ManagerNom $ManagerPrenom n'a pas put être ajouté à  $Name échoué" 
-                }
-            }
+            $Path = "ou=$($User.Departement),ou=User_Pharmgreen,dc=pharmgreen,dc=org"
         }
-        Else
+        else
         {
-            Write-Host "L'utilisateur $SamAccountName n'existe pas" -ForegroundColor Yellow 
+            $Path = "ou=$($User.Service),ou=$($User.Departement),ou=User_Pharmgreen,dc=pharmgreen,dc=org"
+        }
+
+        $existingUser = $ADUsers | Where-Object { $_.SamAccountName -eq $SamAccountName -and $_.Description -eq $birthday }
+
+        if ($existingUser -ne $Null)
+        {
+            try
+            {
+                Set-ADUser -Identity $SamAccountName `
+                -Name $Name -DisplayName $DisplayName -UserPrincipalName $UserPrincipalName `
+                -GivenName $GivenName -Surname $Surname -HomePhone $OfficePhone -MobilePhone $PortablePhone -EmailAddress $EmailAddress `
+                -Office $Site -Description $birthday -Title $Fonction -City $Site -Path $Path `
+                -OtherAttributes @{Company = $Company; Department = $Department}
+
+                Write-Host "Modification de l'utilisateur $SamAccountName effectuée" -ForegroundColor Green
+                Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName effectuée"
+            }
+            catch
+            {
+                Write-Host "Modification de l'utilisateur $SamAccountName échouée" -ForegroundColor Red
+                Write-Host $_.Exception.Message -ForegroundColor Red
+                Log -FilePath $LogFile -Content "Modification de l'utilisateur $SamAccountName échouée"
+            }
+
+            # Appel de la fonction pour ajouter le manager
+            AddUserManager -SamAccountName $SamAccountName -Manager $Manager
+        }
+        else
+        {
+            Write-Host "L'utilisateur $SamAccountName n'existe pas" -ForegroundColor Yellow
             Log -FilePath $LogFile -Content "L'utilisateur $SamAccountName n'existe pas"
         }
-        
+
         $Count++
         sleep -Milliseconds 100
-
     }
 }
 
@@ -91,17 +140,19 @@ function ModifUserAD
 ############# DEBUT SCRIPT #########################
 ####################################################
 
-############## INTIALISAITON ######################
+############## INITIALISATION ######################
 
-### Chemin des dossier et fichier à lire et exploiter
+### Chemin des dossiers et fichiers à lire et exploiter
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
-$File = "$FilePath\s09_Pharmgreen.csv"
-$LogPath=  "C:\Log\"
-$LogFile=  "$LogPath\Log_ScripModif_User.log"
+$File = "$FilePath\\s09_Pharmgreen.csv"
+$LogPath = "C:\\Log\\"
+$LogFile = "$LogPath\\Log_ScripModif_User.log"
+
 # Crée le dossier s'il n'existe pas
 if (-Not (Test-Path -Path $LogPath)) {
     New-Item -ItemType Directory -Path $LogPath | Out-Null
 }
+
 # Crée le fichier s'il n'existe pas
 if (-Not (Test-Path -Path $LogFile)) {
     New-Item -ItemType File -Path $LogFile | Out-Null
@@ -110,7 +161,7 @@ if (-Not (Test-Path -Path $LogFile)) {
 # Définition des en-têtes de colonnes du fichier CSV
 $Headers = "Prenom", "Nom", "Societe", "Site", "Departement", "Service", "fonction", "ManagerPrenom", "ManagerNom", "PC", "DateDeNaissance", "Telf", "Telp", "Nomadisme - Télétravail", "Groupe_User","Groupe_Computer"
 
-# Appel modul Active Directory si pas présent
+# Appel module Active Directory si pas présent
 If (-not(Get-Module -Name activedirectory))
 {
     Import-Module activedirectory
@@ -120,16 +171,12 @@ If (-not(Get-Module -Name activedirectory))
 
 ############## APPEL FONCTION ######################
 
-#Initialisation fonction LOG
-
-Write-Host "Debut de modification des informations utilsiateurs" -ForegroundColor Blue
-Write-Host "" 
-ModifUserAD 
-Write-Host "Fin de modification des informations utilsiateurs" -ForegroundColor Blue
-Write-Host "" 
+# Initialisation fonction LOG
+Write-Host "Début de modification des informations utilisateurs" -ForegroundColor Blue
+Write-Host ""
+ModifyUserInfo
+Write-Host "Fin de modification des informations utilisateurs" -ForegroundColor Blue
+Write-Host ""
 Read-Host "Appuyez sur Entrée pour continuer ... "
 
-
 ############## FIN DU SCRIPT ######################
-
-
