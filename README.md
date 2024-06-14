@@ -105,10 +105,10 @@ Activités et répartition des tâches
 
 | **NOM** | **Tâches effectuées** |
 | :--: | :----------: |
-| Pierre (SM) | Scripts |
+| Pierre (SM) | Scripts, Clone Zilla |
 | Julien  | Grafana, Prometheus |
 | Maxime  | Grafana, Prometheus |
-| Bruno (PO) | Prometheus, scripts |
+| Bruno (PO) | Scripts, Journalisation |
 
 ### **Configuration Réseau**
 
@@ -121,6 +121,8 @@ Activités et répartition des tâches
 | G4-PC-PI0002  | 172.16.2.10 / 192.168.9.7 | PC Client / accès direct Firewall |
 | G4-pfsense  | LAN : 172.16.2.253, DMZ : 172.16.2.254, WAN : 10.0.0.3 | Firewall |
 | G4-RO-INFRA-01  | -- | Routage |
+| Grafana  | 172.16.3.11 | CT - Supervision de l'infrastructure |
+| Promotheus | 172.16.3.12 | CT - Base de donnée pour supervision|
 
 ## **Choix techniques, contraintes et solutions**
 
