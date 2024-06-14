@@ -1,16 +1,18 @@
 # **Sommaire**
 
-1) Création dossier partager utilisateur
+1) Création dossiers partagés utilisateurs
 
-2) Surveillance et placement des ordinateurs dans les bonnes Organizaion Units.
+2) Création dossiers partagés départements et services
 
-3) Sauvegardes
+3) Surveillance et placement des ordinateurs dans les bonnes Organizaion Units.
 
-4) GPO LAPS
+4) Sauvegardes
 
-5) Restriction Horaires
+5) GPO LAPS
+
+6) Restriction Horaires
    
-# **1. Création dossier partager utilisateur.**
+# **1. Création dossiers partagés utilisateurs.**
 
 - Dans le lecteur `E:` créer un dossier utilisateur
 - Faire un clic droit dessus -> `Properties -> sharing -> Advanced Sharing`
@@ -37,7 +39,7 @@
 
 - Cliquer sur `add` et ajouter les permissions comme sur l'image au-dessus et mettre `Full control` sur toutes les Permissions
 
-## Création de la GPO
+### Création de la GPO
 
 - `User Configuration -> Preferences -> windows Settings -> Drive maps`  
 - Créer un nouveau mappage comme cela :  
@@ -62,7 +64,25 @@
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/59adb6ba-935f-4694-b65a-cb12853a6ae8)
 
-# **2. Surveillance et placement des ordinateur dans les bonne Organization Units.**
+# **2. Création dossiers partagés départements et services**
+
+- Dans le lecteur `E:` créer un dossier par département
+- Pour chaque dossier et sous-dossier, faire un clic droit dessus -> `Properties -> sharing -> Advanced Sharing`
+- Cocher la case `Share this folder`
+- En Share name : le_nom_du_dossier$ (le $ sert a cacher le chemin réseau)
+- Suivre les mêmes étapes que pour la création des dossiers partagés utilisateurs, mais pour chaque dossier et sous-dossire
+
+### Création de la GPO
+
+Aller dans `User Configuration -> Preferences -> windows Settings -> Drive maps` et configurer comme ceci pour chaque département et service :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/de999fa0-89fa-4325-8f1b-74efa3469596)
+
+Avec `N:` en lettre de disque pour les départements et `M:` pour les services.
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/88981d50-b2cc-48a0-a531-668441f06c67)
+
+# **3. Surveillance et placement des ordinateur dans les bonne Organization Units.**
 
 ## **Etape 1 : Mise en place du script**
 
