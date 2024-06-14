@@ -2,7 +2,7 @@
 
 1) Mise en place et Utilisation nouveau Script pour l'Active Directory
 
-2) 2
+2)  2
    
 ## **1. Mise en place et Utilisation nouveau Script pour l'Active Directory.**
 
