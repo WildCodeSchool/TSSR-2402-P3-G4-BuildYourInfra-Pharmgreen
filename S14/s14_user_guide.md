@@ -6,7 +6,7 @@
    
 ## **1. Mise en place et Utilisation nouveau Script pour l'Active Directory.**
 
-Suite aux nouvelles informations concernant la mise à jour de la base de donées des collaborateurs et collaboratrices, nous avons retravailler les Scripts associés à l'Active Directory :
+Suite aux nouvelles informations concernant la mise à jour de la base de donées des collaborateurs et collaboratrices, nous avons retravailler les Scripts associés à l'Active Directory :  
 [Base de donnée orignale](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/s09_Pharmgreen.xlsx)  
 [Base de donnée S14](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/liste/s14_Pharmgreen.xlsx)  
 
