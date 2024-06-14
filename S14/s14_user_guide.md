@@ -17,10 +17,10 @@ Ensuite le fichier de mise en forme du fichier Excel en CSV a été mise à jour
 [Mise en forme CSV](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/mise_en_forme_CSV.ps1) ==> Prend en comtpe la base de donnée original  
 [Mise en forme CSV S14](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/mise_en_forme_CSV_S14.ps1) ==> Prend en comtpe la base de donnée S14  
 
-Certains script ont été repris pour plus clarté que ça soit dans la lecture du code ou des informations affiché une fois le script lancé ou pour gérer plus d'information.
+Certains script ont été repris pour plus clarté que ça soit dans la lecture du code ou des informations affiché une fois le script lancé ou pour gérer plus d'information.  
 [Modification information Utilisateur](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/Modif_Utilisateur_auto.ps1)  
-Script modifié pour intégrer les modification des informations utilisateur suite à la nouvelle base données (changement de service, département, numéro de téléphone, ...)  
-Il ne modifie en aucun cas les noms, prénoms, adresse mail, ID de compte, si il y a des besoins (par exemple en cas de divorce/mariage/changement de nom) cela sera fait manuellement.
+- Script modifié pour intégrer les modification des informations utilisateur suite à la nouvelle base données (changement de service, département, numéro de téléphone, ...)  
+- Il ne modifie en aucun cas les noms, prénoms, adresse mail, ID de compte, si il y a des besoins (par exemple en cas de divorce/mariage/changement de nom) cela sera fait manuellement.
 
 Il est impératif de vérifier avant l'éxcution du code que le script va cherche le bon fichier CSV (dans notre cas **s14_Pharmgreen.csv**) :
 - Normalement l'information à changer se trouve sous cette forme la `$File = "$FilePath\s09_Pharmgreen.csv"` soit en début de script,  soit en fin script dans la partie `INITIALISATION`
