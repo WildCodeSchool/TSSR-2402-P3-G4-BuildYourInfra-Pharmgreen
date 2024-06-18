@@ -2,6 +2,8 @@
 
 1. Installation de iRedMail
 
+## Installation
+
 Tout d'abord :
 
 - `wget https://github.com/iredmail/iRedMail/archive/refs/tags/*.tar.gz`
@@ -54,3 +56,22 @@ A la fin vous aurez un message qui ressemblera à ceci, répondez `y` aux 2 ques
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/21c2b48e-5277-4e13-b487-222f0575edb8)
 
 Redémarrez.
+
+## Création d'utilisateur
+
+Connectez-vous via le web avec le compte admin créé précédemment :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/e6b3f5b4-fe56-4412-bc5c-b0265658d6e8)
+
+Allez sur l'adresse `172.16.3.15/iredadmin` : 
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/e526f800-3e65-4e5b-9ea5-5bfa39b6f674)
+
+Puis `Add` et `User` et renseignez les champs nécessaires :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/e296c11e-d34c-4123-bc98-7e275f221e9d)
+
+Vous verrez bien les utilisateurs créés si vous retournez sur la messagerie ; 
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/f6074c8f-656f-4c1c-a6ee-8b29607a641e)
+
