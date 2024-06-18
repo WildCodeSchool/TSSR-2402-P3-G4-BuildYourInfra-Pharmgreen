@@ -220,7 +220,31 @@
 
 - choisir **poweroff**
 
-## 2. Installation de win-exporter
+
+## 2. Guide d'Utilisateur pour Prometheus et Grafana avec Docker
+
+### Étapes de Configuration
+
+### Télécharger les Images Docker
+
+`docker pull prom/prometheus`
+
+`docker pull grafana/grafana`
+
+#### Lancer le Conteneur Prometheus
+
+`docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus`
+
+Cela lance un conteneur Prometheus qui sera accessible localement à l'adresse http://localhost:9090.
+
+#### Lancer le Conteneur Grafana
+
+`docker run -d --name=grafana -p 3000:3000 grafana/grafana`
+
+Cela lance un conteneur Grafana qui sera accessible localement à l'adresse http://localhost:3000.
+
+
+## 3. Installation de win-exporter
 
 Pour la supervision, nous sommes passés par `Grafana` et plus particulièrement par `Prometheus` pour récupérer les donneés des machines.
 
@@ -245,7 +269,7 @@ Une fois tout cela fait, redémarrer le service. Quand vous allez sur l'interfac
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/382294f7-eba6-4f56-a4b4-dd7bdeca5aa8)
 
 
-# Installer Node Exporter et ajouter à Prometheus
+## 4. Installer Node Exporter et ajouter à Prometheus
 
 ## Node Exporter
 
@@ -364,31 +388,3 @@ systemctl restart prometheus
 
 ### Vérification
 Pour voir si tout va bien, faites un petit tour sur votre interface Prometheus ([http://prometheus-ip:9090/targets](http://prometheus-ip:9090/targets)) ou Grafana et vérifiez si votre hôte apparaît bien !
-
-
-
-# Guide d'Utilisateur pour Prometheus et Grafana avec Docker
-
-
-## Étapes de Configuration
-
-  ### Télécharger les Images Docker
-
-`docker pull prom/prometheus`
-
-`docker pull grafana/grafana`
-
-#### Lancer le Conteneur Prometheus
-
-`docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus`
-
-Cela lance un conteneur Prometheus qui sera accessible localement à l'adresse http://localhost:9090.
-
-#### Lancer le Conteneur Grafana
-
-`docker run -d --name=grafana -p 3000:3000 grafana/grafana`
-
-Cela lance un conteneur Grafana qui sera accessible localement à l'adresse http://localhost:3000.
-
-
-
