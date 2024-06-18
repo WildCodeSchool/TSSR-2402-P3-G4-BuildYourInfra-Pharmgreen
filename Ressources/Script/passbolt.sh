@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Prérequis
-apt update && apt upgrade -y
-apt install -y curl
-
-# Demande du nom de domaine
-read -p "Entrez votre nom de domaine (par exemple, example.com): " DOMAIN
-
-# Installation des dépendances
+# Step 1. Download our dependencies installation script
+echo "Downloading dependencies installation script..."
 curl -LO https://download.passbolt.com/ce/installer/passbolt-repo-setup.ce.sh
+
+# Step 2. Download our SHA512SUM for the installation script
+echo "Downloading SHA512SUM for the installation script..."
 curl -LO https://github.com/passbolt/passbolt-dep-scripts/releases/latest/download/passbolt-ce-SHA512SUM.txt
 
-sha512sum -c passbolt-ce-SHA512SUM.txt && bash ./passbolt-repo-setup.ce.sh || { echo "Bad checksum. Aborting"; rm -f passbolt-repo-setup.ce.sh; exit 1; }
+# Step 3. Ensure that the script is valid and execute it
+echo "Verifying the script..."
+sha512sum -c passbolt-ce-SHA512SUM.txt && sudo bash ./passbolt-repo-setup.ce.sh || (echo "Bad checksum. Aborting" && rm -f passbolt-repo-setup.ce.sh)
