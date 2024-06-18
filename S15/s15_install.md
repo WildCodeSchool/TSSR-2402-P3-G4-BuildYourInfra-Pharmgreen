@@ -1,8 +1,12 @@
-## Sommaire
+# Sommaire
 
 1. Installation de iRedMail
 
-## Installation
+2. Mise en place d'un serveur backup
+
+## **1. Installation de iRedMail**
+
+### Installation
 
 Tout d'abord :
 
@@ -57,7 +61,7 @@ A la fin vous aurez un message qui ressemblera à ceci, répondez `y` aux 2 ques
 
 Redémarrez.
 
-## Création d'utilisateur
+### Création d'utilisateur
 
 Connectez-vous via le web avec le compte admin créé précédemment :
 
@@ -75,3 +79,53 @@ Vous verrez bien les utilisateurs créés si vous retournez sur la messagerie :
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/f6074c8f-656f-4c1c-a6ee-8b29607a641e)
 
+## **2. Mise en place d'un serveur backup**
+
+#### Création du dossier partagé
+
+Pour mettre en place une backup de notre serveur principal sur un autre serveur, nous avons suivi la méthode suivante :
+
+- Sur le serveur backup, installer Samba : `apt install samba` et ensuite faire un `nano /etc/samba/smb.conf` et y mettre les infos suivantes à la fin du fichier :
+```bash
+[backups]
+path = /mnt/backups
+available = yes
+valid users = Administrator
+read only = no
+browsable = yes
+public = yes
+writable = yes
+```
+
+- Ensuite, créer le répertoire de sauvegarde et définir les permissions :
+```bash
+sudo mkdir -p /mnt/backups
+sudo chown nobody:nogroup /mnt/backups
+sudo chmod 777 /mnt/backups
+```
+
+- Ensuite `useradd Administrator` puis `smbpasswd -a Administrator` et enfin `sudo systemctl restart smbd`.
+
+Nous allons maintenant passer sur le serveur Windows :
+
+#### Monter le partage en tant que lecteur réseau :
+
+- Ouvrez l'Explorateur de fichiers sur Windows Server
+- Cliquez avec le bouton droit sur Ce PC et sélectionnez `Map network drive`
+- Choisissez une lettre de lecteur (par exemple, Z:)
+- Entrez le chemin du réseau sous la forme `\\172.16.3.13\backups`
+- Cochez la case `Reconnect at sign-in`
+- Cliquez sur `Finish` et entrez les informations d'identification Samba lorsque demandé (l'utilisateur créé précédemment).
+
+#### Création de la sauvegarde
+
+- Aller dans Windows Server Backup
+- Cliquer sur `Backup Once`
+- Sélectionner `Full server`
+- `Remote shared folder`
+- Entrer `\\172.16.3.13\backups`
+- Cliquer sur `Backup`
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/ab99327c-105d-4b4a-9481-2afe8c00341d)
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/06a0ec24-3117-483b-9a63-b4a39ebc0669)
