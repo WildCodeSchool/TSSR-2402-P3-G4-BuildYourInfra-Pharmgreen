@@ -362,11 +362,19 @@ curl http://localhost:9100/metrics
 
 ## Ajouter l'hôte à Prometheus
 
+### Pour entrer dans un conteneur Docker et effectuer des opérations, vous pouvez utiliser la commande suivante :
+
+```bash
+docker exec -it <nom_du_conteneur> /bin/bash
+```
+
+Remplacez <nom_du_conteneur> par le nom ou l'ID de votre conteneur.
+
 ### Ajout de l'hôte
 Pour ajouter l'hôte, il faut modifier le fichier de configuration de Prometheus :
 
 ```bash
-nano /etc/prometheus/prometheus.yml
+vi /etc/prometheus/prometheus.yml
 ```
 
 Ajouter un target avec l'adresse IP voulue en dessous du target existant. Exemple avec `192.168.0.2` :
