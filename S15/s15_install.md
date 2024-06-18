@@ -1,3 +1,3 @@
 ## Sommaire
 
-1; Installation de iRedMail
+1. Installation de iRedMail
