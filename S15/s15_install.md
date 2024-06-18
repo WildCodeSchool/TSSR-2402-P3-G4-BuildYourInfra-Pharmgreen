@@ -71,7 +71,7 @@ Puis `Add` et `User` et renseignez les champs nécessaires :
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/e296c11e-d34c-4123-bc98-7e275f221e9d)
 
-Vous verrez bien les utilisateurs créés si vous retournez sur la messagerie ; 
+Vous verrez bien les utilisateurs créés si vous retournez sur la messagerie :
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/f6074c8f-656f-4c1c-a6ee-8b29607a641e)
 
