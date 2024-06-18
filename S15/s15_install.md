@@ -49,4 +49,8 @@ Sélectionner `y` :
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/6d567e8f-6fcf-4556-9872-4657c2e17477)
 
+A la fin vous aurez un message qui ressemblera à ceci, répondez `y` aux 2 questions :
 
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/21c2b48e-5277-4e13-b487-222f0575edb8)
+
+Redémarrez.
