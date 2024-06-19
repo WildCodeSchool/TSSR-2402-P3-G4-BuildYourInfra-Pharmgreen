@@ -129,3 +129,5 @@ Nous allons maintenant passer sur le serveur Windows :
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/ab99327c-105d-4b4a-9481-2afe8c00341d)
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/06a0ec24-3117-483b-9a63-b4a39ebc0669)
+
+Le serveur est backup tous les jours à 21h, la sauvegarde précédente est écrasée à chaque fois.
