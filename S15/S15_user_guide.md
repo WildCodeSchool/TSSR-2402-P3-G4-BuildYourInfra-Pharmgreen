@@ -18,7 +18,8 @@
 
 ### 2. Onglet apercue 
 
-- dans l'onglet apercue vous avez un resumé du projet 
+- dans l'onglet apercue vous avez un resumé du projet
+
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/78162995-4369-4369-b1af-9c2213811502)
 
 
