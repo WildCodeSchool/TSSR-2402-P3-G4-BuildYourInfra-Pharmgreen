@@ -10,4 +10,4 @@ curl -LO https://github.com/passbolt/passbolt-dep-scripts/releases/latest/downlo
 
 # Step 3. Ensure that the script is valid and execute it
 echo "Verifying the script..."
-sha512sum -c passbolt-ce-SHA512SUM.txt && sudo bash ./passbolt-repo-setup.ce.sh || (echo "Bad checksum. Aborting" && rm -f passbolt-repo-setup.ce.sh)
+sha512sum -c passbolt-ce-SHA512SUM.txt && bash ./passbolt-repo-setup.ce.sh || (echo "Bad checksum. Aborting" && rm -f passbolt-repo-setup.ce.sh)
