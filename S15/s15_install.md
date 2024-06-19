@@ -120,7 +120,7 @@ Nous allons maintenant passer sur le serveur Windows :
 #### Création de la sauvegarde
 
 - Aller dans Windows Server Backup
-- Cliquer sur `Backup Once`
+- Cliquer sur `Backup Schedule`
 - Sélectionner `Full server`
 - `Remote shared folder`
 - Entrer `\\172.16.3.13\backups`
