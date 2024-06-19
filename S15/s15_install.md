@@ -4,6 +4,8 @@
 
 2. Mise en place d'un serveur backup
 
+3. Installation de Redmine
+
 ## **1. Installation de iRedMail**
 
 ### Installation
@@ -131,3 +133,48 @@ Nous allons maintenant passer sur le serveur Windows :
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/06a0ec24-3117-483b-9a63-b4a39ebc0669)
 
 Le serveur est backup tous les jours à 21h, la sauvegarde précédente est écrasée à chaque fois.
+
+## **3. Installation de RedMine**
+
+- recuperer le container Redmine et pendant l'instalation il vous suffira juste de rentrer le mot de passe administarteur pour vous connecter plus tard
+
+## Configuration Redmine
+
+### lié l'annuaire LDAP a Redmine
+
+- une fois connecter avec le compte admin dont vous avez definit le mot de passe lors de l'instalation allez dans l'onglet Administration -> Authentification LDAP
+
+- cliquer sur `Nouveau mode d'authentification` remplissez comme cela et sauvegarder
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/35143d93-ec6e-4adb-9c23-2fb648cab6f2)
+
+
+- ensuite cliquer sur tester pour verifier que vous etes bien connecter a votre annuaire LDAP
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/9ef2bfe9-1464-4e6f-b8a1-ff587c924ed0)
+
+
+## importer vos utilisateurs avec un CSV
+
+- allez dans Administration -> Utilisateurs
+- a coter du boutons Nouvel utilisateur il y a 3 petits points cliquer dessus et choisisez importer
+- selectionner votre fichier csv
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b1dedb3e-4e2f-42c3-b709-5d13f50bc9b1)
+
+
+- faite suivant et choisir les options par raport a votre fichier CSV
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/4eff5a80-a3db-4a13-a7f3-151207b10df8)
+
+
+- faite suivant et remplisser les champs dont vous avez besoin
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/c839ffc5-34f3-41de-baca-92b623322934)
+
+
+- ensuite cliquer sur le bouton importer
+
+
+
+
