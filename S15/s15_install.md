@@ -176,5 +176,188 @@ Le serveur est backup tous les jours à 21h, la sauvegarde précédente est écr
 - ensuite cliquer sur le bouton importer
 
 
+# Guide d'installation de Passbolt sur Debian 12 (Bookworm) CE
+
+## Prérequis
+
+Pour ce tutoriel, vous aurez besoin de :
+
+- Un serveur minimal Debian 12.
+- Un domaine ou un nom d'hôte pointant vers votre serveur, ou au moins être capable de joindre votre serveur via une adresse IP statique.
+- Un serveur SMTP fonctionnel pour les notifications par email.
+- Un service NTP fonctionnel pour éviter les problèmes d'authentification GPG.
+
+Les recommandations pour le serveur sont :
+
+- 2 cœurs
+- 2 Go de RAM
+
+Pages FAQ :
+
+- [Configuration de NTP](https://www.ntp.org/)
+- [Règles du pare-feu](https://www.debian.org/doc/manuals/securing-debian-howto/ch-sec-services.fr.html)
+
+**Remarque :**
+Il est important d'utiliser un serveur vierge sans autres services ou outils déjà installés dessus. Les scripts d'installation pourraient potentiellement endommager les données existantes sur votre serveur.
+
+**Astuce :**
+Si vous envisagez de provisionner manuellement des certificats SSL, il est conseillé de le faire avant de commencer !
+
+## Configuration du dépôt de paquets
+
+Pour faciliter les tâches d'installation et de mise à jour, Passbolt fournit un dépôt de paquets que vous devez configurer avant de télécharger et d'installer Passbolt CE.
+
+### Étape 1. Téléchargez notre script d'installation des dépendances :
+
+```bash
+curl -LO https://download.passbolt.com/ce/installer/passbolt-repo-setup.ce.sh
+```
+
+### Étape 2. Téléchargez notre SHA512SUM pour le script d'installation :
+
+```bash
+curl -LO https://github.com/passbolt/passbolt-dep-scripts/releases/latest/download/passbolt-ce-SHA512SUM.txt
+```
+
+### Étape 3. Vérifiez que le script est valide et exécutez-le :
+
+```bash
+sha512sum -c passbolt-ce-SHA512SUM.txt && sudo bash ./passbolt-repo-setup.ce.sh || echo "Mauvais checksum. Abandon" && rm -f passbolt-repo-setup.ce.sh
+```
+
+## Installation du paquet officiel passbolt
+
+```bash
+sudo apt install passbolt-ce-server
+```
+
+## Configuration de MariaDB
+
+Si aucune instruction contraire n'est donnée, le paquet Debian de passbolt installera MariaDB-server localement. Cette étape vous aidera à créer une base de données MariaDB vide pour que passbolt puisse l'utiliser.
+
+### Dialogue de configuration de la base de données
+
+Le processus de configuration vous demandera les identifiants de l'utilisateur administrateur de MariaDB pour créer une nouvelle base de données. Par défaut, dans la plupart des installations, le nom d'utilisateur administrateur serait `root` et le mot de passe serait vide.
+
+### Créez un utilisateur MariaDB avec des permissions réduites
+
+Ces valeurs seront également demandées plus tard dans l'outil de configuration web de passbolt, donc veuillez les garder à l'esprit.
+
+![cmbd1](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/b13be6dd-8fbd-4665-a7b3-83184bd90a1b)
+
+![cmbd4](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/96b9f882-56b4-4a9e-8eca-9f5456a9eb5d)
+
+### Créez une base de données pour passbolt
+
+Donnez un nom à la base de données.
+
+![cmbd5](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/8cff5d31-5c1c-4079-a852-0184392f577b)
+
+## Configuration de Nginx pour servir HTTPS
+
+En fonction de vos besoins, il existe deux options pour configurer Nginx et SSL en utilisant le paquet Debian :
+
+- Automatique (Utilisation de Let's Encrypt)
+- Manuel (Utilisation de certificats SSL fournis par l'utilisateur)
+
+## Configuration de passbolt
+
+Avant de pouvoir utiliser l'application, vous devez la configurer. Pointez votre navigateur vers le nom d'hôte ou l'IP où passbolt peut être atteint. Vous atteindrez une page de démarrage.
+
+### 2.1. Vérification de l'état
+
+La première page de l'assistant vous indiquera si votre environnement est prêt pour passbolt. Résolvez les problèmes s'il y en a et cliquez sur "Démarrer la configuration" lorsque vous êtes prêt.
+
+<img width="640" alt="web-installer-ce-healthcheck" src="https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/62b2f933-f301-4d80-8671-e30eefb8a655">
+
+### 2.2. Base de données
+
+Cette étape consiste à indiquer à passbolt quelle base de données utiliser. Entrez le nom d'hôte, le numéro de port, le nom de la base de données, le nom d'utilisateur et le mot de passe.
+
+![web-installer-ce-database](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/ecda1297-dcef-45ec-90bd-1830f1d92adc)
+
+### 2.3. Clé GPG
+
+Dans cette section, vous pouvez soit générer, soit importer une paire de clés GPG. Cette paire de clés sera utilisée par l'API passbolt pour s'authentifier lors du processus de connexion. Générez une clé si vous n'en avez pas.
+
+```bash
+gpg --batch --no-tty --gen-key <<EOF
+    Key-Type: default
+    Key-Length: 2048
+    Subkey-Type: default
+    Subkey-Length: 2048
+    Name-Real: John Doe
+    Name-Email: email@domain.tld
+    Expire-Date: 0
+    %no-protection
+    %commit
+EOF
+```
+
+Remplacez `Name-Real` et `Name-Email` par vos propres informations.
+
+Pour afficher votre nouvelle clé :
+
+```bash
+gpg --armor --export-secret-keys email@domain.tld
+```
+
+![web-installer-ce-server-key-import](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/7cc97bf0-0e9a-4732-b05d-b86750ab3a4b)
+
+### 2.4. Serveur Mail (SMTP)
+
+À ce stade, l'assistant vous demandera de saisir les détails de votre serveur SMTP.
+
+Vous pouvez également tester que votre configuration est correcte en utilisant la fonctionnalité d'email de test sur la droite de votre écran. Entrez l'adresse email à laquelle vous souhaitez que l'assistant envoie un email de test et cliquez sur "Envoyer l'email de test".
+
+![web-installer-ce-email](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/77c8bff8-aba5-4272-a512-dfea0e8fe9b8)
+
+### 2.5. Préférences
+
+L'assistant vous demandera ensuite quelles préférences vous préférez pour votre instance de passbolt. Les valeurs par défaut recommandées sont déjà pré-remplies mais vous pouvez également les changer si vous savez ce que vous faites.
+
+### 2.6. Création du premier utilisateur
+
+Vous devez créer le premier compte administrateur. Cet utilisateur administrateur sera probablement vous, alors entrez vos informations et cliquez sur suivant.
+
+![web-installer-ce-first-user](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/8d116d25-0da8-4032-b78b-4d29c8811d43)
+
+### 2.7. Installation
+
+C'est tout. L'assistant a maintenant suffisamment d'informations pour procéder à la configuration de passbolt. Asseyez-vous et détendez-vous pendant quelques secondes pendant que le processus de configuration est en cours.
+
+Votre compte utilisateur est maintenant créé. Vous verrez une page de redirection pendant quelques secondes puis vous serez redirigé vers le processus de configuration utilisateur pour que vous puissiez configurer votre compte utilisateur.
+
+### 2.8. Processus de configuration HTTPS
+
+Passbolt Pro VM utilise le paquet Debian passbolt. En fonction de vos besoins, il existe deux options pour configurer Nginx et SSL en utilisant le paquet Debian :
+
+- Automatique (Utilisation de Let's Encrypt)
+- Manuel (Utilisation de certificats SSL fournis par l'utilisateur)
+
+## Configuration de votre compte administrateur
+
+### 3.1. Téléchargez le plugin
+
+Avant de continuer, passbolt vous demandera de télécharger son plugin. Si vous l'avez déjà installé, vous pouvez passer à l'étape suivante.
+
+### 3.2. Créez une nouvelle clé
+
+Passbolt vous demandera de créer ou d'importer une clé qui sera utilisée ultérieurement pour vous identifier et chiffrer vos mots de passe. Votre clé doit être protégée par un mot de passe. Choisissez-le judicieusement, il sera le gardien de tous vos autres mots de passe.
+
+### 3.3. Téléchargez votre kit de récupération
+
+Cette étape est essentielle. Votre clé est le seul moyen d'accéder à votre compte et à vos mots de passe. Si vous perdez cette clé (en cassant ou en perdant votre ordinateur et en n'ayant pas de sauvegarde, par exemple), vos données chiffrées seront perdues même si vous vous souvenez de votre mot de passe.
+
+### 3.4. Définissez votre jeton de sécurité
+
+Choisir une couleur et un jeton de trois caractères est un mécanisme de sécurité secondaire qui vous aide à atténuer les attaques de phishing. Chaque fois que vous effectuez une opération sensible sur passbolt, vous devriez voir ce jeton.
+
+### 3.5. C'est fini !
+
+Votre compte administrateur est configuré. 
+
+
+
 
 
