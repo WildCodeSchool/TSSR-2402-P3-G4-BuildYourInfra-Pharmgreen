@@ -138,7 +138,42 @@ Le serveur est backup tous les jours à 21h, la sauvegarde précédente est écr
 
 ## **3. Installation de RedMine**
 
-- recuperer le container Redmine et pendant l'instalation il vous suffira juste de rentrer le mot de passe administarteur pour vous connecter plus tard
+### Pré-requis pour Redmine  
+Pour importer les utilisateur une fois Redmine configurer et installer, vous aurez besoin d'un fichier CSV.  
+Pour se faire, nous vous conseillons de récupérer le fichier CSV utiliser pour la gestion des données de l'Active Directory crééer via le script suivant :  
+[Mise en forme CSV](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/blob/main/Ressources/Script/mise_en_forme_CSV.ps1) ==> Bien vérifier que le fichier Excel utilisé est le dernier à jour.  
+Une fois la mise en forme effectué, ouvrez le fichier CSV normalement l'affichage ne sera pas otptimal :  
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/bdae8740-3252-4756-bfeb-97a3dc84a0bb)  
+Il va falloir le remettre en forme : (Manipulation à effectuer avec Excel, pour un autre logiciel la manipulation devrait être identique)  
+- Sélectionnez la colonne **A**.  
+- Puis selectionnez la barre de menu supérieur **Données**, puis *Convertir**.  
+- Sélectionnez **Délimité**, cliquez sur **Suivant**.  
+- Sélectionnez **Virgule** pour les séparateurs, déselectionner le rester et cliquez sur **Terminer**.  
+
+Votre fichier CSV est maintenant exploitable :  
+- Supprimez toutes les colonne et ne conservez que les deux premières (Prénom et Nom).  
+- Puis sauvegardez votre novueau fichiers au format CSV et le nommez comme vous le voulez ici **import_Redmine.csv**  
+
+Nous allons maintenant le mettre en forme pour qu'il soit exploitable par Redmine, il devrait normalement être comme ça :  
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/e1b7f85e-ab7d-4ded-bd96-5437795d39f3)  
+- Créez les colonne suivantes **Identifiant**, **Email**, **Société**
+- Sélectionnez le premier champs libre de la colonne C (nom de colonne **Identifiant**) et appuyez sur l'icone **Fonction** dans le champs de texte :  
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/e18a1abb-bec1-48bc-a8e4-363941d00270)
+- Cherchez la fonction **Concat** dans la catégorie **Toutes**
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/7b2f780a-3825-4ddc-a6c8-5c7813014355)
+- Configuez la fonction comme cela, `Texte1=A2`(correspond au prénom) , `Texte2=.`, `Texte3=B2` (correspond au nom) et cliquez sur **OK** :
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b0372f10-4fe0-4ec2-b14e-37270a7465cb)
+- Etandez le nouveeau champs créé jusqu'a la fin des champs de texte :
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b8243fae-f144-4b70-88d0-6778a07bf1b7)
+- Vous devriez avoir le résultat suivant :
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/3c1858c4-f7e7-4edc-87c1-23163df7d687)
+- Faire de même pour la colonne **Email** avec`Texte1=C2`(correspond au prénom) , `Texte2=@pharmgreen.org`, 
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/9a0fba84-1993-48c0-ad57-b19cd952c100)
+- Le résultat finale devrait ressemblé à ça :
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/56c61971-e9b5-421c-97bd-72c05e7a4126)  
+Voila vous avez un fichier CSV complet, libre à vous de rajouter des colonnes pour facilitez l'intégrations des utilisateurs sous Redmine.
+
+- Recuperer le container Redmine et pendant l'instalation il vous suffira juste de rentrer le mot de passe administarteur pour vous connecter plus tard
 
 ## Configuration Redmine
 
