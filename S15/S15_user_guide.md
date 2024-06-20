@@ -92,18 +92,13 @@ Bienvenue dans le guide d'utilisation de Passbolt, une solution de gestion de mo
 
 ## Table des Matières
 
-1. [Introduction](#introduction)
-2. [Configuration Initiale](#configuration-initiale)
-3. [Gestion des Mots de Passe](#gestion-des-mots-de-passe)
-4. [Partage des Mots de Passe](#partage-des-mots-de-passe)
-5. [Gestion des Utilisateurs et des Groupes](#gestion-des-utilisateurs-et-des-groupes)
-6. [Sécurité et Bonnes Pratiques](#sécurité-et-bonnes-pratiques)
-7. [Dépannage et Support](#dépannage-et-support)
-8. [FAQ](#faq)
-
-## Introduction
-
-Passbolt est un gestionnaire de mots de passe conçu pour les équipes. Il offre des fonctionnalités de partage sécurisé de mots de passe, d'audit et de gestion des utilisateurs. Passbolt est disponible sous forme de plugin pour navigateur, et une version auto-hébergée est également disponible pour un contrôle total sur vos données.
+1. [Configuration Initiale](#configuration-initiale)
+2. [Gestion des Mots de Passe](#gestion-des-mots-de-passe)
+3. [Partage des Mots de Passe](#partage-des-mots-de-passe)
+4. [Gestion des Utilisateurs et des Groupes](#gestion-des-utilisateurs-et-des-groupes)
+5. [Sécurité et Bonnes Pratiques](#sécurité-et-bonnes-pratiques)
+6. [Dépannage et Support](#dépannage-et-support)
+7. [FAQ](#faq)
 
 ## Configuration Initiale
 
