@@ -5,6 +5,8 @@
 2. Mise en place d'un serveur backup
 
 3. Installation de Redmine
+   
+4. Installation de passbolt
 
 ## **1. Installation de iRedMail**
 
@@ -176,7 +178,7 @@ Le serveur est backup tous les jours à 21h, la sauvegarde précédente est écr
 - ensuite cliquer sur le bouton importer
 
 
-# Guide d'installation de Passbolt sur Debian 12 (Bookworm) CE
+# 4. Installation de Passbolt sur Debian 12 (Bookworm) CE
 
 ## Prérequis
 
