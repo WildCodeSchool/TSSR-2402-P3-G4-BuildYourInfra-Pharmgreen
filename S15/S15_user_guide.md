@@ -1,6 +1,6 @@
 # Sommaire
 
-1. RedMail
+1. RedMine
 
 2. Passbolt
 
@@ -30,49 +30,49 @@
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/78162995-4369-4369-b1af-9c2213811502)
 
 
-### 2. Onglet Activité
+### 3. Onglet Activité
 
 - dans cette onglet vous pouvez voir toutes activitées qui ont été faite sur le projet 
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/e16c64b8-e5fe-44ce-9f24-970caf8ad77c)
 
 
-### 3. Onglet demandes
+### 4. Onglet demandes
 
 - dans cette onglet vous pouvez voir les demandes effectuer Feature,Bug ou support
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/b7e6fa6a-d804-4765-a79b-68db7e75d84e)
 
 
-### 4. Onglet Calendrier
+### 5. Onglet Calendrier
 
 - ici vous pouvez voir toutes les taches ajouter par jour 
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/d45696f3-d29c-4ca0-a77e-84fa695be71c)
 
 
-### 5. Onglet Annonces
+### 6. Onglet Annonces
 
 - ici vous pouvez poster des annonces
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/ba86a500-0f0b-4011-980d-c488eb22c855)
 
 
-### 6. Onglet Document
+### 7. Onglet Document
 
 - Ici vous pouvez importer des document
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/5dd1bb9c-d6b2-4117-853c-87e5dfbfbea2)
 
 
-### 6. Onglet Wiki
+### 8. Onglet Wiki
 
 - Ici vous pouvez creer votre wiki ou importer directement un fichier
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/9fb9f1a8-2c56-4283-bf53-cbc85d0af366)
 
 
-### 7. Onglet Fichiers
+### 9. Onglet Fichiers
 
 -Ici vous importer des fichiers
 
@@ -80,11 +80,20 @@
 
 
 
-### 7. Onglet Configuration
+### 10. Onglet Configuration
 
 - Ici vous pourrez configurer tout votre Projet
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/7c1df10c-6fe6-4f67-8908-d40243de1bee)
+
+### 10. Ajout projet github
+- pour ajouter un projet a github a RedMine connecter vous au serveur RedMine et choisir un emplacement ou cloner votre projet github
+- cloner votre projet en utilisant la commande gitclone --bare https://chemin/de/repo/github NomProjet
+- ensuite rendez vous sur la page web administartion de RedMine aller dans configuration -> depot et configurer comme cela
+
+  ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/1dab54c8-0eaf-4e9c-a6b3-a14e94936cf7)
+
+
 
 # 2. Passbolt
 
