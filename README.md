@@ -110,6 +110,18 @@ Activités et répartition des tâches
 | Maxime  | Grafana, Prometheus |
 | Bruno (PO) | Scripts, Journalisation |
 
+### **Sprint 7 : semaine du 24 au 28 juin 2024**
+
+Activités et répartition des tâches
+
+| **NOM** | **Tâches effectuées** |
+| :--: | :----------: |
+| Pierre | RedMine |
+| Julien | iRedMail, serveur backup |
+| Maxime (PO) | Passbolt |
+| Bruno (SM) | Finalisation de la journalisation, RedMine |
+
+
 ### **Configuration Réseau**
 
 | **NOM POSTE PROXMOX** | **ADRESSE IP** | **ROLE** |
