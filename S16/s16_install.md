@@ -1,4 +1,4 @@
-Sommaire :
+# Sommaire :
 
 1. Transfert des rôles FSMO
 2. Installation d'un serveur WSUS 
