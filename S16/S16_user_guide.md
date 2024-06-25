@@ -80,10 +80,33 @@ En fait, il y a le choix entre des rapports de synthèse et des rapports détail
 ### Options 
 
 La section **Option** est très complet puisqu’il va permettre de paramétrer le serveur WSUS en lui-même, et notamment réviser les paramètres définis lors de la configuration initiale.  
-Autrement dit, cette section va permettre de gérer les produits à synchroniser, mais aussi les langues et les types de mises à jour, ainsi que les règles d’approbations automatiques (par exemple : « approuver automatiquement toutes les mises à jour de sécurité pour Windows 10 »).
-Lorsque l’on cherche à faire du nettoyage dans la base WSUS, c’est également ici qu’il faut se rendre grâce au **Server Cleanup Wizard**.
-Comme dit précédemment on peut affiner les règles d'approbations, pour cela il suffit de cliquer sur **Automatic Approvals**.
+Autrement dit, cette section va permettre de gérer les produits à synchroniser, mais aussi les langues et les types de mises à jour, ainsi que les règles d’approbations automatiques (par exemple : « approuver automatiquement toutes les mises à jour de sécurité pour Windows 10 »).  
+Lorsque l’on cherche à faire du nettoyage dans la base WSUS, c’est également ici qu’il faut se rendre grâce au **Server Cleanup Wizard**.  
+Comme dit précédemment on peut affiner les règles d'approbations, pour cela il suffit de cliquer sur **Automatic Approvals**.  
 Par défaut, il y a une règle qui est configurée pour approuver automatiquement toutes les mises à jour critiques et toutes les mises à jour de sécurité, pour le groupe **All Computers**.   
-Pour activer cette règle, il faut cocher la case et cliquer sur le bouton `Run Rule`.
-Vous pouvez créer vos propres règles pour approuver les mises à jour correspondant à certains produits spécifiques ou uniquement certains groupes.
-C’est une fonctionnalité très intéressante, car elle facilite le processus d’approbation des mises à jour grâce à l’approbation automatique selon certains critères.
+Pour activer cette règle, il faut cocher la case et cliquer sur le bouton `Run Rule`.  
+![7](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/45d98e90-04bf-4a27-baf5-6bbb675f086b)  
+Dans notre exemple, on a choisit les mise à jours Critiques et de Sécurité pour le groupe d'ordinateur **Poste_Travail**.   
+Vous pouvez créer vos propres règles pour approuver les mises à jour correspondant à certains produits spécifiques ou uniquement certains groupes.  
+C’est une fonctionnalité très intéressante, car elle facilite le processus d’approbation des mises à jour grâce à l’approbation automatique selon certains critères.  
+
+## 2.  Intégration des ordinateurs dans WSUS    
+
+### Création de groupe d'ordinateurs
+
+Avec la configuration par défaut de WSUS, lorsqu’une nouvelle machine est liée au serveur WSUS, elle ira se positionner dans le groupe d’ordinateurs nommé **Unassigned Computers**.  
+Cela n'est pas le plus optimal, donc on créér des groupes d'ordinateurs pour pouvoir affecter automatiquement les ordinateurs dans leur groupe adéquate et gérer le tout par GPO.
+Pour utiliser ce mode de fonctionnement :
+- Cliquez sur **Options**.
+- Cliquez sur **Computers**.
+- Cochez l’option `Use Group Policy or registry settings on computers`
+- Puis validez votre choix.
+
+Ensuite selectionnez la section **Computers** puis sur **All computers** faites un clique droit et cliquez sur `Add Computer Group`.  
+Vous pouvez en crééer autant que vous voulez, dans notre exemple on va en crééer trois :  
+- Poste_Travail ==> pour tout les postes clients en Windows 10.  
+- Serveur ==> pour tout les serveurs Windows.  
+- Domain_Controllers ==> pour tout les Serveur faisant office de Controleur de Domaine.  
+A la fin cela devrait ressembler à cela :  
+![8](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b5585ba3-9375-4b84-a2af-3aafcb4d62a4)
+
