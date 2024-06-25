@@ -110,3 +110,50 @@ Vous pouvez en crééer autant que vous voulez, dans notre exemple on va en cré
 A la fin cela devrait ressembler à cela :  
 ![8](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/b5585ba3-9375-4b84-a2af-3aafcb4d62a4)
 
+### Création des GPO 
+
+Il faut tout d'abord crééer une première GPO pour les paramètres commun de WSUS que l'on va nommer `GPO_WSUS_Commun`
+On va faire les paramètres suivants :
+- chemin : `Computer Configuration/Policies/Administrative Template/Windows Components/Windows Updates/Configure Automatic Updates`
+![10](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/f6e6e553-53b7-4b9d-b64f-9f86b4fc4976)
+
+    - Premièrement WSUS va télécharger et installer quand elles sont approuvées en amont sur le serveur WSUS.
+    - Tout les mercredi à midi.
+    - les troisièmes et quatrième semaine du mois.
+    - Microsfot publie généralement les mise le second mardi du mois. Cela permet d'attendre une semaine avant leur installation et donc d'avoir les dernières mise à jour à niveaux.
+
+- chemin : `Computer Configuration/Policies/Administrative Template/Windows Components/Windows Updates/Specify intranet Microsoft update service location`  
+![11](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/a8e779ac-12f6-4577-8fa4-daa1303aa58c)
+
+    - Remplissez les deux premiers champs avec l'adresse de notre serveur WSUS, dans notre cas `http://winserv.pharmgreen.org:8530`
+    - Cela indique ou sont stocker et télécharger les mises à jour pour leur publication.
+
+- chemin : `Computer Configuration/Policies/Administrative Template/Windows Components/Windows Updates/Do not connect to any Windows Update internet locations`
+    - Cocher `Enable`
+    - Cela permet d’empêcher les machines de se connecter sur les serveurs Microsoft Update pour appliquer des mises à jour.
+
+On va ensuite créer une GPO pour le groupe de PC client que l'on va nommer `GPO_WSUS_Poste_Travail`
+![12](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/98559772-bfd1-4938-a3f6-6fc7491f242c)
+ - Le premier paramètre `Enable client-side targeting` permet de lier la GPO à un groupe d'ordinateur créer sous le console WSUS ici **Poste_Travail** pour les PC clients.  
+ - Le second pramètre `Turn off auto-restart for updates during active hours`, cela permet de Désactiver le redémarrage automatique pour les mises à jour pendant les heures d’activité dans le but d’éviter les redémarrages intempestifs pendant les heures de traval.
+ - Libre à vous de définir la plage horaire adéquate.
+
+On peut ensuite faire de même avec une GPO pour le serveur et les domaines controller, penser à affiner la plage horaire pour que cela ne gène pas les actiivté quotidiennes des serveurs et domain controllers.  
+
+Il faut ensuite lier les GPO aux bonnes OU :  
+- La GPO `GPO_WSUS_Commun` sera lié directement à la racine du domaine
+- La GPO `GPO_WSUS_Poste_Travail` sera lié à l'OU **Computer_Pharmgreen** qui est l'OU ou les ordinateurs clients sont affectés.
+
+### Test de la GPO
+
+Il suffit ensuite de se connecter sur un des ordinateur client, dans notre cas on va se connecter au **PC-PI-0001**, à l'aide de l'invite de commande ou du terminal powershell on envoit la commande suivante : `gpupdate /force`.  
+Ensuite on redémarre le poste.
+Sur la console de management de WSUS, on voit bien que dans le groupe **Poste_Travail**, l'ordinateur est bien présent et en attente de mise à jour.
+![13](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/32643bb9-c2c4-4f96-98c2-c1638fcccc6c)  
+
+Sur le poste en lui même, on voit bien que les mises à jours sont gérées par une stratégie de groupe :  
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/159529274/596c9d3d-6bbb-4e1c-b7eb-d8ad77d3c9f5)
+
+
+
+
