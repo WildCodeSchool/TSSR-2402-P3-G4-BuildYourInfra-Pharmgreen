@@ -1,10 +1,11 @@
 1) Installation de CloneZilla
 
-2) Installation de win-exporter
+2) Création de conteneur grafana et prometheus
 
-3) Installation de node_exporter
+3) Installation de win-exporter
 
-4) Création de conteneur grafana et prometheus
+4) Installation de node_exporter
+
 
 ## 1. Instalation de CLoneZilla
 
@@ -235,13 +236,13 @@
 
 `docker run --name prometheus -d -p 127.0.0.1:9090:9090 prom/prometheus`
 
-Cela lance un conteneur Prometheus qui sera accessible localement à l'adresse http://localhost:9090.
+Cela lance un conteneur Prometheus qui sera accessible localement à l'adresse http://adresse_ip_conteneur:9090.
 
 #### Lancer le Conteneur Grafana
 
 `docker run -d --name=grafana -p 3000:3000 grafana/grafana`
 
-Cela lance un conteneur Grafana qui sera accessible localement à l'adresse http://localhost:3000.
+Cela lance un conteneur Grafana qui sera accessible localement à l'adresse http://adresse_ip_conteneur:3000.
 
 
 ## 3. Installation de win-exporter
