@@ -177,9 +177,9 @@ function ModifyUserInfo
 
 ### Chemin des dossiers et fichiers à lire et exploiter
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
-$File = "$FilePath\\s09_Pharmgreen.csv"
-$LogPath = "C:\\Log\\"
-$LogFile = "$LogPath\\Log_ScripModif_User.log"
+$File = "$FilePath\s14_Pharmgreen.csv"
+$LogPath = "C:\Log"
+$LogFile = "$LogPath\Log_Script_Modif_User.log"
 
 # Crée le dossier s'il n'existe pas
 if (-Not (Test-Path -Path $LogPath)) {
@@ -200,16 +200,22 @@ If (-not(Get-Module -Name activedirectory))
     Import-Module activedirectory
 }
 
-# Gestion des messages d'erreur
-
 ############## APPEL FONCTION ######################
 
-# Initialisation fonction LOG
-Write-Host "Début de modification des informations utilisateurs" -ForegroundColor Blue
-Write-Host ""
+Write-Host "Debut modification des informations utilsiateurs " -ForegroundColor Blue
+Write-Host "" 
 ModifyUserInfo
-Write-Host "Fin de modification des informations utilisateurs" -ForegroundColor Blue
-Write-Host ""
+Write-Host "" 
+Write-Host "Fin des modifications des informations utilsiateurs " -ForegroundColor Blue
+Write-Host "" 
 Read-Host "Appuyez sur Entrée pour continuer ... "
+sleep -Seconds 1
+clear-host
+
+Write-Host "Reportez vous au fichier Log $LogFile pour vérifier si il y a eu des souci lors de l'exécution du script et si il y a des utilisateurs qui doivent être modifié manuellement" -ForegroundColor blue
+Write-Host "" 
+Read-Host "Appuyez sur Entrée pour continuer ... "
+sleep -Seconds 1
+clear-host
 
 ############## FIN DU SCRIPT ######################

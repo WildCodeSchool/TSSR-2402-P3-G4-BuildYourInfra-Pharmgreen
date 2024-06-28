@@ -10,6 +10,47 @@
 
 ############## DEBUT FONCTION ######################
 
+# Fonction Log
+function Log
+{
+    param([string]$Content,[string]$Head)
+
+    # Vérifie si le fichier existe, sinon le crée
+    # Construit la ligne de journal
+    $Date = Get-Date -Format "MM-dd-yyyy"  
+    $Heure = Get-Date -Format "HH:mm:ss.fffffff"  
+    $User = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $Thread = [Threading.Thread]::CurrentThread.ManagedThreadId
+    switch ($Head) 
+        {
+            "INFO" {   
+                    $Entete = "INFO - Message information"
+                    $Type=0 
+                    }
+            "DEBUG" { 
+                    $Entete = "DEBUG - Message debugage"
+                    $Type=4 
+                    }
+            "TRACE" { 
+                    $Entete = "TRACE - Message tracabilite" 
+                    $Type=0 
+                    }
+            "ERROR" { 
+                    $Entete = "ERROR - Message erreur" 
+                    $Type=2 
+                    }
+            "FATAL" { 
+                    $Entete = "FATAL - Message critique" 
+                    $Type=3 
+                    }
+        }
+
+   $logLine = "<![LOG[$Content]LOG]!><time=`"$Heure`" date=`"$Date`" component=`"$Entete`" context=`"$User`" type=`"$Type`" thread=`"$Thread`" file=`"$User`">"
+
+    # Ajoute la ligne de journal au fichier
+    Add-Content -Path $LogFile -Value $logLine
+}
+
 # Fonction création groupe OU et affection groupe user principal
 function FctCreationGroupeOU
 {
@@ -37,15 +78,19 @@ function FctCreationGroupeOU
                                 Write-Host "Création du groupe $NomGroupe dans l'OU $PathOU réussie" -ForegroundColor Green
                                 Add-ADGroupMember -Identity "GRP_U_Users" -Members $NomGroupe
                                 Write-Host "Ajout groupe $NomGroupe dans le GRP_U_Users réussit" -ForegroundColor Green
+                                Log -FilePath $LogFile -Content "Création du groupe $NomGroupe dans l'OU $PathOU réussie" -Head "INFO"
+                                Log -FilePath $LogFile -Content "Ajout groupe $NomGroupe dans le GRP_U_Users réussit" -Head "INFO"
                         }
                         Catch 
                         { 
                                 write-host "Création du groupe $NomGroupe dans l'OU $PathOU échoué" -ForegroundColor red
+                                Log -FilePath $LogFile -Content "Création du groupe $NomGroupe dans l'OU $PathOU échoué"  -Head "FATAL"
                         }
                         }
                 Else
                         {
                         Write-Host "Le groupe $NomGroupe dans l'OU $PathOU existe déjà" -ForegroundColor Yellow
+                        Log -FilePath $LogFile -Content "Le groupe $NomGroupe dans l'OU $PathOU existe déjà" - -Head "ERROR"
                         }
                 $Count++
                 sleep -Milliseconds 100
@@ -84,15 +129,18 @@ function FctCreationGroupeSousOU
                                 {
                                         New-AdGroup -Name $NomGroupe -Path $PathService -GroupScope Global -GroupCategory Security
                                         Write-Host "Création du groupe $NomGroupe dans l'OU $PathService réussie" -ForegroundColor Green
+                                        Log -FilePath $LogFile -Content "Création du groupe $NomGroupe dans l'OU $PathService réussie" -Head "INFO"
                                 }
                                 Catch 
                                 { 
                                         write-host "Création du groupe $NomGroupe dans l'OU $PathService échoué" -ForegroundColor red
+                                        Log -FilePath $LogFile -Content "Création du groupe $NomGroupe dans l'OU $PathService échoué" -Head "FATAL"
                                 }
                                 }
                         Else
                                 {
                                 Write-Host "Le groupe $NomGroupe dans l'OU $Path existe déjà" -ForegroundColor Yellow
+                                Log -FilePath $LogFile -Content "Le groupe $NomGroupe dans l'OU $Path existe déjà"  -Head "ERROR"
                                 }
 
                         $Count++
@@ -132,15 +180,18 @@ function FctAffectationGroupeSousOU
                                 {
                                         Add-ADGroupMember -Identity $NomGroupMember -Members $NomGroupe
                                         Write-Host "Ajout groupe $NomGroupe dans le $NomGroupMember réussit" -ForegroundColor Green
+                                        Log -FilePath $LogFile -Content "Ajout groupe $NomGroupe dans le $NomGroupMember réussit" -Head "INFO"
                                 }
                                 Catch 
                                 { 
-                                        write-host "Ajout groupe $NomGroupe dans le $NomGroupMember échoué " -ForegroundColor red
+                                        write-host "Ajout groupe $NomGroupe dans le $NomGroupMember échoué" -ForegroundColor red
+                                        Log -FilePath $LogFile -Content "Ajout groupe $NomGroupe dans le $NomGroupMember échoué" -Head "FATAL"
                                 }
                         }
                         Else
                         {       
                                 Write-Host "Le groupe $NomGroupe n'exite pas" -ForegroundColor Yellow
+                                Log -FilePath $LogFile -Content "Le groupe $NomGroupe n'exite pas"  -Head "ERROR"
                         }
 
 
@@ -187,17 +238,20 @@ function FctCreationGroupe
                         {
                                 New-AdGroup -Name $NomGroupe -Path $Path -GroupScope Global -GroupCategory Security
                                 Write-Host "Création du groupe $NomGroupe dans l'OU $Path réussie" -ForegroundColor Green
+                                Log -FilePath $LogFile -Content "Création du groupe $NomGroupe dans l'OU $Path réussie" -Head "INFO"
                                 
 
                         }
                         Catch 
                         { 
                                 write-host "Création du groupe $NomGroupe dans l'OU $Path échoué" -ForegroundColor red
+                                Log -FilePath $LogFile -Content "Création du groupe $NomGroupe dans l'OU $Path échoué" -Head "FATAL"
                         }
                 }
                 Else
                 {
                         Write-Host "Le groupe $NomGroupe dans l'OU $Path existe déjà" -ForegroundColor Yellow
+                        Log -FilePath $LogFile -Content "Le groupe $NomGroupe dans l'OU $Path existe déjà"  -Head "ERROR"
                 }
                 $Count++
                 sleep -Milliseconds 100
@@ -240,14 +294,17 @@ function FctAjoutSousGRoupAGroup
                         Try {
                         Add-ADGroupMember -Identity $NomGroupMember -Members $NomGroupe
                         Write-Host "Ajout groupe $NomGroupe dans le $NomGroupMember réussit" -ForegroundColor Green
+                        Log -FilePath $LogFile -Content "Ajout groupe $NomGroupe dans le $NomGroupMember réussit" -Head "INFO"
                         }
                         Catch 
-                        { write-host "Ajout groupe $NomGroupe dans le $NomGroupMember échoué " -ForegroundColor red
+                        { write-host "Ajout groupe $NomGroupe dans le $NomGroupMember échoué" -ForegroundColor red
+                        Log -FilePath $LogFile -Content "Ajout groupe $NomGroupe dans le $NomGroupMember échoué" -Head "FATAL"
                         }
                 }
                 Else
                 {
                         Write-Host "Le groupe $NomGroupe n'exite pas" -ForegroundColor Yellow
+                        Log -FilePath $LogFile -Content "Ajout groupe $NomGroupe dans le $NomGroupMember échoué"  -Head "ERROR"
                 }
                 $Count++
                 sleep -Milliseconds 100
@@ -266,8 +323,19 @@ function FctAjoutSousGRoupAGroup
 ############## INTIALISAITON ######################
 ### Chemin des dossier et fichier à lire et exploiter
 $FilePath = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Definition)
-$File = "$FilePath\s09_Pharmgreen.csv"
+$File = "$FilePath\s14_Pharmgreen.csv"
+$LogPath = "C:\Log"
+$LogFile = "$LogPath\Log_Script_Groupe_Auto_Users.log"
 
+# Crée le dossier s'il n'existe pas
+if (-Not (Test-Path -Path $LogPath)) {
+    New-Item -ItemType Directory -Path $LogPath | Out-Null
+}
+
+# Crée le fichier s'il n'existe pas
+if (-Not (Test-Path -Path $LogFile)) {
+    New-Item -ItemType File -Path $LogFile | Out-Null
+}
 # Définition des en-têtes de colonnes du fichier CSV
 $Headers = "Prenom", "Nom", "Societe", "Site", "Departement", "Service", "fonction", "ManagerPrenom", "ManagerNom", "PC", "DateDeNaissance", "Telf", "Telp", "Nomadisme - Télétravail", "Groupe_User","Groupe_Computer"
 
@@ -276,6 +344,9 @@ If (-not(Get-Module -Name activedirectory))
 {
     Import-Module activedirectory
 }
+
+
+############## APPEL FONCTION ######################
 
 # Création groupe Global 
 $GroupNamePrincipal = "GRP_U_Users"
@@ -293,8 +364,6 @@ if (($ADGroup  | Where {$_.Name -eq $GroupNamePrincipal }) -ne $Null)
     New-ADGroup -Name $GroupNamePrincipal -Path $groupPath -GroupScope Global -GroupCategory Security
     Write-Host "Le groupe $GroupNamePrincipal a été créé avec succès ." -ForegroundColor Green
 }
-
-
 Write-Host "" 
 Read-Host "Appuyez sur Entrée pour continuer ... "
 sleep -Seconds 1
@@ -330,7 +399,6 @@ Read-Host "Appuyez sur Entrée pour continuer ... "
 sleep -Seconds 1
 clear-host
 
-
 Write-Host "Debut création des Groupes Utilisateur" -ForegroundColor Blue
 Write-Host "" 
 FctCreationGroupe
@@ -349,3 +417,12 @@ Write-Host "Fin ajout de des Groupes Utilisateur dans Groupe Principal" -Foregro
 Write-Host "" 
 Read-Host "Appuyez sur Entrée pour continuer ... "
 sleep -Seconds 1
+clear-host
+
+Write-Host "Reportez vous au fichier Log $LogFile pour vérifier si il y a eu des souci lors de l'exécution du script" -ForegroundColor Blue
+Write-Host "" 
+Read-Host "Appuyez sur Entrée pour continuer ... "
+sleep -Seconds 1
+
+
+############## FIN DU SCRIPT ######################
