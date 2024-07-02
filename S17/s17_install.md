@@ -2,6 +2,8 @@ Sommaire :
 
 1. Installation et configuration de FreePBX
 
+2. Installation de 3CX
+
 # **1. Installation et configuration de FreePBX**
 
 ## **1. Installation**
@@ -90,7 +92,7 @@ Une fois que tout est terminé, cliquez sur `Apply config`.
 
 Sur le serveur en CLI, faites un `yum update` et répondez `y` quand on vous le demandera.
 
-## **3. Lien avec l'Active Directory**
+## **3. Lien avec l'Active Directory et création des utilisateurs**
 
 Si vous voulez lier FreePBX à votre AD, suivez les manips suivantes :
 
@@ -113,3 +115,23 @@ Vous aurez quelque chose qui ressemble à ceci :
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/c0fe11c4-cd1a-4d04-a6fd-248474fdb889)
 
 C'est tout pour la partie FreePBX.
+
+# **2. Installation de 3CX**
+
+Nous avons créé une GPO afin de déployer le logiciel `3CX` sur tous les ordinateurs de `Pharmgreen`.
+
+Sur chaque poste, il faut rentrer les utilisateurs créés sur `FreePBX` dans `3CX` comme suit :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/d5b56a3f-ae28-4507-8f8e-40e8469c6917)
+
+Vous pouvez également créer un répertoire avec ces utilisateurs :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/268c6b83-18b2-430e-bc6f-6a55b2f18d00)
+
+Et enfin, passer un appel. Ici de `Valentina Ferrari` vers `Pauline Blanc` :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/1269edb4-01da-452f-ba8b-f459f9547963)
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/688109ea-9546-4884-bfe1-f9d812053df9)
+
+
+
