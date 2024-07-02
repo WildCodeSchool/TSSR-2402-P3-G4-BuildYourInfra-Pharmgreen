@@ -89,3 +89,27 @@ La fenêtre de mise-à-jour des modules va s'afficher automatiquement, cliquez s
 Une fois que tout est terminé, cliquez sur `Apply config`.
 
 Sur le serveur en CLI, faites un `yum update` et répondez `y` quand on vous le demandera.
+
+## **3. Lien avec l'Active Directory**
+
+Si vous voulez lier FreePBX à votre AD, suivez les manips suivantes :
+
+Allez dans `Admin` -> `User Management` et enfin `Directories`,
+
+Cliquez sur `Add` et remplissez comme suit (les infos sont celles de notre AD) :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/a5703150-89d5-4dba-97cc-cc0f95051763)
+
+Si vous retournez dans `Users`, vous verrez la liste de vos utilisateurs :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/933b670a-428c-4f5f-8dc9-2a161c483b55)
+
+Ensuite allez dans `Applications` puis `Extensions` et enfin `SIP [chan_pjsip] Extensions` et `Add New SIP`, vous pouvez choisir de lier cet utilisateur SIP à l'AD :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/06ea3d98-042b-426c-af7d-5947d248bedc)
+
+Vous aurez quelque chose qui ressemble à ceci :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/c0fe11c4-cd1a-4d04-a6fd-248474fdb889)
+
+C'est tout pour la partie FreePBX.
