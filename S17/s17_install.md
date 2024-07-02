@@ -63,5 +63,29 @@ Vous arriverez sur ceci :
 
 ![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/94e52472-e927-47a3-a482-3775caa40a15)
 
-Cliquez sur `Apply Config`
+Cliquez sur `Apply Config`.
 
+Allez dans `Menu` puis `System Admin`, un message indique que le système n'est pas activé. Clique sur `Activation` puis `Activate` et de nouveau `Activate` :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/eda80416-ddd6-4b2e-80d8-9151e38451bf)
+
+Entrez une adresse email et attend quelques instant.
+
+Dans la fenêtre qui s'affiche, renseignez les différentes informations, et notamment :
+
+- Pour `Which best describes you` mettez `I use your products and services with my Business(s) and do not want to resell it`,
+- Pour `Do you agree to receive product and marketing emails from Sangoma ?`, cochez `No`.
+
+Cliquez sur `Create`.
+
+Dans la fenêtre d'activation, cliquez sur `Activate` et attendez que l'activation se fasse :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/4153bcb1-a13d-47ac-8dad-b4b187d3c278)
+
+Dans toutes les fenêtres qui s'affichent, cliquez sur `Skip`.
+
+La fenêtre de mise-à-jour des modules va s'afficher automatiquement, cliquez sur `Update Now` et attendez que les mises à jour se fassent.
+
+Une fois que tout est terminé, cliquez sur `Apply config`.
+
+Sur le serveur en CLI, faites un `yum update` et répondez `y` quand on vous le demandera.
