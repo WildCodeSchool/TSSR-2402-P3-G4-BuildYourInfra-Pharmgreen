@@ -41,3 +41,27 @@ localectl set-x11-keymap fr
 
 Passez maintenant sur le navigateur web et rentrez l'adresse de votre serveur (ici, `172.16.3.19`) pour continuer la configuration.
 
+Cliquez sur `FreePBX Administration` et reconnectez-vous en root :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/db0e785f-77ea-4b3f-9cf2-fa89dead84a6)
+
+Cliquez sur `Skip` pour sauter l'activation du serveur et toutes les offres commerciales qui s'affichent.
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/f01ab945-c8b4-4bda-ae85-81d7f6b575c3)
+
+Laissez tout par défaut et cliquez sur `Submit`.
+
+A la fenêtre d'activation du firewall, clique sur `Abort` :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/d730f80e-0a81-4ec6-a509-262fbd9db7cb)
+
+A la fenêtre de l'essais de SIP Station clique sur `Not Now` :
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/9aac0f89-a512-40bb-a026-9bc32fe82363)
+
+Vous arriverez sur ceci : 
+
+![image](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/94e52472-e927-47a3-a482-3775caa40a15)
+
+Cliquez sur `Apply Config`
+
