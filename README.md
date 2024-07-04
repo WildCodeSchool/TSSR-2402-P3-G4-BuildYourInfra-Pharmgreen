@@ -145,6 +145,12 @@ Activités et répartition des tâches
 | G4-RO-INFRA-01  | -- | Routage |
 | Grafana  | 172.16.3.11 | CT - Supervision de l'infrastructure |
 | Promotheus | 172.16.3.12 | CT - Base de donnée pour supervision|
+| Backup | 172.16.3.13 | Serveur de stockage |
+| Passbolt | 172.16.3.14 | Serveur de mot de passe |
+| G4-SRV-MAIL | 172.16.3.15 | Serveur iRedMail |
+| Redmine | 172.16.3.18 | CT - Suivi de projet |
+| FreePBX | 172.16.3.19 | Serveur de VOIP |
+| Siteweb | 172.16.3.20 | CT - WordPress |
 
 ## **Choix techniques, contraintes et solutions**
 
