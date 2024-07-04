@@ -3,6 +3,8 @@ Sommaire :
 1. Installation et configuration de FreePBX
 
 2. Installation de 3CX
+   
+3. Installation WordPress
 
 # **1. Installation et configuration de FreePBX**
 
@@ -117,6 +119,71 @@ Vous aurez quelque chose qui ressemble à ceci :
 C'est tout pour la partie FreePBX.
 
 # **2. Installation de 3CX**
+
+
+# 3 Installation du Conteneur TurnKey WordPress sur Proxmox
+
+
+## Prérequis
+
+Avant de commencer, assurez-vous d'avoir les éléments suivants :
+- Un serveur avec Proxmox installé et fonctionnel
+- Une connexion internet active
+
+## Étape 1 : Télécharger le Modèle TurnKey WordPress
+
+1. Connectez-vous à l'interface web de Proxmox.
+2. Naviguez vers `Datacenter` > `local (pve)` > `CT Templates`.
+3. Cliquez sur `Templates` en haut de la page.
+4. Dans la liste déroulante, recherchez `turnkey-wordpress`.
+5. Cliquez sur `Télécharger` pour télécharger le modèle.
+
+## Étape 2 : Créer un Nouveau Conteneur
+
+1. Une fois le modèle téléchargé, cliquez sur `Create CT` dans le coin supérieur droit de l'interface web.
+2. Remplissez les informations requises :
+   - `Node` : Sélectionnez le nœud où vous souhaitez créer le conteneur.
+   - `CT ID` : Attribuez un identifiant unique au conteneur.
+   - `Hostname` : Attribuez un nom d'hôte au conteneur.
+   - `Password` : Définissez un mot de passe pour l'utilisateur root.
+3. Cliquez sur `Next` pour continuer.
+
+## Étape 3 : Configurer le Modèle
+
+1. Dans la section `Template`, sélectionnez `turnkey-wordpress` que vous avez téléchargé précédemment.
+2. Cliquez sur `Next`.
+
+## Étape 4 : Configurer les Ressources
+
+1. Configurez les ressources pour le conteneur :
+   - `CPU` : Définissez le nombre de cœurs CPU.
+   - `Memory` : Définissez la quantité de RAM.
+2. Cliquez sur `Next`.
+
+## Étape 5 : Configurer le Réseau
+
+1. Configurez les paramètres réseau pour le conteneur :
+   - `Bridge` : Sélectionnez le pont réseau (ex. `vmbr0`).
+   - `IPv4` : Attribuez une adresse IP (ex. `192.168.1.100/24`).
+   - `Gateway` : Définissez la passerelle réseau (ex. `192.168.1.1`).
+2. Cliquez sur `Next`.
+
+## Étape 6 : Vérifier et Créer
+
+1. Vérifiez les paramètres du conteneur dans la section `Confirm`.
+2. Cliquez sur `Finish` pour créer le conteneur.
+
+## Étape 7 : Démarrer le Conteneur
+
+1. Après avoir créé le conteneur, allez dans `Datacenter` > `node` > `CT ID`.
+2. Sélectionnez le conteneur et cliquez sur `Start` pour le démarrer.
+
+## Étape 8 : Accéder à WordPress
+
+1. Ouvrez un navigateur web et accédez à l'adresse IP configurée pour le conteneur (ex. `http://192.168.1.100`).
+2. Suivez les instructions de configuration de WordPress pour terminer l'installation.
+
+Vous avez maintenant un conteneur TurnKey WordPress fonctionnel sur Proxmox.
 
 Nous avons créé une GPO afin de déployer le logiciel `3CX` sur tous les ordinateurs de `Pharmgreen`.
 
