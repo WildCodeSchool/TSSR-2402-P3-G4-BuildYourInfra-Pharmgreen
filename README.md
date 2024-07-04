@@ -121,6 +121,16 @@ Activités et répartition des tâches
 | Maxime (PO) | Passbolt |
 | Bruno (SM) | Finalisation de la journalisation, RedMine |
 
+### **Sprint 8 : semaine du 01 au 05 jullet 2024**
+
+Activités et répartition des tâches
+
+| **NOM** | **Tâches effectuées** |
+| :--: | :----------: |
+| Pierre (PO) | VPN/Firewall |
+| Julien (SM) | FreePBX |
+| Maxime | WordPress, VPN/Firewall |
+| Bruno | |
 
 ### **Configuration Réseau**
 
