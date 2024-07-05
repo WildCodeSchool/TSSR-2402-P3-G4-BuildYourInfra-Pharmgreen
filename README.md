@@ -130,7 +130,7 @@ Activités et répartition des tâches
 | Pierre (PO) | VPN/Firewall |
 | Julien (SM) | FreePBX |
 | Maxime | WordPress, VPN/Firewall |
-| Bruno | |
+| Bruno | VPN/Firewall |
 
 ### **Configuration Réseau**
 
