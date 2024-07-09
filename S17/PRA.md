@@ -52,25 +52,26 @@ Au vu des souci rencontré voila la priorisation des actions que nous mis en pla
 
 G4-Pfsense :
 - Remplacement des cartes réseaux défectueuse.
-- Assignement des cartes réseaux sur les bonnes interfaces .
-- Restaurant de la dernière sauvegarde à jour effectuer sur le serveur.
+- Assignement des cartes réseaux sur les bonnes interfaces.
+- Restauration de la dernière sauvegarde à jour des paramètres de PFsense.
 
 G4-Global :
-- Remplacement de la mémoire RAM H.S.
+- Remplacement de la mémoire RAM H.S. pour retrouver la mémoire original qui est de 10Go.
 
 #### Priorité 2 : 
 
 G4-AD-DS-CORE 01 ET G4-AD-DS-CORE 02  :
 - Réinstallation et remontage complète des deux serveurs.
-- Se fier aux différents guides d'installation créer les semaines précédentes.
 - Réintégration des deux serveur dans l'AD et en temps que contrôleur de domaines et en réplication.
 - Partage des rôles FSMO.
+- Se fier aux différents guides d'installation créer les semaines précédentes.
 
 #### Priorité 3 :
 
 G4-SRV-MAIL :
 - Serveur Web plus accessible.
 - Vérification état carte réseau.
+- Remplacement barrete RAM défectueuse. (Normalement 4Go , mais seulement 2Go sont affiché)
 - Reprise du Snapshot fait post installation.
 
 #### Priorité 4 : 
