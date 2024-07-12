@@ -2,7 +2,7 @@ Sommaire :
 
 1. Installation client OpenVPN
 
-2. Installation 
+2. Installation RADIUS vis à pfsense
    
 3. Installation 
 
@@ -84,4 +84,68 @@ Une règle de type "Autoriser tout".
 4. Cliquer sur **Save**
 5. Cliquer sur **Apply Changes**
 
-Votre configuration Client OpenVPN est maintenant terminée.
+# Installation et Utilisation de RADIUS sur pfSense avec Portail Captif
+
+Ce guide vous guidera à travers l'installation et la configuration de RADIUS sur pfSense pour l'utiliser avec un portail captif.
+
+## Prérequis
+
+- Une installation fonctionnelle de pfSense
+- Accès administrateur à l'interface web de pfSense
+
+## Étape 1: Installation du Serveur RADIUS sur pfSense
+
+1. Connectez-vous à l'interface web de pfSense.
+2. Allez dans `System` > `Package Manager`.
+3. Dans l'onglet `Available Packages`, cherchez `freeradius3`.
+4. Cliquez sur `Install` à côté du package `freeradius3` et confirmez l'installation.
+
+## Étape 2: Configuration du Serveur RADIUS
+
+1. Après l'installation, allez dans `Services` > `FreeRADIUS`.
+2. Sous l'onglet `Interfaces`, cliquez sur `Add` pour ajouter une interface.
+   - `Interface`: Sélectionnez `LAN`.
+   - `Port`: Laissez par défaut (1812 pour RADIUS Authentication et 1813 pour Accounting).
+   - Cliquez sur `Save`.
+
+3. Sous l'onglet `Clients`, cliquez sur `Add` pour ajouter un client.
+   - `IP Address`: Entrez l'adresse IP du client (par exemple, l'IP du routeur ou du point d'accès).
+   - `Shared Secret`: Entrez un secret partagé sécurisé.
+   - Cliquez sur `Save`.
+
+4. Sous l'onglet `Users`, cliquez sur `Add` pour ajouter un utilisateur.
+   - `Username`: Entrez un nom d'utilisateur.
+   - `Password`: Entrez un mot de passe.
+   - Cliquez sur `Save`.
+
+5. Sous l'onglet `NAS/Clients`, cliquez sur `Add` pour ajouter un NAS client.
+   - `Shortname`: Entrez un nom abrégé pour le NAS.
+   - `Type`: Sélectionnez `other`.
+   - `IP Address`: Entrez l'adresse IP du NAS.
+   - `Shared Secret`: Entrez le même secret partagé que précédemment.
+   - Cliquez sur `Save`.
+
+6. Sous l'onglet `Settings`, assurez-vous que les services `FreeRADIUS` sont activés.
+   - Cliquez sur `Save`.
+
+## Étape 3: Configuration du Portail Captif
+
+1. Allez dans `Services` > `Captive Portal`.
+2. Cliquez sur `Add` pour créer une nouvelle zone de portail captif.
+   - `Interface`: Sélectionnez l'interface sur laquelle vous voulez activer le portail captif (par exemple, LAN).
+   - `Maximum concurrent connections`: Définissez le nombre maximum de connexions simultanées.
+   - Activez l'option `Enable Captive Portal`.
+   - Cliquez sur `Save and Continue`.
+
+3. Sous l'onglet `Authentication`, sélectionnez `Use RADIUS Authentication`.
+   - `Primary RADIUS Server`: Entrez l'adresse IP du serveur RADIUS (généralement l'IP de pfSense).
+   - `Primary RADIUS Server Port`: Laissez par défaut (1812).
+   - `Primary RADIUS Server Shared Secret`: Entrez le secret partagé que vous avez défini précédemment.
+   - Cliquez sur `Save`.
+
+## Étape 4: Vérification de la Configuration
+
+1. Connectez un appareil au réseau associé à l'interface où le portail captif est activé.
+2. Ouvrez un navigateur web et essayez d'accéder à un site web. Vous devriez être redirigé vers la page de connexion du portail captif.
+3. Entrez les informations d'identification de l'utilisateur RADIUS que vous avez configuré.
+4. Si l'authentification réussit, vous serez redirigé vers le site web demandé.
