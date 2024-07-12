@@ -84,7 +84,7 @@ Une règle de type "Autoriser tout".
 4. Cliquer sur **Save**
 5. Cliquer sur **Apply Changes**
 
-# 2. Installation et Utilisation de RADIUS sur pfSense avec Portail Captif
+# 2. Installation de RADIUS sur pfSense avec Portail Captif
 
 Ce guide vous guidera à travers l'installation et la configuration de RADIUS sur pfSense pour l'utiliser avec un portail captif.
 
