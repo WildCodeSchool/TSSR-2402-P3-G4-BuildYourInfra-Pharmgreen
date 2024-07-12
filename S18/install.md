@@ -172,3 +172,10 @@ Ce guide vous guidera à travers l'installation et la configuration de RADIUS su
 
 ![image](https://github.com/user-attachments/assets/00e49e3f-5695-4c81-9d4d-69a342e5e308)
 
+## importer donnée de l'AD dans bloodhound
+
+- sur le serveur Active directory installer ShareHound via ce lien ``https://github.com/BloodHoundAD/SharpHound/releases``
+- lancer Sharehound via l'invité de commande
+- un dossier Zip contenant des fichiers JSON sera creer
+- transferer ce fichier sur la machine Kali Linux
+- faire un glisser deposer des fichiers JSON sur BloodHound
