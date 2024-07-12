@@ -4,7 +4,7 @@ Sommaire :
 
 2. Installation RADIUS vis à pfsense
    
-3. Installation 
+3. Installation de BloodHound
 
  
  
@@ -149,3 +149,26 @@ Ce guide vous guidera à travers l'installation et la configuration de RADIUS su
 2. Ouvrez un navigateur web et essayez d'accéder à un site web. Vous devriez être redirigé vers la page de connexion du portail captif.
 3. Entrez les informations d'identification de l'utilisateur RADIUS que vous avez configuré.
 4. Si l'authentification réussit, vous serez redirigé vers le site web demandé.
+
+# Instalation BloodHOund
+
+- l'instalation ce ferra sur une machine kali Linux
+- Pour installer BloodHound faite cette commande :
+
+``sudo apt update && sudo apt install -y bloodhound``
+
+- en installant bloodhound la dependance neo4j sera aussi installé
+- executer la commande ``sudo neo4j console``
+- rendez vous a l'adresse ``http://localhost:7474`` et connecter avec l'identifiants et mot de passe par defaut
+
+- Username : neo4j
+- password : neo4j
+
+![image](https://github.com/user-attachments/assets/8775ac54-9e78-4052-b490-801115a3cdfb)
+
+
+- apres vous etes connecté changer votre mot de passe
+- vous pouvez ensuite vous connecter a bloodhound
+
+![image](https://github.com/user-attachments/assets/00e49e3f-5695-4c81-9d4d-69a342e5e308)
+
