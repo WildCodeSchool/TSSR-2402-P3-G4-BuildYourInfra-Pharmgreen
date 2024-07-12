@@ -8,7 +8,7 @@ Sommaire :
 
  
  
- # 1 Installation Client OpenVPN
+ # 1. Installation Client OpenVPN
 
 ## Pré-requis
 
