@@ -1,3 +1,11 @@
+# Sommaire
+
+## Installation de pfSense sur VirtualBox
+
+### Prérequis
+- [Un ordinateur avec VirtualBox installé](#prérequis-pfsense).
+- [Une image ISO de pfSense téléchargeable ici](#prérequis-pfsense).
+
 # Installation de pfSense sur VirtualBox
 
 Ce guide vous aidera à installer pfSense sur une machine virtuelle VirtualBox.
