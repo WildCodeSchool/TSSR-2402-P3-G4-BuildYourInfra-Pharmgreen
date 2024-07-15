@@ -1,8 +1,7 @@
 # Sommaire
 
-1. RedMine
-
-2. Passbolt
+1. [RedMine](#1-redmine)
+2. [Passbolt](#2-passbolt)
 
 
 ## 1.RedMine
