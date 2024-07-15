@@ -1,16 +1,11 @@
 # **Sommaire**
 
-1) Création dossiers partagés utilisateurs
-
-2) Création dossiers partagés départements et services
-
-3) Surveillance et placement des ordinateurs dans les bonnes Organizaion Units.
-
-4) Sauvegardes
-
-5) GPO LAPS
-
-6) Restriction Horaires
+1. [Création dossiers partagés utilisateurs](#1-création-dossiers-partagés-utilisateurs)
+2. [Création dossiers partagés départements et services](#2-création-dossiers-partagés-départements-et-services)
+3. [Surveillance et placement des ordinateurs dans les bonnes Organization Units](#3-surveillance-et-placement-des-ordinateurs-dans-les-bonnes-organization-units)
+4. [Sauvegardes](#4-sauvegardes)
+5. [GPO LAPS](#5-gpo-laps)
+6. [Restriction Horaires](#6-restriction-horaires)
    
 # **1. Création dossiers partagés utilisateurs.**
 
