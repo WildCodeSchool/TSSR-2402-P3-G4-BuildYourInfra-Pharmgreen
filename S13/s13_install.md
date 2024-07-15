@@ -1,3 +1,22 @@
+
+# Guide de Création RAID et Installation de LAPS
+
+## Sommaire
+1. [Création RAID 1 sous Windows Server Core](#création-raid-1-sous-windows-server-core)
+2. [Création RAID 1 sous Windows Server 2022](#création-raid-1-sous-windows-server-2022)
+3. [LAPS](#laps)
+    1. [Installation du module LAPS](#installation-du-module-laps)
+    2. [Attribuer les droits d'écriture aux machines](#attribuer-les-droits-décriture-aux-machines)
+4. [Mise en place du RAID 1 lors de l'installation de Debian](#mise-en-place-du-raid-1-lors-de-linstallation-de-debian)
+    1. [Introduction](#introduction)
+    2. [Prérequis](#prérequis)
+    3. [Instructions étape par étape](#instructions-étape-par-étape)
+        1. [Étape 1 : Démarrer l'installation](#étape-1--démarrer-linstallation)
+        2. [Étape 2 : Partitionner les disques](#étape-2--partitionner-les-disques)
+        3. [Étape 3 : Configurer le RAID logiciel](#étape-3--configurer-le-raid-logiciel)
+        4. [Étape 4 : Formater les partitions](#étape-4--formater-les-partitions)
+        5. [Étape 5 : Finaliser le partitionnement](#étape-5--finaliser-le-partitionnement)
+
 # Création RAID 1 sous Windows Server Core
 
 Pour mettre en place un RAID 1 sous Windows Server Core, il est d'abord nécessaire d'ajouter un second disque de la même taille sous Proxmox.
