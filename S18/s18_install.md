@@ -148,7 +148,7 @@ Ce guide vous guidera à travers l'installation et la configuration de RADIUS su
 3. Entrez les informations d'identification de l'utilisateur RADIUS que vous avez configuré.
 4. Si l'authentification réussit, vous serez redirigé vers le site web demandé.
 
-# 3. installation de bloodhound
+# 3. Installation de bloodhound
 
 - l'instalation ce ferra sur une machine kali Linux
 - Pour installer BloodHound faite cette commande :
