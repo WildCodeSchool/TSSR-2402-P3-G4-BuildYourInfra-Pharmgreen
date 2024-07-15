@@ -1,6 +1,18 @@
-## Active Directory
 
-### Informations du Serveur
+# Guide de Configuration Active Directory et DHCP
+
+## Sommaire
+1. [Informations du Serveur](#informations-du-serveur)
+2. [Étapes d'Installation](#étapes-dinstallation)
+    1. [Installation de AD DS (Active Directory Domain Services)](#1-installation-de-ad-ds-active-directory-domain-services)
+    2. [Installation et Configuration de DHCP](#2-installation-et-configuration-de-dhcp)
+3. [Informations du Client](#informations-du-client)
+4. [Étape 1 : Connectez le PC client au réseau](#étape-1--connectez-le-pc-client-au-réseau)
+5. [Étape 2 : Vérification de la connectivité](#étape-2--vérification-de-la-connectivité)
+6. [Étape 3 : Joindre le domaine](#étape-3--joindre-le-domaine)
+7. [Étape 4 : Vérification de l'appartenance au domaine](#étape-4--vérification-de-lappartenance-au-domaine)
+
+## Informations du Serveur
 
 - **Nom de l’hôte serveur**: SRV-GLOBAL-LYON
 - **Compte**: Administrator
@@ -9,17 +21,15 @@
 - **DNS**: pharmgreen.org
 - **Version**: Windows Server 2022
 
+## Étapes d'Installation
 
-
-### Étapes d'Installation
-
-Prérequis
+### Prérequis
 - Mises à jour de sécurité : Appliquées sur les deux machines.
 - Connectivité réseau : Vérifiée entre serveur et client.
 - Pare-feu : Désactivé sur les deux machines.
 - Plage d'adresse IP : Identique pour serveur et client.
 
-#### 1. Installation de AD DS (Active Directory Domain Services)
+### 1. Installation de AD DS (Active Directory Domain Services)
 
 - Connectez-vous sur le serveur SRV-GLOBAL-LYON avec le compte Administrator.
   
@@ -63,7 +73,7 @@ Prérequis
 
 
 
-#### 2. Installation et Configuration de DHCP
+### 2. Installation et Configuration de DHCP
 
 - Retournez au 'Server Manager', puis sélectionnez 'Add roles and features' (Ajouter des rôles et fonctionnalités).
   !['Add roles and features](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/162970946/e569d963-e87d-4238-83b0-ae6422f463b6)
@@ -76,7 +86,7 @@ Prérequis
 - Définissez l'étendue de DHCP pour distribuer les adresses IP automatiquement dans le réseau, incluant les adresses pour SRV-GLOBAL-LYON et PC-PI-0001.
   
 
-### Informations du Client
+## Informations du Client
 
 - **Nom de l’hôte client**: PC-PI-0001
 - **Compte**: wilder
@@ -85,21 +95,21 @@ Prérequis
 - **DNS**: pharmgreen.org / 172.14.3.4
 - **Version**: Windows Server 2022
 
-Prérequis
+### Prérequis
 - Mises à jour de sécurité : Appliquées sur les deux machines.
 - Connectivité réseau : Vérifiée entre serveur et client.
 - Pare-feu : Désactivé sur les deux machines.
 - Plage d'adresse IP : Identique pour serveur et client.
 
-#### Étape 1 : Connectez le PC client au réseau
+### Étape 1 : Connectez le PC client au réseau
 
-- Configuration réseau : Assurez-vous que le PC client (PC-PI-0001) est configuré avec une adresse IP fixe ou qu'il reçoit une adresse via DHCP dans la même sous-réseau que le serveur (SRV-GLOBAL-LYON).
+- Configuration réseau : Assurez-vous que le PC client (PC-PI-0001) est configuré avec une adresse IP fixe ou qu'il reçoit une adresse via DHCP dans le même sous-réseau que le serveur (SRV-GLOBAL-LYON).
 
-#### Étape 2 : Vérification de la connectivité
+### Étape 2 : Vérification de la connectivité
 
 - Test Ping : Depuis le PC client, ouvrez l'invite de commande et exécutez ping 172.14.3.4 pour vérifier la connectivité avec le serveur.
 
-#### Étape 3 : Joindre le domaine
+### Étape 3 : Joindre le domaine
 
 - Ouvrir les Paramètres Windows : Sur le PC client, allez dans Paramètres > Système > À propos et cliquez sur Paramètres avancés du système.
 
@@ -111,7 +121,7 @@ Prérequis
 
 - Redémarrage requis : Après avoir cliqué sur OK, un message vous invitera à redémarrer l'ordinateur pour appliquer les changements. Redémarrez le PC client.
 
-#### Étape 4 : Vérification de l'appartenance au domaine
+### Étape 4 : Vérification de l'appartenance au domaine
 
 - Connexion au Domaine : Après le redémarrage, assurez-vous de vous connecter avec un compte utilisateur qui est autorisé sur le domaine.
 - Vérifier l'appartenance au domaine : Vous pouvez vérifier que le PC est bien ajouté au domaine en ouvrant de nouveau Paramètres > Système > À propos et en consultant le nom du groupe de travail/domaine.
