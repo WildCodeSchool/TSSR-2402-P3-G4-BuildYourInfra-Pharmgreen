@@ -1,4 +1,4 @@
-Informations du Serveur
+# Active directory CORE
 
 ### Pré-requis
 - **Nom de l’hôte serveur GUI**: SRV-GLOBAL-LYON
