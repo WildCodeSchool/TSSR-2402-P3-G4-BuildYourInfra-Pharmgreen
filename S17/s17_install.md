@@ -119,7 +119,7 @@ C'est tout pour la partie FreePBX.
 # **2. Installation de 3CX**
 
 
-# 3 Installation du Conteneur TurnKey WordPress sur Proxmox
+# 3 Installation de WordPress
 
 
 ## Prérequis
