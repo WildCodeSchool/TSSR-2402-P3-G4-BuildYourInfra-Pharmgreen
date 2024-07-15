@@ -1,3 +1,43 @@
+
+# Sommaire Interactif
+
+## [Prérequis Général](#prérequis-général)
+
+## [Prérequis GPO](#prérequis-gpo)
+
+## [Tuto Installation GLPI sur Debian 12](#tuto-installation-glpi-sur-debian-12)
+### [Prérequis de GLPI](#prérequis-de-glpi)
+- [Environnement](#environnement)
+- [Versions requises](#versions-requises)
+- [Extensions PHP nécessaires](#extensions-php-nécessaires)
+
+### [Préparer le serveur pour installer GLPI](#préparer-le-serveur-pour-installer-glpi)
+- [Mise à jour des paquets](#mise-à-jour-des-paquets)
+- [Installer le socle LAMP](#installer-le-socle-lamp)
+- [Sécuriser MariaDB](#sécuriser-mariadb)
+- [Créer une base de données pour GLPI](#créer-une-base-de-données-pour-glpi)
+
+### [Télécharger et installer GLPI](#télécharger-et-installer-glpi)
+- [Télécharger l'archive GLPI](#télécharger-larchive-glpi)
+- [Configurer les permissions](#configurer-les-permissions)
+- [Configurer les répertoires sécurisés](#configurer-les-répertoires-sécurisés)
+- [Créer les fichiers de configuration](#créer-les-fichiers-de-configuration)
+
+### [Préparer la configuration Apache2](#préparer-la-configuration-apache2)
+- [Activer le site GLPI et les modules Apache nécessaires](#activer-le-site-glpi-et-les-modules-apache-nécessaires)
+- [Recharger la configuration Apache2](#recharger-la-configuration-apache2)
+
+### [Installer et configurer PHP-FPM](#installer-et-configurer-php-fpm)
+- [Configurer PHP-FPM pour Apache2](#configurer-php-fpm-pour-apache2)
+- [Redémarrer PHP-FPM](#redémarrer-php-fpm)
+
+### [Finaliser l'installation](#finaliser-linstallation)
+- [Redémarrer les services](#redémarrer-les-services)
+- [Connexion au serveur](#connexion-au-serveur)
+
+## [Installation de GLPI Agent](#installation-de-glpi-agent)
+### [Pour Debian](#pour-debian)
+### [Pour Windows](#pour-windows)
 ## Prérequis Général 
 
 - **Adresse IP de réseau** : 192.168.9.0/24 
