@@ -1,6 +1,6 @@
 Sommaire :
 
-1. [Installation client OpenVPN](#1-installation-client-openvpn)
+1. [Installation client OpenVPN](#1-installation-Client-openvpn)
 2. [Installation RADIUS via pfSense](#2-installation-radius-via-pfsense)
 3. [Installation de BloodHound](#3-installation-de-bloodhound)
 
@@ -82,7 +82,7 @@ Une règle de type "Autoriser tout".
 4. Cliquer sur **Save**
 5. Cliquer sur **Apply Changes**
 
-# 2. Installation de RADIUS sur pfSense avec Portail Captif
+# 2. Installation de RADIUS via pfSense
 
 Ce guide vous guidera à travers l'installation et la configuration de RADIUS sur pfSense pour l'utiliser avec un portail captif.
 
@@ -148,7 +148,7 @@ Ce guide vous guidera à travers l'installation et la configuration de RADIUS su
 3. Entrez les informations d'identification de l'utilisateur RADIUS que vous avez configuré.
 4. Si l'authentification réussit, vous serez redirigé vers le site web demandé.
 
-# Instalation BloodHOund
+# Instalation de bloodhound
 
 - l'instalation ce ferra sur une machine kali Linux
 - Pour installer BloodHound faite cette commande :
