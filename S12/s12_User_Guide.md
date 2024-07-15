@@ -1,10 +1,8 @@
-## **Sommaire**
+# **Sommaire**
 
-1) Tutoriel : Configuration de Firewall
-
-2) Exploitation GPO télemétrie
-
-3) FAQ : Solutions aux problèmes connus et communs liés à l'utilisation
+1. [Tutoriel : Configuration de Firewall](#1-tutoriel--configuration-de-firewalls)
+2. [Exploitation GPO télemétrie](#2--exploitation-gpo-télemétrie)
+3. [FAQ : Solutions aux problèmes connus et communs liés à l'utilisation](#3---faq--solutions-aux-problèmes-connus-et-communs-liés-à-lutilisation)
 
 ## **1. Tutoriel : Configuration de Firewalls**
 
