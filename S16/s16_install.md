@@ -1,7 +1,7 @@
 # Sommaire :
 
-1. Transfert des rôles FSMO
-2. Installation d'un serveur WSUS 
+1. [Transfert des rôles FSMO](#5-transfert-des-rôles-fsmo)
+2. [Installation d'un serveur WSUS](#6-installation-dun-serveur-wsus)
 
 # 1. **Transfert des rôles FSMO**
 
