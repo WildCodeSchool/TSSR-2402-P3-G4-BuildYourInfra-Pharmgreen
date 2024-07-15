@@ -20,6 +20,3 @@
 | VM    | 671    | G4-SRV-PASSBOLT  | PASSBOLT (Nginx, MySQL, PHP)                                                           |
 | VM    | 672    | G4-SRV-VOIP      | FreePBX (Apache, MySQL, Asterisk)                                                      |
 | VM    | 673    | G4-SRV-KALI      | KALI                                                                                   |
-| VM    | 686    | G5-Client1       | Client1                                                                                |
-| VM    | 687    | G5-serveurGUI    | serveurGUI                                                                             |
-| VM    | 688    | G5-serveurCORE   | serveurCORE                                                                            |
