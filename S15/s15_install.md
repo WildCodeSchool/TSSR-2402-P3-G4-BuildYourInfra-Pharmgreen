@@ -1,12 +1,10 @@
 # Sommaire
 
-1. Installation de iRedMail
+1. [Installation de iRedMail](#1-installation-de-iredmail)
+2. [Mise en place d'un serveur backup](#2-mise-en-place-dun-serveur-backup)
+3. [Installation de Redmine](#3-installation-de-redmine)
+4. [Installation de Passbolt](#4-installation-de-passbolt)
 
-2. Mise en place d'un serveur backup
-
-3. Installation de Redmine
-   
-4. Installation de passbolt
 
 ## **1. Installation de iRedMail**
 
