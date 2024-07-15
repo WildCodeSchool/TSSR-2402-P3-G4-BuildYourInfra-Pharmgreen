@@ -1,56 +1,51 @@
-# Sommaire
 
-## Installation de pfSense sur VirtualBox
-
-### Prérequis
-- [Un ordinateur avec VirtualBox installé](#prérequis-pfsense).
-- [Une image ISO de pfSense téléchargeable ici](#prérequis-pfsense).
-
-# Installation de pfSense sur VirtualBox
-
-Ce guide vous aidera à installer pfSense sur une machine virtuelle VirtualBox.
+# Guide d'Installation de pfSense et VyOS sur VirtualBox
 
 ## Prérequis
 
 - Un ordinateur avec VirtualBox installé.
-- Une image ISO de pfSense [téléchargeable ici](https://www.pfsense.org/download/).
+- Les images ISO de pfSense et VyOS :
+  - [pfSense](https://www.pfsense.org/download/)
+  - [VyOS](https://vyos.io/download)
 
-## Étapes d'Installation
+## Installation de pfSense
 
-### Télécharger pfSense
+### Étapes d'Installation
+
+#### Télécharger pfSense
 
 1. Allez sur [pfSense.org](https://www.pfsense.org/download/).
 2. Téléchargez l'image ISO (architecture AMD64).
 
-### Créer une Machine Virtuelle sur VirtualBox
+#### Créer une Machine Virtuelle sur VirtualBox
 
 1. **Ouvrir VirtualBox** :
-   - Lancez VirtualBox et cliquez sur "New" pour créer une nouvelle machine virtuelle.
+   - Lancez VirtualBox et cliquez sur **New** pour créer une nouvelle machine virtuelle.
 
 2. **Configurer la Machine Virtuelle** :
-   - Nom : `pfSense`.
-   - Type : `BSD`.
-   - Version : `FreeBSD (64-bit)`.
-   - Mémoire : Allouez 1 Go de RAM.
-   - Disque dur : Créez un nouveau disque dur virtuel (VDI) de 10 Go, avec allocation dynamique.
+   - **Nom** : `pfSense`
+   - **Type** : `BSD`
+   - **Version** : `FreeBSD (64-bit)`
+   - **Mémoire** : 1 Go de RAM
+   - **Disque dur** : Créez un nouveau disque dur virtuel (VDI) de 10 Go, avec allocation dynamique.
 
 3. **Ajouter l'ISO de pfSense** :
    - Accédez aux paramètres de la VM.
-   - Cliquez sur "Storage", sélectionnez "Empty" sous "Controller: IDE".
-   - Cliquez sur l'icône de disque et sélectionnez "Choose a disk file", puis choisissez l'image ISO de pfSense.
+   - Cliquez sur **Storage**, sélectionnez **Empty** sous **Controller: IDE**.
+   - Cliquez sur l'icône de disque et sélectionnez **Choose a disk file**, puis choisissez l'image ISO de pfSense.
 
 4. **Démarrer la VM** :
-   - Cliquez sur "Start" pour lancer la VM avec l'ISO de pfSense.
+   - Cliquez sur **Start** pour lancer la VM avec l'ISO de pfSense.
 
-### Installer pfSense
+#### Installer pfSense
 
 1. **Démarrer l'Installation** :
    - Lorsque le menu de démarrage de pfSense apparaît, sélectionnez l'option par défaut pour commencer l'installation.
 
 2. **Suivre les Instructions** :
    - Choisissez les options par défaut pour les paramètres.
-   - Sélectionnez "Install" pour lancer l'installation.
-   - Choisissez "Auto (UFS)" pour le schéma de partitionnement.
+   - Sélectionnez **Install** pour lancer l'installation.
+   - Choisissez **Auto (UFS)** pour le schéma de partitionnement.
 
 3. **Finaliser l'Installation** :
    - Une fois l'installation terminée, retirez l'ISO de pfSense.
@@ -61,44 +56,37 @@ Ce guide vous aidera à installer pfSense sur une machine virtuelle VirtualBox.
 1. **Connexion à l'Interface Web** :
    - Ouvrez un navigateur web et allez à l'adresse IP LAN par défaut de pfSense : `http://192.168.1.1`.
    - Utilisez les informations d'identification par défaut : utilisateur `admin`, mot de passe `pfsense`.
-  
-# Installation de VyOS sur VirtualBox
 
-Ce guide vous aidera à installer VyOS sur une machine virtuelle VirtualBox.
+## Installation de VyOS
 
-## Prérequis
+### Étapes d'Installation
 
-- Un ordinateur avec VirtualBox installé.
-- Une image ISO de VyOS [téléchargeable ici](https://vyos.io/download).
-
-## Étapes d'Installation
-
-### Télécharger VyOS
+#### Télécharger VyOS
 
 1. Allez sur [vyos.io/download](https://vyos.io/download).
 2. Téléchargez l'image ISO (architecture AMD64).
 
-### Créer une Machine Virtuelle sur VirtualBox
+#### Créer une Machine Virtuelle sur VirtualBox
 
 1. **Ouvrir VirtualBox** :
-   - Lancez VirtualBox et cliquez sur "New" pour créer une nouvelle machine virtuelle.
+   - Lancez VirtualBox et cliquez sur **New** pour créer une nouvelle machine virtuelle.
 
 2. **Configurer la Machine Virtuelle** :
-   - Nom : `VyOS`.
-   - Type : `Linux`.
-   - Version : `Debian (64-bit)`.
-   - Mémoire : Allouez 1 Go de RAM.
-   - Disque dur : Créez un nouveau disque dur virtuel (VDI) de 10 Go, avec allocation dynamique.
+   - **Nom** : `VyOS`
+   - **Type** : `Linux`
+   - **Version** : `Debian (64-bit)`
+   - **Mémoire** : 1 Go de RAM
+   - **Disque dur** : Créez un nouveau disque dur virtuel (VDI) de 10 Go, avec allocation dynamique.
 
 3. **Ajouter l'ISO de VyOS** :
    - Accédez aux paramètres de la VM.
-   - Cliquez sur "Storage", sélectionnez "Empty" sous "Controller: IDE".
-   - Cliquez sur l'icône de disque et sélectionnez "Choose a disk file", puis choisissez l'image ISO de VyOS.
+   - Cliquez sur **Storage**, sélectionnez **Empty** sous **Controller: IDE**.
+   - Cliquez sur l'icône de disque et sélectionnez **Choose a disk file**, puis choisissez l'image ISO de VyOS.
 
 4. **Démarrer la VM** :
-   - Cliquez sur "Start" pour lancer la VM avec l'ISO de VyOS.
+   - Cliquez sur **Start** pour lancer la VM avec l'ISO de VyOS.
 
-### Installer VyOS
+#### Installer VyOS
 
 1. **Démarrer l'Installation** :
    - Lorsque le menu de démarrage de VyOS apparaît, sélectionnez l'option par défaut pour commencer l'installation.
