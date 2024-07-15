@@ -1,6 +1,22 @@
-# Active directory CORE
 
-### Pré-requis
+# Guide de Configuration Active Directory Core et SSH
+
+## Sommaire
+1. [Pré-requis](#pré-requis)
+2. [Informations du Serveur](#informations-du-serveur)
+3. [Installation de AD DS (Active Directory Domain Services)](#1-installation-de-ad-ds-active-directory-domain-services)
+4. [Définition d'une adresse IP statique](#2-définition-dune-adresse-ip-statique)
+5. [Ajout du serveur Debian à l'Active Directory](#ajout-du-serveur-debian-à-l-active-directory)
+    1. [Configuration réseau](#configuration-reseau)
+    2. [Paquet nécessaire pour ajouter le serveur à l'active directory](#paquet-necessaire-pour-ajouter-le-serveur-à-lactive-directory)
+    3. [Modification fichier resolv.conf](#modification-fichier-resolvconf)
+    4. [Ajout de la machine au serveur AD](#ajout-de-la-machine-au-serveur-ad)
+6. [Installation et configuration du serveur ssh](#installation-et-configuration-du-serveur-ssh)
+    1. [Action à effectuer sur le serveur](#action-à-effectuer-sur-le-serveur)
+    2. [Configuration client ssh](#configuration-client-ssh)
+7. [Dernière configuration](#dernière-configuration)
+
+## Pré-requis
 - **Nom de l’hôte serveur GUI**: SRV-GLOBAL-LYON
 - **Adresse IP de réseau** : 192.168.9.0/24
 - **Adresse de passerelle** : 192.168.9.254
@@ -12,10 +28,10 @@
 - **Version**: Windows Server 2022
 - Pare-feu : désactivé
 
-Pour l'installation des rôle Active Directory, DNS et DHCP, se référer à la documentation **s09_install.md** et adapter les adresses IP selon les **Pré-requis**.  
+Pour l'installation des rôles Active Directory, DNS et DHCP, se référer à la documentation **s09_install.md** et adapter les adresses IP selon les **Pré-requis**.  
 De même pour le poste Client.
 
-### Informations du Serveur
+## Informations du Serveur
 
 - **Nom de l’hôte serveur**: AD-DS
 - **Compte**: Administrator
@@ -28,7 +44,7 @@ De même pour le poste Client.
 - Mises à jour de sécurité : appliquées
 - Pare-feu : désactivé 
 
-#### 1. Installation de AD DS (Active Directory Domain Services)
+## 1. Installation de AD DS (Active Directory Domain Services)
 
 - Connectez vous sur le serveur AD-DS avec le compte Administrator.
 - Vous allez arriver sur un écran comme celui-ci
@@ -37,9 +53,9 @@ De même pour le poste Client.
 
 - Entrez "15" pour passer en lignes de commandes (PowerShell)
 - Exécutez les commandes suivantes : 
-	- `Add-WindowsFeature -Name "RSAT-AD-Tools" -IncludeManagementTools -IncludeAllSubFeature`
-	- `Add-WindowsFeature -Name "AD-Domain-Services" -IncludeManagementTools -IncludeAllSubFeature`
-	- `Add-WindowsFeature -Name "DNS" -IncludeManagementTools -IncludeAllSubFeature`
+    - `Add-WindowsFeature -Name "RSAT-AD-Tools" -IncludeManagementTools -IncludeAllSubFeature`
+    - `Add-WindowsFeature -Name "AD-Domain-Services" -IncludeManagementTools -IncludeAllSubFeature`
+    - `Add-WindowsFeature -Name "DNS" -IncludeManagementTools -IncludeAllSubFeature`
  
 Vous verrez une barre de progression comme celle-ci pour les 3 commandes :
 
@@ -47,7 +63,7 @@ Vous verrez une barre de progression comme celle-ci pour les 3 commandes :
 
 - Fermez la fenêtre afin de revenir à l'écran précédent avec toutes les propositions.
 
-#### 2. Définition d'une adresse IP statique
+## 2. Définition d'une adresse IP statique
 
 Nous allons d'abord définir l'adresse IP :
 - Sur l'écran de sélection, entrez "8" pour aller dans les paramètres réseau
@@ -71,22 +87,17 @@ Vous aurez à la fin quelque chose qui ressemble à ceci
 
 ![Pasted image 20240514150528](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/161329881/46a278b4-8224-4a6e-8f98-c2f11cb38ad5)
 
-
-  # configuration Serveur debian et SSH 
-
-## Ajout du serveur Debian à l' Active Directory
+## Ajout du serveur Debian à l'Active Directory
 
 ### Configuration reseau
 
 Modifiez le fichier **/etc/network/interfaces** comme suit :
 
-
 ![Capture](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/a8ac382b-05cb-475e-8292-adbb51969dcb)
 
+### Paquet nécessaire pour ajouter le serveur à l'active directory
 
-### Paquet necessaire pour ajouter le serveur à l'active directory
-
-Executez cette commande : `apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd`
+Exécutez cette commande : `apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd`
 
 ### Modification fichier resolv.conf
 
@@ -96,7 +107,7 @@ Modifiez le fichier /etc/resolv.conf comme cela :
 
 ### Ajout de la machine au serveur AD
 
-Executez la commande `realm join --user=administrator pharmgreen.org`
+Exécutez la commande `realm join --user=administrator pharmgreen.org`
 
 # Installation et configuration du serveur ssh
 
@@ -108,12 +119,11 @@ Modifiez le fichier /etc/ssh/sshd_config comme cela :
 
 ![capture3ssh](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/6df03c53-2575-4d6d-b626-5c9887b05ce4)
 
-
 ![CAPTURE5SSH](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/bde0c267-4836-4366-a189-23321c6849c0)
 
-Après avoir modifier le fichier, pensez à executer la commande `systemctl restart sshd`
+Après avoir modifié le fichier, pensez à exécuter la commande `systemctl restart sshd`
 
-Executez ces commandes pour créer le dossier qui va acceuillir la clé publique de notre client:
+Exécutez ces commandes pour créer le dossier qui va accueillir la clé publique de notre client:
 - `mkdir /home/wilder/.ssh`
 - `chmod 700 /home/wilder/.ssh`
 - `touch /home/wilder/.ssh/authorized_keys`
@@ -121,7 +131,7 @@ Executez ces commandes pour créer le dossier qui va acceuillir la clé publique
 
 # Configuration client ssh
 
-- Génerez une clé publique en exécutant cette commande en PowerShell `ssh-keygen -t rsa 4096`
+- Générez une clé publique en exécutant cette commande en PowerShell `ssh-keygen -t rsa 4096`
 
 - Copiez la clé sur le serveur en exécutant cette commande `cat ~/.ssh/id_rsa.pub | ssh root@192.168.9.4 "cat >> ~/.ssh/authorized_keys"`
 
@@ -132,5 +142,3 @@ De retour sur le serveur, remodifiez le fichier /etc/ssh/sshd_config
 ![image-7](https://github.com/WildCodeSchool/TSSR-2402-P3-G4-BuildYourInfra-Pharmgreen/assets/81968235/5c9d0416-6b82-4c8c-a541-40d970c99395)
 
 Côté client; pour vous connecter, exécutez cette commande `ssh wilder@192.168.9.4 -p 6666`
-
-
