@@ -1,10 +1,8 @@
 Sommaire :
 
-1. Installation et configuration de FreePBX
-
-2. Installation de 3CX
-   
-3. Installation WordPress
+1. [Installation et configuration de FreePBX](#1-installation-et-configuration-de-freepbx)
+2. [Installation de 3CX](#2-installation-de-3cx)
+3. [Installation de WordPress](#3-installation-de-wordpress)
 
 # **1. Installation et configuration de FreePBX**
 
