@@ -134,6 +134,10 @@ Nous allons maintenant passer sur le serveur Windows :
 
 Le serveur est backup tous les jours à 21h, la sauvegarde précédente est écrasée à chaque fois.
 
+### Installation et configuration de Veeam
+
+Il faut tout d'abord télécharger le `.exe` et configurer la backup vers le serveur distant, tous les jours à 4h.
+
 ## **3. Installation de RedMine**
 
 ### Pré-requis pour Redmine  
