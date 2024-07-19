@@ -1,5 +1,5 @@
- 
-## Tableau de synthèse de la documentation
+
+## Tableau de synthèse logiciel lié au machine
 
 | CT/VM | Numéro | Nom              | Logiciel / Appliance                                                                   |
 | ----- | ------ | ---------------- | -------------------------------------------------------------------------------------- |
@@ -20,3 +20,17 @@
 | VM    | 671    | G4-SRV-PASSBOLT  | PASSBOLT (Nginx, MySQL, PHP)                                                           |
 | VM    | 672    | G4-SRV-VOIP      | FreePBX (Apache, MySQL, Asterisk)                                                      |
 | VM    | 673    | G4-SRV-KALI      | KALI                                                                                   |
+
+## Tableau documentation
+| Semaine | User_guide.md | Install.md | PRA |
+| ------- | ------------- | ---------- | --- |
+| 9       | X             | Fait       | X   |
+| 10      | Fait          | Fait       | X   |
+| 11      | Fait          | Fait       | X   |
+| 12      | Fait          | Fait       | X   |
+| 13      | Fait          | Fait       | X   |
+| 14      | Fait          | Fait       | X   |
+| 15      | Fait          | Fait       | X   |
+| 16      | Fait          | Fait       | X   |
+| 17      | X             | Fait       | X   |
+| 18      | X             | Fait       | Fait |
